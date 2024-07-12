@@ -1,0 +1,27 @@
+.post-description,
+.post-info-container {
+  color: #888;
+  line-height: 19px;
+  font-size: 13px;
+}
+
+.post-description {
+  margin-top: 10px;
+}
+
+.post-info-container {
+  display: flex;
+  margin-top: 6px;
+  & > * {
+    padding: 0 10px;
+    border-right: 1px solid #ddd;
+  }
+
+  & > *:first-child {
+    padding-left: 0;
+  }
+
+  & > *:last-child {
+    border-right: none;
+  }
+}

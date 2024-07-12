@@ -1,0 +1,20 @@
+export const categories = [
+  { name: "js", description: "" },
+  { name: "vue", description: "" },
+  { name: "css", description: "" },
+  {
+    name: "前端组件",
+    description: "",
+    children: [
+      { name: "prosemirror", description: "" },
+      { name: "element-ui", description: "" },
+      { name: "vueuse", description: "" },
+      { name: "vue-router", description: "" },
+      { name: "tinymce", description: "" },
+    ],
+  },
+  { name: "底层工具", description: "" },
+  { name: "写着玩", description: "" },
+  { name: "工作记录", description: "" },
+  { name: "一些方法论", description: "" },
+];
