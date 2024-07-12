@@ -9,13 +9,9 @@ import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 export default defineConfig(({ mode }) => {
   const isDev = mode === "development";
   return {
-    base: "/liuzx-emily",
+    base: "/liuzx-emily/",
     build: {
-      rollupOptions: {
-        output: {
-          dir: "../dist/",
-        },
-      },
+      outDir: "../dist/"
     },
     plugins: [
       vue(),
