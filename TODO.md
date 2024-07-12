@@ -1,7 +1,7 @@
 ## TODO
 开发阶段同时运行两个脚本有时会报错。每次重新生成/data/posts.js，vite都会报错说找不到文件。只有在家里的电脑可以稳定复现。
 
-处理错误分类的 blog，现在写在 src 里面了。挪到 build 里
+处理错误分类的 blog，现在写在 src 里面了。挪到 generate-data 里
 
 草稿 isDraft。在网站上不显示
 
