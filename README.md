@@ -7,9 +7,9 @@
 开两个 Terminal，分别执行 `npm run generate-data-continuous` 和 `npm run serve`
 
 注意事项：
-- post.md 的文件名格式为 `${日期}_${名称}.md`
-  - `${日期}` 纯粹是为了更直观的展示时间，并不会使用这个值。后续获取文章时间都是从 md 内容中的 metadata.createTime（应该保证这两个值相同）
-  - `${名称}` 也是为了直观展示名字，并不会使用这个值。后续获取文章标题都是取 md 内容中的 metadata.title（无法保证两个值相同，因为文件名称中不能含有特殊符号，但是 metadata.title 中可以）
+- post.md 的文件名格式为 `[日期]_[文章标题].md`
+  - `[日期]` 纯粹是为了更直观的展示时间，并不会使用这个值。后续获取文章时间都是从 md 内容中的 metadata.createTime（应该保证这两个值相同）
+  - `[文章标题]` 也是为了直观展示名字，并不会使用这个值。后续获取文章标题都是取 md 内容中的 metadata.title（无法保证两个值相同，因为文件名称中不能含有特殊符号，但是 metadata.title 中可以）
 
 
 ### 本地预览部署效果
