@@ -8,6 +8,16 @@ export function _getPath(str) {
   return path.join(process.cwd(), str);
 }
 
+export function walkThroughTree(treeArr, cb) {
+  for (let i = 0; i < treeArr.length; i++) {
+    const element = treeArr[i];
+    cb(element);
+    if (element?.children?.length > 0) {
+      walkThroughTree(element.children, cb);
+    }
+  }
+}
+
 export async function readMarkdownPosts() {
   const mdDirPath = _getPath("src/posts");
   const files = await readdir(mdDirPath);

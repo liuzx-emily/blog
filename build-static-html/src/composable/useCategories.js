@@ -1,4 +1,5 @@
 import { categories } from "../../../src/categories";
+import { cloneDeep } from "../utils";
 
 export function useCategories(posts) {
   const uncategorized = [];
@@ -13,23 +14,16 @@ export function useCategories(posts) {
     });
     return acc;
   }, new Map());
-  const res = [...categories];
+  const res = cloneDeep(categories);
   walkThroughTree(res, (node) => {
     if (categoriesAnalyzedFromPosts.has(node.name)) {
       const count = categoriesAnalyzedFromPosts.get(node.name);
       node.count = count;
-      categoriesAnalyzedFromPosts.delete(node.name);
     } else {
       node.count = 0;
     }
   });
-  categoriesAnalyzedFromPosts.forEach((count, name) => {
-    console.warn(`错误分类《${name}》下有${count}篇文章，请处理`);
-  });
-  res.push({
-    name: "未分类",
-    count: uncategorized.length,
-  });
+  res.push({ name: "未分类", count: uncategorized.length });
 
   return {
     categories: res,

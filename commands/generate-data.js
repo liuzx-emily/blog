@@ -1,12 +1,18 @@
-import commandLineArgs from 'command-line-args';
-import { JSDOM } from 'jsdom';
+import commandLineArgs from "command-line-args";
+import { JSDOM } from "jsdom";
 import { watch } from "node:fs";
 import { cp, writeFile } from "node:fs/promises";
 import Showdown from "showdown";
 import ShowdownHighlight from "showdown-highlight";
-import { _getPath, readMarkdownPosts } from "./utils.js";
+import { _getPath, readMarkdownPosts, walkThroughTree } from "./utils.js";
+import { categories } from "../src/categories.js";
 
-const args = commandLineArgs([{ name: 'continuous-watch', type: Boolean }])
+const args = commandLineArgs([{ name: "continuous-watch", type: Boolean }]);
+
+const flattenedCategories = [];
+walkThroughTree(categories, (category) => {
+  flattenedCategories.push(category.name);
+});
 
 const converter = new Showdown.Converter({
   extensions: [
@@ -54,20 +60,24 @@ async function generateDataPosts() {
     // change image src
     const dom = new JSDOM(htmlContent);
     const doc = dom.window.document;
-    doc.querySelectorAll("img").forEach(img => {
-      const src = img.getAttribute("src")  // "..\\post-assets\\d8254493-7b2e-410e-bd40-236711f2b884.png"
-      const [imageName, imgNameWithoutSuffix, suffix] = src.match(/([^\\]+)\.([^\.]+)$/)
-      const newSrc = `\\liuzx-emily\\post-assets\\${imageName}`
-      img.setAttribute("src", newSrc)
-    })
-    htmlContent = doc.body.outerHTML
-
+    doc.querySelectorAll("img").forEach((img) => {
+      const src = img.getAttribute("src"); // "..\\post-assets\\d8254493-7b2e-410e-bd40-236711f2b884.png"
+      const [imageName, imgNameWithoutSuffix, suffix] = src.match(/([^\\]+)\.([^\.]+)$/);
+      const newSrc = `\\liuzx-emily\\post-assets\\${imageName}`;
+      img.setAttribute("src", newSrc);
+    });
+    htmlContent = doc.body.outerHTML;
+    const categories = metadata.categories === "" ? [] : metadata.categories.split(", ");
+    const invalidCategory = categories.find((category) => !flattenedCategories.includes(category));
+    if (invalidCategory) {
+      throw new Error(`《${metadata.title}》包含无效分类 - ${invalidCategory}`);
+    }
     return {
       id: metadata.id,
       title: metadata.title,
       createTime: metadata.createTime,
       updateTime: metadata.updateTime,
-      categories: metadata.categories === "" ? [] : metadata.categories.split(", "),
+      categories,
       tags: metadata.tags === "" ? [] : metadata.tags.split(", "),
       description: metadata.description,
       content: htmlContent,
