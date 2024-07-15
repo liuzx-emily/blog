@@ -24,8 +24,8 @@ description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导
 考虑以下情况：第一列是两个 h=1 的 item，第二列是一个 h=2 的 item。无论 margin 是多少，都应该保证第一和第二列的底部是平齐的（不然网格逻辑就崩溃了）
 
 ![在这里插入图片描述](..\post-assets\312abae9-c26f-4ed9-8e95-9716e1ad5e35.png)
-记 h=1 的 item 的实际高度为 real_height。
-那么 h=2 的 item 的实际高度不应该是简单的 2 _ real_height，而应该是 2 _ real_height + margin_y。
+记 h=1 的 item 的实际高度为 real*height。
+那么 h=2 的 item 的实际高度不应该是简单的 2 * real*height，而应该是 2 * real_height + margin_y。
 同理 h=x 的 item 的实际高度应该是 `x * real_height + (x-1) * margin_y`。
 
 所以就出现了最上面说的问题。而且 h 越大的 item，需要“补齐”的 margin 就越多。

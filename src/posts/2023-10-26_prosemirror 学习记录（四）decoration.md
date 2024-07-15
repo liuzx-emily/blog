@@ -4,7 +4,7 @@ title: prosemirror 学习记录（四）decoration
 createTime: 2023-10-26
 updateTime: 2023-10-26
 categories: prosemirror
-tags: 
+tags:
 description: 学习使用 prosemirror 的 decorations
 ---
 

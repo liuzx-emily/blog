@@ -4,8 +4,8 @@ title: vue 父级组件向动态组件传递slot（多层组件传递 slot）
 createTime: 2021-06-29
 updateTime: 2021-06-29
 categories: vue
-tags: 
-description: 
+tags:
+description:
 ---
 
 ## vue 父级组件向动态组件传递 slot

@@ -4,7 +4,7 @@ title: prosemirror 学习记录（二）创建 apple 节点
 createTime: 2023-10-24
 updateTime: 2023-10-24
 categories: prosemirror
-tags: 
+tags:
 description: / 按钮的 active 和 enable 状态需要即时更新// 不传dispatch参数});},});label
 ---
 

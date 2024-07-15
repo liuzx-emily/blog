@@ -4,8 +4,8 @@ title: 解决＜el-select＞单选、多选切换时出现的bug
 createTime: 2021-07-06
 updateTime: 2021-07-06
 categories: element-ui, vue
-tags: 
-description: 
+tags:
+description:
 ---
 
 ## 问题描述

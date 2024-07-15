@@ -4,7 +4,7 @@ title: input[type=‘file‘] 重复上传同一文件时，不会触发 change 
 createTime: 2023-06-21
 updateTime: 2023-06-21
 categories: js
-tags: 
+tags:
 description: / 必须清空value。不然重复上传同一文件不会触发change事件。在获取到文件之后，清空 input.value。
 ---
 

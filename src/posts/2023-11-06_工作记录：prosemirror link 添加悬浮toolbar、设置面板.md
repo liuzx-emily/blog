@@ -4,7 +4,7 @@ title: 工作记录：prosemirror link 添加悬浮toolbar、设置面板
 createTime: 2023-11-06
 updateTime: 2023-11-06
 categories: 工作记录, prosemirror
-tags: 
+tags:
 description: 使用 prosemirror，实现添加、编辑 link 的功能。
 ---
 

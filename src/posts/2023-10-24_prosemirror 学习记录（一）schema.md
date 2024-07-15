@@ -4,7 +4,7 @@ title: prosemirror 学习记录（一）schema
 createTime: 2023-10-24
 updateTime: 2023-10-24
 categories: prosemirror
-tags: 
+tags:
 description: 初始化 vite 项目初始化 eslint。
 ---
 

@@ -4,7 +4,7 @@ title: fix
 createTime: 2023-10-16
 updateTime: 2023-10-16
 categories: prosemirror
-tags: 
+tags:
 description: 复制时向 e.clipboardData 中设置数据。NodeSelection 设置的是img，TextSelection  是p>img粘贴时从 e.clipboardData 中获取数据。NodeSelection 获取到的数据多套了 html>body>startFragment， TextSelection 也多套了粘贴时，parseSlice 方法内部通过 childNodes 取子节点。NodeSelection 取到的是，TextSelection 是。
 ---
 

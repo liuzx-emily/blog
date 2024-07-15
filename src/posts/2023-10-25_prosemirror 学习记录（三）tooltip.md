@@ -4,7 +4,7 @@ title: prosemirror 学习记录（三）tooltip
 createTime: 2023-10-25
 updateTime: 2023-10-25
 categories: prosemirror
-tags: 
+tags:
 description: 学习实现 prosemirror tooltip
 ---
 

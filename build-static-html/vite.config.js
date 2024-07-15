@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: "/liuzx-emily/",
     build: {
-      outDir: "../dist/"
+      outDir: "../dist/",
     },
     plugins: [
       vue(),

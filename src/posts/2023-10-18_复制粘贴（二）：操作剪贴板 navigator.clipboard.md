@@ -4,7 +4,7 @@ title: 复制粘贴（二）：操作剪贴板 navigator.clipboard
 createTime: 2023-10-18
 updateTime: 2023-10-18
 categories: js
-tags: 
+tags:
 description: 使用可以获取剪贴板对象（也就是说，在 copy/paste 事件外也可以用）
 ---
 

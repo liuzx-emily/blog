@@ -4,8 +4,8 @@ title: 使用 vue-router，页面加载完成后，$route 的值不正确
 createTime: 2020-01-20
 updateTime: 2020-01-20
 categories: vue-router
-tags: 
-description: 
+tags:
+description:
 ---
 
 ## 1 问题描述

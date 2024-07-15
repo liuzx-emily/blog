@@ -4,8 +4,8 @@ title: vue-router 学习笔记与经验总结
 createTime: 2020-03-02
 updateTime: 2020-03-02
 categories: vue-router
-tags: 
-description: 
+tags:
+description:
 ---
 
 ## 1 onReady

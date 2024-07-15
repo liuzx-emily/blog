@@ -4,7 +4,7 @@ title: prosemirror error - Applying a mismatched transaction
 createTime: 2023-10-13
 updateTime: 2023-10-13
 categories: vue, prosemirror
-tags: 
+tags:
 description: vue3 project，prosemirror 报错：Uncaught RangeError
 ---
 

@@ -4,7 +4,7 @@ title: Image does NOT change color when selecting it in tiptap
 createTime: 2023-10-11
 updateTime: 2023-10-11
 categories: css
-tags: 
+tags:
 description: fix
 ---
 
