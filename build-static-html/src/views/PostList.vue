@@ -95,7 +95,7 @@ function selectTreeNode(selected) {
         style="
           position: sticky;
           top: 0px;
-          background: rgb(225 225 225);
+          background: rgb(189 209 219);
           padding: 16px 20px;
           color: rgb(33 53 68);
           font-size: 15px;
@@ -179,7 +179,6 @@ function selectTreeNode(selected) {
       display: flex;
       flex-wrap: wrap;
       .post-tag {
-        cursor: pointer;
         margin-bottom: 10px;
       }
     }

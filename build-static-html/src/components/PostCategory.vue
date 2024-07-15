@@ -12,7 +12,7 @@ defineProps({
 </template>
 <style lang="scss" scoped>
 .post-category {
-  background: #fdf0dc;
+  outline: 1px solid #dfc1b6;
   margin-right: 8px;
   padding: 0 4px;
   border-radius: 2px;

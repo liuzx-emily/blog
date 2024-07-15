@@ -17,11 +17,11 @@ defineProps({
 .post-tag {
   font-size: 13px;
   padding: 0 4px;
-  background: #f9f9f9;
+  background: #e9f0f3;
   margin-right: 8px;
   border-radius: 2px;
-  color: #29b6f6;
-  outline: 1px solid #d4ebf5;
+  color: #1e4658;
+  outline: 1px solid #c1d7e1;
   cursor: pointer;
 }
 </style>
