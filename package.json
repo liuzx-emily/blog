@@ -7,7 +7,7 @@
     "batch-modify-md": "node commands/batch-modify-md.js",
     "batch-scan-md": "node commands/batch-scan-md.js",
     "init": "npm install && cd build-static-html && npm install",
-    "generate-data-continuous": "node commands/generate-data.js --continuous-watch",
+    "generate-data-dev": "node commands/generate-data.js --dev",
     "generate-data": "node commands/generate-data.js",
     "serve": "cd build-static-html && npm run dev",
     "preview": "npm run generate-data && cd build-static-html && npm run build && npm run preview",

@@ -2,8 +2,6 @@
 
 开发阶段同时运行两个脚本有时会报错：每次有变化重新生成/data/posts.js，vite 会报错说找不到文件（在家里的电脑可以稳定复现）
 
-草稿 isDraft。在部署后的网站上不显示
-
 - 需要逐一检查 post.md
 
   - 确认真实的 updatetime
@@ -146,6 +144,8 @@ github workflow 不支持 pnpm。在 github actions 中可以看到报错：`Dep
 sticky 的内容会变颜色。不能用鲜艳的颜色，变动会很明显。
 
 在 generate-data 中处理错误分类。
+
+草稿 draft。仅在开发模式下显示
 
 ---
 

@@ -30,7 +30,10 @@ function clickTag(tag) {
 
 <template>
   <div class="wrapper">
-    <div id="title">{{ post.title }}</div>
+    <div id="title">
+      <span v-if="post.draft" style="color: #ef6c00">[草稿]</span>
+      {{ post.title }}
+    </div>
     <div class="post-info-container">
       <PostDate :val="post.createTime" />
       <div class="post-categories-box" v-if="post.categories.length > 0">

@@ -113,7 +113,10 @@ function selectTreeNode(selected) {
       <ul style="padding: 0 24px">
         <li v-for="post in filteredPosts" :key="post.id" class="post-item">
           <div class="post-title">
-            <span @click="clickPost(post)">{{ post.title }}</span>
+            <span @click="clickPost(post)">
+              <span v-if="post.draft" style="color: #ef6c00">[草稿]</span>
+              {{ post.title }}
+            </span>
           </div>
           <div class="post-description" v-if="post.description">{{ post.description }}</div>
           <div class="post-info-container">

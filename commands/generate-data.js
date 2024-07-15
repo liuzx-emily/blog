@@ -7,7 +7,7 @@ import ShowdownHighlight from "showdown-highlight";
 import { _getPath, readMarkdownPosts, walkThroughTree } from "./utils.js";
 import { categories } from "../src/categories.js";
 
-const args = commandLineArgs([{ name: "continuous-watch", type: Boolean }]);
+const args = commandLineArgs([{ name: "dev", type: Boolean }]);
 
 const flattenedCategories = [];
 walkThroughTree(categories, (category) => {
@@ -28,7 +28,7 @@ async function run() {
     await generateDataCategories();
     await generateDataPosts();
     await gererateAssets();
-    if (args["continuous-watch"]) {
+    if (args.dev) {
       watch(_getPath("src/posts"), async (eventType, filename) => {
         console.log(`检测到 ${filename} 文件 ${eventType}！`);
         await generateDataPosts();
@@ -55,6 +55,10 @@ async function generateDataCategories() {
 async function generateDataPosts() {
   console.log("读取 markdown posts 中...");
   let posts = await readMarkdownPosts();
+  if (!args.dev) {
+    // 在非dev模式中，不显示草稿文章
+    posts = posts.filter(({ metadata }) => metadata.draft !== "1");
+  }
   posts = posts.map(({ metadata, content }) => {
     let htmlContent = converter.makeHtml(content);
     // change image src
@@ -67,12 +71,13 @@ async function generateDataPosts() {
       img.setAttribute("src", newSrc);
     });
     htmlContent = doc.body.outerHTML;
+    // 当检测到无效分类时，抛出错误提示，中止进程
     const categories = metadata.categories === "" ? [] : metadata.categories.split(", ");
     const invalidCategory = categories.find((category) => !flattenedCategories.includes(category));
     if (invalidCategory) {
       throw new Error(`《${metadata.title}》包含无效分类 - ${invalidCategory}`);
     }
-    return {
+    const res = {
       id: metadata.id,
       title: metadata.title,
       createTime: metadata.createTime,
@@ -82,6 +87,10 @@ async function generateDataPosts() {
       description: metadata.description,
       content: htmlContent,
     };
+    if (args.dev) {
+      res.draft = metadata.draft === "1";
+    }
+    return res;
   });
   await writeFile(
     _getPath("build-static-html/data/posts.js"),
