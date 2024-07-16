@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "clear-useless-assets": "node commands/clear-useless-assets.js",
     "batch-modify-md": "node commands/batch-modify-md.js",
     "batch-scan-md": "node commands/batch-scan-md.js",
     "init": "npm install && cd build-static-html && npm install",

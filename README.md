@@ -42,6 +42,8 @@
 ## Commands
 
 ```js
+// 寻找在markdown中引用但不存在的图片；寻找未使用的图片并自动删除
+"clear-useless-assets": "node commands/clear-useless-assets.js",
 // 调试用工具
 "batch-modify-md": "node commands/batch-modify-md.js",
 "batch-scan-md": "node commands/batch-scan-md.js",
