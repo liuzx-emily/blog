@@ -96,7 +96,7 @@ prosemirror 之前是完全不支持 inline nodes with content 的。因为：
 
 ## 监听 mousemove 实现 toolbar
 
-==TODO：mouseover mouseout 更效率一点==
+<span style="color:darkorange">TODO：mouseover mouseout 更效率一点</span>
 
 ### 判断光标是不是在 link 上
 
@@ -153,7 +153,7 @@ if (node1 !== node2) {
   ![在这里插入图片描述](../post-assets/5165ad2e-b34f-4a02-acf1-55f3787af3f8.png)
 
   `posAtCoords`：找到的 pmNode 是 `TextNode<香蕉>`
-  `posAtDOM`：==e.target 是 p==，pos 是 p 段首位置，pmNode 是 `TextNode<水果>`。怪怪的
+  `posAtDOM`：<span style="color:darkorange">e.target 是 p</span>，pos 是 p 段首位置，pmNode 是 `TextNode<水果>`。怪怪的
 
   关键原因：
 

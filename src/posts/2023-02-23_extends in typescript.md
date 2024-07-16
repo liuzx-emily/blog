@@ -88,7 +88,7 @@ class Dog extends Animal {}
 
 - `Dog[]` 是 `Animal[]` 的子类型
 - `() => Dog` 是 `() => Animal` 的子类型
-- `(arg:Animal) => void` 是 `(arg:Dog) => void` 的子类型。==注意这里反过来了。稍微有点绕，用 assignable 的思路去考虑==
+- `(arg:Animal) => void` 是 `(arg:Dog) => void` 的子类型。<span style="color:darkorange">注意这里反过来了。稍微有点绕，用 assignable 的思路去考虑</span>
 
 另外，ts 中强行规定了 `(arg:Dog) => void` 也是 `(arg:Animal) => void` 的子类型。这样是不安全的，运行时可能出错。但是 ts “为了方便实现常见的 js 编程模式“，就是这样设计了。
 

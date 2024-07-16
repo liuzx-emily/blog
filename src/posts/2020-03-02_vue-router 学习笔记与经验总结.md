@@ -136,7 +136,7 @@ const routes = [
   ```js
   this.$route.params.id;
   ```
-- 方案 3 ==【不推荐】==：**参数存在内存中**，F5 后就没了。
+- 方案 3 <span style="color:darkorange">【不推荐】</span>：**参数存在内存中**，F5 后就没了。
   只能获取 params 的初始值，**无法**监听到它的变化。
   通过 params 进行跳转时，不能用 path，**只能用 name**
   ```js

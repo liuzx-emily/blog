@@ -80,7 +80,7 @@ description:
 但是在 [教程](https://cn.vuejs.org/v2/guide/conditional.html#v-if-vs-v-show) 中提到：
 ![在这里插入图片描述](../post-assets/40d8fe11-913a-49df-93eb-aa0c0c891df8.png)
 
-**适当**地被销毁重建，关键字在==适当==
+**适当**地被销毁重建，关键字在<span style="color:darkorange">适当</span>
 
 也就是说，造成我们的问题的原因是： vue 在切换的过程中，认为`input`不需要销毁重建，所以直接复用了。
 

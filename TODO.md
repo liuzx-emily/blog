@@ -2,10 +2,6 @@
 
 开发阶段同时运行两个脚本有时会报错：每次有变化重新生成/data/posts.js，vite 会报错说找不到文件（在家里的电脑可以稳定复现）
 
-- 需要逐一检查 post.md
-
-  - 无效语法，比如 =aa=
-
 - dist/post.html
 
   - pre code 的样式
@@ -143,7 +139,7 @@ sticky 的内容会变颜色。不能用鲜艳的颜色，变动会很明显。
 
 草稿 draft。仅在开发模式下显示
 
----
+==highlight== 语法并没有广泛使用，showdown 和 github 都不支持，所以要处理 csdn 中下载的文章中的旧数据。并且新写文章时不要用这种语法。可以直接用 <span style="color:darkorange">abc</span>
 
 ## blog idea
 

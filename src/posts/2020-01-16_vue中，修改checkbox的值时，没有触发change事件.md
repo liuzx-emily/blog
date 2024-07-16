@@ -108,7 +108,7 @@ checkbox 的勾选状态改变了，说明 **数据更新 => 视图更新** 这�
 
 ## 4 结论
 
-==用 js 去修改 checkbox 的 checked 属性，不会触发 change 事件==
+<span style="color:darkorange">用 js 去修改 checkbox 的 checked 属性，不会触发 change 事件</span>
 
 所以，想要全方位监听 checkbox 的变化，只能：
 

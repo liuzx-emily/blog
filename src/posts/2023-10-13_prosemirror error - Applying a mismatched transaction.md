@@ -54,7 +54,7 @@ onMounted(() => {
 ```
 
 子组件（也就是调用 dispatch 的组件） inject 进来的是这个 ref 对象。
-==在 vue 3 中被 ref 包着的对象，通过`.value` 得到的不是原对象，而是原对象的 proxy！==
+<span style="color:darkorange">在 vue 3 中被 ref 包着的对象，通过`.value` 得到的不是原对象，而是原对象的 proxy！</span>
 
 解决方法：在 vue3 项目中不要用 ref 了，用 `shallowRef`
 
@@ -71,4 +71,4 @@ console.log(obj === ref(obj).value);
 
 同样一段代码，在 vue2 环境中是 `true`，在 vue3 中是 `false`
 平时工作项目里一直用 vue2，这次测试项目装的 vue3，没注意差别
-==一定要记得，vue2 和 vue3 的响应式原理是有区别的。平时开发不显眼，一旦踩坑就很麻烦==
+<span style="color:darkorange">一定要记得，vue2 和 vue3 的响应式原理是有区别的。平时开发不显眼，一旦踩坑就很麻烦</span>

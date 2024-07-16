@@ -10,7 +10,7 @@ description: fix
 
 ## Problem
 
-What I want : ==In the WYSIWYG editor, content changes color when selected.==
+What I want : <span style="color:darkorange">In the WYSIWYG editor, content changes color when selected.</span>
 
 （The picture below is word, the background of the selected content turns gray.）
 

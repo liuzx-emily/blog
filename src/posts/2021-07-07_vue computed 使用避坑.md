@@ -83,8 +83,8 @@ list2.push 和 list3.push 都没有触发的 computed setter。对于引用类�
 
 反思：
 
-- ==对于引用类型的计算属性，只有 list2=... 这样修改引用地址，才会触发 setter==
-- 计算属性自己只是个 Watcher，不是像 props 和 data 那样的数据。所以==绝对不要在计算属性上加自定义的属性==，因为没有意义：
+- <span style="color:darkorange">对于引用类型的计算属性，只有 list2=... 这样修改引用地址，才会触发 setter</span>
+- 计算属性自己只是个 Watcher，不是像 props 和 data 那样的数据。所以<span style="color:darkorange">绝对不要在计算属性上加自定义的属性</span>，因为没有意义：
   - 1 它不是对象，没有依赖关系。数据变化，"依赖"不会更新
   - 2 computed 内部关联的变量一旦变化，computed 的值就会重新计算，你自己添加的属性的修改就都没了。
 - 下面的写法一有效，是因为引用相同，相当于什么都没干就是单纯起了个别名。这种起别名的操作以后少干，因为逻辑上很不清晰，复杂的工程中出了 bug 不好调。
@@ -108,4 +108,4 @@ list2.push 和 list3.push 都没有触发的 computed setter。对于引用类�
 
   ````
 
-- ==**computed 本质就是一个有 value 的 Watcher，别把它当数据用！！！**==
+- <span style="color:darkorange">**computed 本质就是一个有 value 的 Watcher，别把它当数据用！！！**</span>

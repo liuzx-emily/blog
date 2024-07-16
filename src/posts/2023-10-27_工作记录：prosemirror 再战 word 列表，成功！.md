@@ -165,8 +165,8 @@ myWordList: {
 
 插一句：`plugin` 的 view-update 和 decorations 都会在编辑器状态改变时响应。区别在于：
 
-- decorations 的功能是：==允许你在编辑器状态改变时，再对编辑器内容做一些额外修改。并且使用 decorations 进行的修改不会真正编辑器状态==所以它适合用来修改编辑器内容，比如修改列表序号、查找时高亮内容。
-- view-update 的功能是：==在编辑器内容发生变化时通知你，你自己在外部做点什么==，比如修改菜单按钮的状态。你不能用它来修改编辑器内部的东西。如果在 view-update 中强行调用 `dispatch(tr)`会触发死循环
+- decorations 的功能是：<span style="color:darkorange">允许你在编辑器状态改变时，再对编辑器内容做一些额外修改。并且使用 decorations 进行的修改不会真正编辑器状态</span>所以它适合用来修改编辑器内容，比如修改列表序号、查找时高亮内容。
+- view-update 的功能是：<span style="color:darkorange">在编辑器内容发生变化时通知你，你自己在外部做点什么</span>，比如修改菜单按钮的状态。你不能用它来修改编辑器内部的东西。如果在 view-update 中强行调用 `dispatch(tr)`会触发死循环
 
 ---
 

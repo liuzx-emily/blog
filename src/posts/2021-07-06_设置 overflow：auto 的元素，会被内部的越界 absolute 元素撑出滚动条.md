@@ -12,7 +12,7 @@ description: 元素A设置了宽高和 overflow:auto ，内部有 absolute 的�
 
 ## 结论
 
-==元素 A 设置了宽高和 overflow:auto ，内部有 absolute 的元素 b。若 b 超出了 A 的宽高，那么 A 会出现滚动条==（内部指后代元素，不仅仅指子级）
+<span style="color:darkorange">元素 A 设置了宽高和 overflow:auto ，内部有 absolute 的元素 b。若 b 超出了 A 的宽高，那么 A 会出现滚动条</span>（内部指后代元素，不仅仅指子级）
 
 解决方法没找到，只能先避免这种结构了。（参考 element-ui 的 dropdown 组件，发现它的下拉菜单都是加到 body 下的，可能也是为了避免这个问题？）
 

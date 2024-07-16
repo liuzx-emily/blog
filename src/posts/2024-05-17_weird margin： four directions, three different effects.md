@@ -79,7 +79,7 @@ margin 很复杂，这里只讨论如下特定代码的情况
 
 ![在这里插入图片描述](../post-assets/7d6b21a9-8b97-4b94-ad2b-70d6ae6c1b7c.png)
 
-总结：==width 为 auto 时，设置横向 margin （无论正负）可以改变内容宽度==
+总结：<span style="color:darkorange">width 为 auto 时，设置横向 margin （无论正负）可以改变内容宽度</span>
 
 ---
 

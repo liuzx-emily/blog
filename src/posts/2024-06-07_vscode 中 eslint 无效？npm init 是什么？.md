@@ -28,7 +28,7 @@ npm init @eslint/config@latest
 
 ## 破案了：eslint 无罪，是 vscode 版本过低
 
-折腾了半天解决了，直接上结论：eslint 生效了。==但是编辑器中的错误提示是 vscode 的 eslint 插件提供的，这个插件没生效！==
+折腾了半天解决了，直接上结论：eslint 生效了。<span style="color:darkorange">但是编辑器中的错误提示是 vscode 的 eslint 插件提供的，这个插件没生效！</span>
 
 ![在这里插入图片描述](../post-assets/2309a14e-c880-495b-a819-333290aab7e8.png)
 
