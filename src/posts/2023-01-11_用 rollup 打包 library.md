@@ -3,7 +3,7 @@ id: 58902a18-e88e-40c8-b24f-4c6d2db32600
 title: 用 rollup 打包 library
 createTime: 2023-01-11
 updateTime:
-categories: 底层工具
+categories: build tools
 tags: rollup
 description: 学习用 rollup 打包 library
 ---

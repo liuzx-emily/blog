@@ -4,7 +4,7 @@ title: 爬虫（没）入门：用 node-crawler 爬取 blog
 createTime: 2024-06-06
 updateTime:
 categories: 写着玩
-tags: 爬虫, crawler
+tags: crawler
 description:
 ---
 

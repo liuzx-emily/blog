@@ -3,8 +3,8 @@ id: 712988a6-8046-4a13-acfb-23b33ceca90c
 title: 在 npm 上发布包 npm publish
 createTime: 2024-06-12
 updateTime:
-categories: 底层工具
-tags: npm
+categories: npm commands
+tags: npm publish
 description: 在 npm 上发布 package 的流程和注意事项
 ---
 

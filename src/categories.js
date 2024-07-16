@@ -13,8 +13,18 @@ export const categories = [
       { name: "tinymce", description: "" },
     ],
   },
-  { name: "底层工具", description: "" },
-  { name: "写着玩", description: "" },
+  {
+    name: "底层工具",
+    description: "",
+    children: [
+      { name: "npm commands", description: "" },
+      { name: "package managers", description: "" },
+      { name: "build tools", description: "" },
+      { name: "eslint", description: "" },
+      { name: "typescript", description: "" },
+    ],
+  },
   { name: "工作记录", description: "" },
+  { name: "写着玩", description: "" },
   { name: "一些方法论", description: "" },
 ];

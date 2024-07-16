@@ -3,8 +3,8 @@ id: 1ac6fb5e-1737-44a7-881e-31a35ba69e33
 title: 从零开始的＜vue2项目脚手架＞搭建：vite+vue2+eslint
 createTime: 2024-06-12
 updateTime:
-categories: vue, 底层工具
-tags: npm
+categories: vue, npm commands
+tags:
 description: 自己搭建一个项目初始化的脚手架。只需要执行 npm init lily-cli 就可以自动创建 vite+vue2+eslint 项目。
 ---
 

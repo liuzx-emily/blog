@@ -67,12 +67,12 @@ function selectTreeNode(selected) {
       <div class="sticky-content">
         <div class="categories-container">
           <a-tree
-            :default-expand-all="false"
+            :default-expand-all="true"
             :tree-data="categories"
             :fieldNames="{ children: 'children', title: 'name', key: 'name' }"
             @select="selectTreeNode"
           >
-            <template #title="{ name, count }"> {{ name }} ({{ count }}) </template>
+            <template #title="{ name, count }">{{ name }} ({{ count }})</template>
           </a-tree>
         </div>
         <div class="tags-container">

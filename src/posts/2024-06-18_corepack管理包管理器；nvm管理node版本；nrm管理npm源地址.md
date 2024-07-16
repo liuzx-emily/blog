@@ -3,8 +3,8 @@ id: d2d5aace-5216-44c5-871d-7b16fe03df92
 title: corepack管理包管理器；nvm管理node版本；nrm管理npm源地址
 createTime: 2024-06-18
 updateTime:
-categories: 底层工具
-tags: npm, corepack, packageManager
+categories: package managers
+tags: corepack, nvm, nrm
 description: corepack 管理 yarn 和 pnpm。项目内使用 corepack 可以锁定 pnpm 版本，这在多人开发项目时很有必要。nvm管理node版本。nrm管理npm源地址
 ---
 
