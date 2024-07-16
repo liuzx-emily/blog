@@ -110,5 +110,16 @@ function clickTag(tag) {
   ul > li {
     list-style: circle;
   }
+  table {
+    border-collapse: collapse;
+    th {
+      background-color: #eff3f5;
+    }
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+  }
 }
 </style>

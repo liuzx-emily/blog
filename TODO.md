@@ -141,6 +141,8 @@ sticky 的内容会变颜色。不能用鲜艳的颜色，变动会很明显。
 
 ==highlight== 语法并没有广泛使用，showdown 和 github 都不支持，所以要处理 csdn 中下载的文章中的旧数据。并且新写文章时不要用这种语法。可以直接用 <span style="color:darkorange">abc</span>
 
+showndown.js 支持转换 table，但功能是默认关闭的，需要配置开启。
+
 ## blog idea
 
 - position:sticky

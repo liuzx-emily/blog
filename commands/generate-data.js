@@ -15,6 +15,7 @@ walkThroughTree(categories, (category) => {
 });
 
 const converter = new Showdown.Converter({
+  tables: true,
   extensions: [
     ShowdownHighlight({
       pre: true, // Whether to add the classes to the <pre> tag, default is false
