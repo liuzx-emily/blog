@@ -1,7 +1,6 @@
 <script setup>
 import { provide } from "vue";
 import { useRoute } from "vue-router";
-import "./assets/css/code_highlight.css";
 import "./assets/css/common.scss";
 import BackToTop from "./components/BackToTop.vue";
 import GoToIndex from "./components/GoToIndex.vue";

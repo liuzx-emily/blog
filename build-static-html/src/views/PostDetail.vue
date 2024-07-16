@@ -97,12 +97,6 @@ function clickTag(tag) {
     padding: 1px 20px;
   }
 
-  p > code {
-    padding: 0 4px;
-    background: #e3f2fd;
-    color: #243754;
-  }
-
   a {
     color: #2196f3;
   }
@@ -119,6 +113,41 @@ function clickTag(tag) {
     td {
       border: 1px solid #ddd;
       padding: 8px;
+    }
+  }
+  p > code {
+    padding: 1px 4px;
+    background: #f9f2f4;
+    color: #c7254e;
+  }
+  pre {
+    background-color: #f5f7ff;
+    padding: 8px;
+    color: #555;
+    font-family: Source Code Pro;
+    overflow-x: auto;
+    .hljs-comment {
+      font-size: 13px;
+      color: #9e9e9e;
+    }
+    .hljs-keyword {
+      color: #6679cc;
+    }
+    .function_ {
+      color: #3d8fd1;
+    }
+    .hljs-string {
+      color: #ac9739;
+    }
+    .hljs-number,
+    .hljs-attr,
+    .hljs-regexp {
+      color: #ac9739;
+    }
+  }
+  pre.language-html {
+    .hljs-tag > .hljs-name {
+      color: #c94922;
     }
   }
 }
