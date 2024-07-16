@@ -226,7 +226,6 @@ async function initGit(dirPath) {
 在开发阶段我用 `npm link` + `npx create-lily-cli` 进行本地调试。调试完成准备发布，我需要解除本地 link。
 我尝试了多种方法： `unlink`、`uninstall -g`、清除 npm cache、清除 npx cache，但都清理不掉 npx 中的缓存！（npm 的 link 应该是清理干净了，`npm i create-lily-cli` 已经不生效了）。
 在我 publish 了之后再执行 npx，它还是用的之前本地 link 的版本。我最后是卸载 nodejs 重装才清理掉。。。。
-![在这里插入图片描述](../post-assets/e5bc8550-ee9c-4afa-beae-99b43f796c0d.png)
 
 ### 发布到 npm
 
