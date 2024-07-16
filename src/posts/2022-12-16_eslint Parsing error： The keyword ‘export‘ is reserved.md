@@ -2,7 +2,7 @@
 id: 0e9d5ee6-8c28-4b71-a4f9-0f05cd631efe
 title: eslint Parsing error
 createTime: 2022-12-16
-updateTime: 2022-12-16
+updateTime:
 categories: 底层工具
 tags: eslint
 description: eslint language options

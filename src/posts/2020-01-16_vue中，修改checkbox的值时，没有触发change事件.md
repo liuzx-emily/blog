@@ -2,7 +2,7 @@
 id: ddd28ccb-7408-4f37-9919-26dc19e6e33a
 title: vue中，修改checkbox的值时，没有触发change事件
 createTime: 2020-01-16
-updateTime: 2020-01-16
+updateTime:
 categories: js
 tags:
 description:

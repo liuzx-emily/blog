@@ -2,7 +2,7 @@
 id: e7b45efa-c8bf-48b1-b9fc-325f160ef0ef
 title: flex布局中 text-overflow:ellipsis 失效
 createTime: 2020-01-13
-updateTime: 2020-01-13
+updateTime:
 categories: css
 tags: flex
 description:

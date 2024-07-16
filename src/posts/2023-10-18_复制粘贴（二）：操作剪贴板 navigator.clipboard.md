@@ -2,7 +2,7 @@
 id: 0dda3b3f-89a7-4857-8c2c-9d5793febf07
 title: 复制粘贴（二）：操作剪贴板 navigator.clipboard
 createTime: 2023-10-18
-updateTime: 2023-10-18
+updateTime:
 categories: js
 tags:
 description: 使用可以获取剪贴板对象（也就是说，在 copy/paste 事件外也可以用）

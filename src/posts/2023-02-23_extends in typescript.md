@@ -2,7 +2,7 @@
 id: a02af511-f36b-45d7-9676-5d6078c3133a
 title: extends in typescript
 createTime: 2023-02-23
-updateTime: 2023-02-23
+updateTime:
 categories: 底层工具
 tags: typescript
 description: extends in typescript

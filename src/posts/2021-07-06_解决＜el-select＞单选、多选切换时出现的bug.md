@@ -2,7 +2,7 @@
 id: 7ee1edaf-f199-47dd-96a3-330bd4be9cab
 title: 解决＜el-select＞单选、多选切换时出现的bug
 createTime: 2021-07-06
-updateTime: 2021-07-06
+updateTime:
 categories: element-ui, vue
 tags:
 description:

@@ -2,7 +2,7 @@
 id: 5bfc3de8-282b-443c-81ac-b1be7a91736d
 title: 已有项目从 vue-cli 迁移为 vite
 createTime: 2021-09-08
-updateTime: 2021-09-08
+updateTime:
 categories: 底层工具
 tags: vite
 description: 迁移过程 踩坑记录

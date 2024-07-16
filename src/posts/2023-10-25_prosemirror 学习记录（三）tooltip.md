@@ -2,7 +2,7 @@
 id: 6b97d16e-73ae-4ca8-8b83-fb4768bbf27c
 title: prosemirror 学习记录（三）tooltip
 createTime: 2023-10-25
-updateTime: 2023-10-25
+updateTime:
 categories: prosemirror
 tags:
 description: 学习实现 prosemirror tooltip

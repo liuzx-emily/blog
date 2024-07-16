@@ -2,7 +2,7 @@
 id: 02394780-70e2-4bda-95ca-c3be2fd74528
 title: Image does NOT change color when selecting it in tiptap
 createTime: 2023-10-11
-updateTime: 2023-10-11
+updateTime:
 categories: css
 tags:
 description: fix

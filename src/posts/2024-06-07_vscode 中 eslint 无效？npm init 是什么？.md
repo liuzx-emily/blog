@@ -2,7 +2,7 @@
 id: 2d32697a-e76c-4b96-a064-e96ae538af58
 title: vscode 中 eslint 无效？npm init 是什么？
 createTime: 2024-06-07
-updateTime: 2024-06-07
+updateTime:
 categories: 底层工具
 tags: eslint, vscode, npm
 description: 项目配置了 eslint，但是 vscode 并不能实时提示。研究后发现是 vscode 版本过旧，不能识别新版 eslint 的配置文件，升级 vscode 和其 eslint 插件即可解决。在此过程中，简单了解了 npm init 的用法。

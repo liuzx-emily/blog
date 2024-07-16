@@ -2,7 +2,7 @@
 id: b7c76f95-b52d-4c56-a58a-db7dd6c54d2b
 title: ajax请求一直处于 pending 状态（Max parallel http connections in a browser）
 createTime: 2021-06-18
-updateTime: 2021-06-18
+updateTime:
 categories: js
 tags: network
 description:

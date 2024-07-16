@@ -2,7 +2,7 @@
 id: ffccefed-bc92-4a1a-a35e-b301972b0271
 title: 设置 overflow:auto 的元素，会被内部的越界 absolute 元素撑出滚动条
 createTime: 2021-07-06
-updateTime: 2021-07-06
+updateTime:
 categories: css
 tags: overflow
 description: 元素A设置了宽高和 overflow:auto ，内部有 absolute 的元素 b。若b超出了A的宽高，那么A会出现滚动条

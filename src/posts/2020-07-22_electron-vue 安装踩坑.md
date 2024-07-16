@@ -2,7 +2,7 @@
 id: b8fa092b-032f-4bde-a5f2-60ac8572d8c1
 title: electron-vue 安装踩坑
 createTime: 2020-07-22
-updateTime: 2020-07-22
+updateTime:
 categories:
 tags:
 description: 记录按照官网说明安装 electron-vue 时遇到的问题

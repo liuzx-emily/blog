@@ -2,7 +2,7 @@
 id: c1024275-3886-4c99-9f80-7b8d0d17fe79
 title: 工作记录：vue-grid-layout 修改 margin 导致 item 高度剧烈变化
 createTime: 2024-04-23
-updateTime: 2024-04-23
+updateTime:
 categories: 工作记录, 前端组件
 tags: vue-grid-layout
 description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导致 item 高度剧烈变化。这是因为此组件为了保持“网格”对齐，使 item 的高度和 margin 相关。解决方法见文章。

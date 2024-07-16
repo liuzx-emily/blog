@@ -2,7 +2,7 @@
 id: 4ce48b2b-d8a0-4705-97d1-2357e3d41685
 title: 遇到 Resource interpreted as Stylesheet but transferred with MIME type text/html，可能是服务器设置了302
 createTime: 2020-02-11
-updateTime: 2020-02-11
+updateTime:
 categories: js
 tags:
 description:

@@ -2,7 +2,7 @@
 id: ef915aca-7b73-4057-b42f-5c1bcfb81838
 title: prosemirror error - Applying a mismatched transaction
 createTime: 2023-10-13
-updateTime: 2023-10-13
+updateTime:
 categories: vue, prosemirror
 tags:
 description: vue3 project，prosemirror 报错：Uncaught RangeError

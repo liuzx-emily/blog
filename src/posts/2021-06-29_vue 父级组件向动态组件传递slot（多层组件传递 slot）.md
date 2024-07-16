@@ -2,7 +2,7 @@
 id: da87bad1-b882-427e-88b0-af9886045627
 title: vue 父级组件向动态组件传递slot（多层组件传递 slot）
 createTime: 2021-06-29
-updateTime: 2021-06-29
+updateTime:
 categories: vue
 tags:
 description:

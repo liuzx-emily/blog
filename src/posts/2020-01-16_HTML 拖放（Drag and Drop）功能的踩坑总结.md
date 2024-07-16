@@ -2,7 +2,7 @@
 id: 63100ee1-16ae-4f3a-9577-f5986675ee47
 title: HTML 拖放（Drag and Drop）功能的踩坑总结
 createTime: 2020-01-16
-updateTime: 2020-01-16
+updateTime:
 categories: js
 tags:
 description:

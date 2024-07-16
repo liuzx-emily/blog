@@ -2,7 +2,7 @@
 id: c929f67e-b593-4fb4-84f1-6f2b0f311963
 title: weird margin
 createTime: 2024-05-17
-updateTime: 2024-05-17
+updateTime:
 categories: css
 tags:
 description: 研究在上、下、左、右四个方向设置正、负 margin 的效果：左右 margin 可以改变内容宽度；margin-top 可以挪动内容位置；margin-bottom 效果类似 top，但只在值为正时生效

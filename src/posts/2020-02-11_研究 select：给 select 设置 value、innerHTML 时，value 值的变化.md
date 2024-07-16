@@ -2,7 +2,7 @@
 id: 785eb7ef-804f-4020-9f69-e9905c5ddda3
 title: 研究 select：给 select 设置 value、innerHTML 时，value 值的变化
 createTime: 2020-02-11
-updateTime: 2020-02-11
+updateTime:
 categories: js
 tags:
 description:

@@ -2,7 +2,7 @@
 id: 02cdb421-676d-4b2d-90ef-c5671a67d052
 title: object property order
 createTime: 2023-10-12
-updateTime: 2023-10-12
+updateTime:
 categories: js
 tags:
 description: 不知道出于什么原因，没有用 array 或者 Map 存储数据，而用了 object。（以前没想过这个问题，觉得控制台里展现的就是数据最真实的、原始的样子。发现了个盲区，好玩，但也要警惕）在 prosemirror scheam 中，nodes 的先后顺序很重要（顺序控制节点的优先级）使用 prosemirror 时，想要取 schema 实例设置的 nodes。应该是浏览器为了开发者查看详情方便，展示的时候重新排序了。es2015

@@ -2,7 +2,7 @@
 id: af181311-d00f-47c0-9dfc-e73a585d679c
 title: 吐槽：typescript 的泛型是怎样推测出具体类型的？
 createTime: 2023-03-29
-updateTime: 2023-03-29
+updateTime:
 categories: 底层工具
 tags: typescript
 description: 吐槽：typescript 的泛型是怎样推测出具体类型的？

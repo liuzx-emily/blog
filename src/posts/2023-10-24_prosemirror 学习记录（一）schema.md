@@ -2,7 +2,7 @@
 id: 6f9e19c0-d372-4d26-9caf-0a9331b68958
 title: prosemirror 学习记录（一）schema
 createTime: 2023-10-24
-updateTime: 2023-10-24
+updateTime:
 categories: prosemirror
 tags:
 description: 初始化 vite 项目初始化 eslint。

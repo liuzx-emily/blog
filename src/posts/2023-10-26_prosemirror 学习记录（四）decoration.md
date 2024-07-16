@@ -2,7 +2,7 @@
 id: 62bac83f-cb3b-40de-b555-21c5de24fccc
 title: prosemirror 学习记录（四）decoration
 createTime: 2023-10-26
-updateTime: 2023-10-26
+updateTime:
 categories: prosemirror
 tags:
 description: 学习使用 prosemirror 的 decorations

@@ -2,7 +2,7 @@
 id: 271015ca-d7a2-4a0d-a351-fbc598acfdbe
 title: npm publish 时要小心，npm 会修改你的 package 内容（如 .gitignore）
 createTime: 2024-06-17
-updateTime: 2024-06-17
+updateTime:
 categories: 底层工具
 tags: npm
 description: 在 npm 上发布包时，使用 files 字段和 .npmignore 指示你想要包含哪些文件。但是有部分内容是 npm 强制包含或排除的，你无法改变。并且在别人安装你的包时，npm还会把 .gitignore 文件强制改名为 .npmignore，这给很多 generator 项目带来麻烦。

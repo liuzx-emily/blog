@@ -2,7 +2,7 @@
 id: cea1399c-28b7-4168-9e80-6612d4c466be
 title: 使用 vue-router，页面加载完成后，$route 的值不正确
 createTime: 2020-01-20
-updateTime: 2020-01-20
+updateTime:
 categories: vue-router
 tags:
 description:
