@@ -1,5 +1,5 @@
 <script setup>
-import { inject } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import PostCategory from "../components/PostCategory.vue";
 import PostDate from "../components/PostDate.vue";
@@ -26,10 +26,37 @@ function clickTag(tag) {
     query: { tag },
   });
 }
+
+// table of content
+let toc = ref([]);
+onMounted(() => {
+  // 目录中只显示 h2-h5（内容中不允许出现h1。内容中允许出现h6，但不显示在标题中
+  toc.value = [...document.querySelectorAll("#content h2,h3,h4,h5")].map((el) => {
+    return {
+      text: el.innerText,
+      level: parseInt(el.tagName.slice(1)),
+    };
+  });
+});
+function clickToc(index) {
+  const el = document.querySelectorAll("#content h2,h3,h4,h5")[index];
+  el.scrollIntoView({ behavior: "smooth" });
+}
 </script>
 
 <template>
   <div class="wrapper">
+    <div class="post-toc-container" v-if="toc.length > 0">
+      <div
+        class="post-toc"
+        v-for="(o, index) in toc"
+        :key="index"
+        :data-level="o.level"
+        @click="clickToc(index)"
+      >
+        {{ o.text }}
+      </div>
+    </div>
     <div id="title">
       <span v-if="post.draft" style="color: #ef6c00">[草稿]</span>
       {{ post.title }}
@@ -81,6 +108,19 @@ function clickTag(tag) {
 #content:deep() {
   font-size: 14px;
   color: #333;
+  h2 {
+    background: #eff4f5;
+    padding: 10px 0 10px 12px;
+    margin: 0 0;
+  }
+  h5,
+  h6 {
+    font-size: 1em;
+  }
+  p {
+    line-height: 20px;
+    margin: 16px 0;
+  }
   img {
     display: block;
     max-width: 100%;
@@ -149,6 +189,40 @@ function clickTag(tag) {
     .hljs-tag > .hljs-name {
       color: #c94922;
     }
+  }
+}
+.post-toc-container {
+  position: fixed;
+  top: 20px;
+  right: calc(50% + 800px / 2 + 20px);
+  background: white;
+  box-sizing: border-box;
+  width: 250px;
+  padding: 16px 0;
+  border-radius: 2px;
+  .post-toc {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 36px;
+    cursor: pointer;
+    color: #333;
+    &:hover {
+      background-color: #eff4f5;
+    }
+  }
+  .post-toc[data-level="2"] {
+    padding-left: 16px;
+  }
+  .post-toc[data-level="3"] {
+    padding-left: 31px;
+  }
+  .post-toc[data-level="4"] {
+    padding-left: 46px;
+  }
+  .post-toc[data-level="5"] {
+    padding-left: 51px;
   }
 }
 </style>

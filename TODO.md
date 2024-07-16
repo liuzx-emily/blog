@@ -2,8 +2,7 @@
 
 开发阶段同时运行两个脚本有时会报错：每次有变化重新生成/data/posts.js，vite 会报错说找不到文件（在家里的电脑可以稳定复现）
 
-- dist/post.html
-  - 加目录
+文章页面，滚动时匹配目录高亮。
 
 ---
 
@@ -135,6 +134,8 @@ sticky 的内容会变颜色。不能用鲜艳的颜色，变动会很明显。
 ==highlight== 语法并没有广泛使用，showdown 和 github 都不支持，所以要处理 csdn 中下载的文章中的旧数据。并且新写文章时不要用这种语法。可以直接用 <span style="color:darkorange">abc</span>
 
 showndown.js 支持转换 table，但功能是默认关闭的，需要配置开启。
+
+给文章页添加目录
 
 ## blog idea
 
