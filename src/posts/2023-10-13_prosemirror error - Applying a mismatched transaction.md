@@ -11,7 +11,7 @@ description: vue3 project，prosemirror 报错：Uncaught RangeError
 ## bug 描述
 
 使用 prosemirror 时，dispatch transcation 报错：
-![在这里插入图片描述](..\post-assets\925aa35f-9b80-4dc4-83ce-ccd931631557.png)
+![在这里插入图片描述](../post-assets/925aa35f-9b80-4dc4-83ce-ccd931631557.png)
 代码如下（简化版）：
 
 ```js
@@ -30,14 +30,14 @@ function handleClick() {
 
 很奇怪，我没有用异步操作啊。顺着报错 stack，找到 applyInner 方法。发现当 eq() 返回 false 时，会抛出 error
 
-![在这里插入图片描述](..\post-assets\59a69758-2238-49f6-893a-3a1a4d9a962e.png)
+![在这里插入图片描述](../post-assets/59a69758-2238-49f6-893a-3a1a4d9a962e.png)
 查看 eq 方法，根据注释知道它是用来判断 `this` 和 `other` 是否代表同一块内容。
-![在这里插入图片描述](..\post-assets\e2f8f85b-6779-4f26-bf61-9739f29f5d38.png)
+![在这里插入图片描述](../post-assets/e2f8f85b-6779-4f26-bf61-9739f29f5d38.png)
 查看 this，是 Vue 的 Reactive 对象，包着 doc Node。
-![在这里插入图片描述](..\post-assets\77d41771-40db-4559-855d-e2b8583617ac.png)
+![在这里插入图片描述](../post-assets/77d41771-40db-4559-855d-e2b8583617ac.png)
 
 查看 other：是 doc Node 对象
-![在这里插入图片描述](..\post-assets\bdecc582-1c70-4769-8724-9f7da11b8aa9.png)
+![在这里插入图片描述](../post-assets/bdecc582-1c70-4769-8724-9f7da11b8aa9.png)
 
 破案了。
 

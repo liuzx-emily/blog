@@ -43,7 +43,7 @@ description:
 ```
 
 错误原因：**A 向 B 传递了 slot:buttons, B 也接受了。但是 B 没有向 C 传递 slot**
-![在这里插入图片描述](..\post-assets\df605a92-9cc7-4dc8-b737-d959429c1811.png)
+![在这里插入图片描述](../post-assets/df605a92-9cc7-4dc8-b737-d959429c1811.png)
 
 ### 正确写法
 
@@ -156,4 +156,4 @@ B 组件中，从 **A 拿到的 slot** 和 **给 C 传递的 slot** 的名称是
 ```
 
 结果：
-![在这里插入图片描述](..\post-assets\e770371f-4c32-4b43-a6a7-3fe9619a2e1b.png)
+![在这里插入图片描述](../post-assets/e770371f-4c32-4b43-a6a7-3fe9619a2e1b.png)

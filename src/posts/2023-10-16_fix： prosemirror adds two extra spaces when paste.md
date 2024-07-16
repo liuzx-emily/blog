@@ -26,27 +26,27 @@ prosemirror 的 Selection 是抽象类，它有三个子类
 
 ### 点击红色恐龙
 
-![在这里插入图片描述](..\post-assets\f13123b4-52e9-45c7-bd7d-b456d37925b9.png)
+![在这里插入图片描述](../post-assets/f13123b4-52e9-45c7-bd7d-b456d37925b9.png)
 
 控制台查看 dom，是 selectednode
 
-![在这里插入图片描述](..\post-assets\3dcc3ffc-ef41-4d82-a116-baa5640e62a1.png)
+![在这里插入图片描述](../post-assets/3dcc3ffc-ef41-4d82-a116-baa5640e62a1.png)
 
 此时选区是 NodeSelection
 
-![在这里插入图片描述](..\post-assets\f60c1af0-3f4b-411d-a3ad-afb62b83b72b.png)
+![在这里插入图片描述](../post-assets/f60c1af0-3f4b-411d-a3ad-afb62b83b72b.png)
 
 ### 拖选红色恐龙
 
-![在这里插入图片描述](..\post-assets\6bd5008f-bc17-4b06-aa3f-bda36fade20b.png)
+![在这里插入图片描述](../post-assets/6bd5008f-bc17-4b06-aa3f-bda36fade20b.png)
 
 查看 dom，不是 selectednode
 
-![在这里插入图片描述](..\post-assets\c61f62b6-5b77-4772-9d49-b8deb28ac26c.png)
+![在这里插入图片描述](../post-assets/c61f62b6-5b77-4772-9d49-b8deb28ac26c.png)
 
 此时选区是 TextSelection
 
-![在这里插入图片描述](..\post-assets\7078316d-00ef-42db-a07c-403ff4968ace.png)
+![在这里插入图片描述](../post-assets/7078316d-00ef-42db-a07c-403ff4968ace.png)
 
 ---
 
@@ -54,7 +54,7 @@ prosemirror 的 Selection 是抽象类，它有三个子类
 
 ### 定位事件处理函数
 
-![在这里插入图片描述](..\post-assets\dd99e883-7e27-497c-af99-39169e923f38.png)
+![在这里插入图片描述](../post-assets/dd99e883-7e27-497c-af99-39169e923f38.png)
 控制台 - Elements - 选中 prosemirror 容器 - Event Listeners - copy & paste，找到 prosemirror-view 的 input.ts 文件：
 
 ```js
@@ -150,7 +150,7 @@ editHandlers.paste = (view, event) => {
 
 粘贴。打断点查看：
 
-![在这里插入图片描述](..\post-assets\5d6eac67-3918-4b3d-b410-1efa4ea97d71.png)
+![在这里插入图片描述](../post-assets/5d6eac67-3918-4b3d-b410-1efa4ea97d71.png)
 文本数据是空字符串，没问题。html 数据变了，多套了 `html > body > startFragment `。
 
 一步步查看 `doPaste` -> `parseFromClipboard` ，发现 `parser.parseSlice` 返回值不对。它的返回值是 `[dino节点，TextNode<两个空格>`
@@ -212,7 +212,7 @@ text 还是空字符串
 ## discussion
 
 又去 google，看到了 [Space added on paste](https://discuss.prosemirror.net/t/space-added-on-paste/1274) 。和我遇到的问题一样。有人回复：
-![在这里插入图片描述](..\post-assets\9128428c-8975-482c-a9c5-ff012b0f2cfe.png)
+![在这里插入图片描述](../post-assets/9128428c-8975-482c-a9c5-ff012b0f2cfe.png)
 居然是 windows 干的好事，完全没想到。我一直以为是 prosemirror 内部处理什么东西加的。。
 
 > [Windows HTML Clipboard Format HTML](https://learn.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format): The fragment should be preceded and followed by the HTML comments <!--StartFragment--> and <!--EndFragment--> to indicate where the fragment starts and ends

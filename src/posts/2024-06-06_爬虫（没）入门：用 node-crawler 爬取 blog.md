@@ -56,11 +56,11 @@ crawler.direct({
 
 获取标题、正文很简单，通过 id 直接锁定元素，然后用 text() 获取文本内容。但是分类和标签就要复杂一点了。
 
-![在这里插入图片描述](..\post-assets\7fa547c1-ec58-4d5a-9e6a-ebfa05c2c17c.png)
+![在这里插入图片描述](../post-assets/7fa547c1-ec58-4d5a-9e6a-ebfa05c2c17c.png)
 
 对应的 html 结构是：
 
-![在这里插入图片描述](..\post-assets\c43dcd0d-2296-4a36-9321-04a0f00c54df.png)
+![在这里插入图片描述](../post-assets/c43dcd0d-2296-4a36-9321-04a0f00c54df.png)
 
 分类和标签的 class 都是 tag-link，只能从 attr 区分。
 注意：cheerio 的 map() 返回伪数组对象，需要调用 get() 获取真数组
@@ -82,16 +82,16 @@ const tags = $(`.tag-link[href^="https://so.csdn.net/so/search"]`)
 
 找到[文章列表页面](https://blog.csdn.net/tangran0526?type=blog)，惊喜的发现有滚动加载，也许能找到获取列表的接口。打开浏览器控制台，Network 中看到疑似请求：
 
-![在这里插入图片描述](..\post-assets\bcfe5239-9071-4557-af3f-4095bc9bb0b2.png)
+![在这里插入图片描述](../post-assets/bcfe5239-9071-4557-af3f-4095bc9bb0b2.png)
 
 返回值为：
 
-![在这里插入图片描述](..\post-assets\fb072e7b-7553-43c7-8a7f-741856d4dcff.png)
+![在这里插入图片描述](../post-assets/fb072e7b-7553-43c7-8a7f-741856d4dcff.png)
 
 因为是 get 请求，所以可以直接把接口地址放到浏览器地址栏里访问。这样改参数看效果更直接。可以避免吭哧吭哧写代码试，最后发现参数无效或者哪有错的倒霉情况。
 
 在地址栏里改参数发现 size 能正常工作。给它设大一点，就可以一次获取所有文章。
-![在这里插入图片描述](..\post-assets\afbdd297-3677-4aa1-8bfb-9cc2c5ae6b3f.png)
+![在这里插入图片描述](../post-assets/afbdd297-3677-4aa1-8bfb-9cc2c5ae6b3f.png)
 
 ```js
 let url = "https://blog.csdn.net/community/home-api/v1/get-business-list";
@@ -120,10 +120,10 @@ crawler.direct({
 
 这次返回值是 json，不是 html 了。不确定返回的 res 是什么结构，node-crawler 的官方文档中有写：
 
-![在这里插入图片描述](..\post-assets\5e2ca424-9e07-4c54-aed7-8f6ad681ff13.png)
+![在这里插入图片描述](../post-assets/5e2ca424-9e07-4c54-aed7-8f6ad681ff13.png)
 打断点查看：
 
-![在这里插入图片描述](..\post-assets\d6d104f2-6540-447e-9212-ddf8890464d9.png)
+![在这里插入图片描述](../post-assets/d6d104f2-6540-447e-9212-ddf8890464d9.png)
 res.body 是一段 html。内容是提示：**当前访问人数过多，请完成安全认证后继续访问**。
 应该是网站的防爬虫、防网络攻击的策略。google 了“爬虫、安全验证、验证码”等相关内容，找到了解决方法。
 
@@ -141,21 +141,21 @@ crawler.direct({
 
 再次重试，res.body 是想要的结果了。现在是字符串， 再 `JSON.parse` 一下就可以了。
 
-![在这里插入图片描述](..\post-assets\243cc9af-14e8-4d66-a226-3bb2e0f6594c.png)
+![在这里插入图片描述](../post-assets/243cc9af-14e8-4d66-a226-3bb2e0f6594c.png)
 
 下面来精简 request headers。之前是把所有的 headers 都拿过来了，但应该不需要那么多。筛查哪些 headers 是必不可少的：
 
-![在这里插入图片描述](..\post-assets\a73d99e8-6de6-484d-a745-011da7e10320.png)
+![在这里插入图片描述](../post-assets/a73d99e8-6de6-484d-a745-011da7e10320.png)
 
 二分法排除，确认了只有 **cookie** 是必须的。
 
 去浏览器中清除 cookie 后，在浏览器中重新访问接口，也弹出了这个安全验证页面。双重实锤 cookie 是关键！
 
-![在这里插入图片描述](..\post-assets\9cd2cb9b-8ade-445c-9230-79998c276da7.png)
+![在这里插入图片描述](../post-assets/9cd2cb9b-8ade-445c-9230-79998c276da7.png)
 
 cookies 内容也很多，根据名称猜测，二分法筛查找到了两个关键 cookie：
 
-![在这里插入图片描述](..\post-assets\1e671fbb-02bc-4a14-a22a-8eaf9a87c3b6.png)
+![在这里插入图片描述](../post-assets/1e671fbb-02bc-4a14-a22a-8eaf9a87c3b6.png)
 只要有它们两个，就不会触发安全验证。
 
 ```js
@@ -182,7 +182,7 @@ crawler.direct({
 
 执行 `node index.js`，等待一会后，输出 result.json 文件：
 
-![在这里插入图片描述](..\post-assets\7bccc233-bf5b-419c-a9f6-78ff802f4889.png)
+![在这里插入图片描述](../post-assets/7bccc233-bf5b-419c-a9f6-78ff802f4889.png)
 
 完整代码如下：
 

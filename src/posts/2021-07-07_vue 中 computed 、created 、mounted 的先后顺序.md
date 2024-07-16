@@ -50,14 +50,14 @@ description:
 </script>
 ```
 
-![在这里插入图片描述](..\post-assets\de64b715-aa86-47b6-8ed9-f237874f7f47.png)
+![在这里插入图片描述](../post-assets/de64b715-aa86-47b6-8ed9-f237874f7f47.png)
 
 - 页面加载时，触发的顺序是：`created` => `computed c` => `mounted`
 - 点击按钮时：第一次点击触发 `computed b`，之后的点击不触发
 
 ## 原因
 
-![截图](..\post-assets\abbb6ca9-ceb0-49bc-aed0-80b641fa5de2.png)
+![截图](../post-assets/abbb6ca9-ceb0-49bc-aed0-80b641fa5de2.png)
 
 具体看 [vue 源码思路理解（持续更新）](https://blog.csdn.net/tangran0526/article/details/104772671) 中的 **计算属性的实现**
 
@@ -112,4 +112,4 @@ description:
 ---
 
 答案：
-![在这里插入图片描述](..\post-assets\468fcb02-2b00-4b44-95ee-845642dfe8a9.png)
+![在这里插入图片描述](../post-assets/468fcb02-2b00-4b44-95ee-845642dfe8a9.png)

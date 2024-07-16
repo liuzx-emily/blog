@@ -17,10 +17,10 @@ fn(true, "abc"); // compilation error
 
 在编辑器中，鼠标移上去，可以每次调用方法时的具体类型：
 
-![在这里插入图片描述](..\post-assets\0f7d3592-91e8-45a8-820b-4b10a00a5b20.png)
-![在这里插入图片描述](..\post-assets\e325f602-36b2-4dd3-8680-75fb25f77739.png)
+![在这里插入图片描述](../post-assets/0f7d3592-91e8-45a8-820b-4b10a00a5b20.png)
+![在这里插入图片描述](../post-assets/e325f602-36b2-4dd3-8680-75fb25f77739.png)
 
-![在这里插入图片描述](..\post-assets\2f6e7fd9-7e8e-4085-a23d-924af77ce746.png)
+![在这里插入图片描述](../post-assets/2f6e7fd9-7e8e-4085-a23d-924af77ce746.png)
 
 每次调用方法时，泛型 T 的具体类型究竟是如何决定的？
 为什么 `fn(true,false)` 时推断 T 是 `boolean`，`fn(true,'abc')` 就不能推断 T 是 `true|'abc'` 呢？

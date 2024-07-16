@@ -13,7 +13,7 @@ description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导
 用 vue-gird-layout 时发现，当改变 margin 值时，item 的尺寸也会跟着变化。
 
 如下图：row height 和每个 item 的 h 都保持不变。修改 margin-y，item 的实际高度也跟着变了：
-![在这里插入图片描述](..\post-assets\f936cc27-4b01-4c97-b13b-6db1a8b56f38.png)
+![在这里插入图片描述](../post-assets/f936cc27-4b01-4c97-b13b-6db1a8b56f38.png)
 
 ---
 
@@ -23,7 +23,7 @@ description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导
 
 考虑以下情况：第一列是两个 h=1 的 item，第二列是一个 h=2 的 item。无论 margin 是多少，都应该保证第一和第二列的底部是平齐的（不然网格逻辑就崩溃了）
 
-![在这里插入图片描述](..\post-assets\312abae9-c26f-4ed9-8e95-9716e1ad5e35.png)
+![在这里插入图片描述](../post-assets/312abae9-c26f-4ed9-8e95-9716e1ad5e35.png)
 记 h=1 的 item 的实际高度为 real*height。
 那么 h=2 的 item 的实际高度不应该是简单的 2 * real*height，而应该是 2 * real_height + margin_y。
 同理 h=x 的 item 的实际高度应该是 `x * real_height + (x-1) * margin_y`。
@@ -44,21 +44,21 @@ description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导
 
 1. 传给 grid-layout 的 marginY 恒为 0
 2. item 内部模拟 margin，grid-item 设置属性 `drag-allow-from`
-   ![在这里插入图片描述](..\post-assets\c21f2247-5087-4031-9705-4e5961065e19.png)
+   ![在这里插入图片描述](../post-assets/c21f2247-5087-4031-9705-4e5961065e19.png)
    整体效果：
-   ![在这里插入图片描述](..\post-assets\24fadbbf-fe3c-460b-9e81-33acd655565e.png)
+   ![在这里插入图片描述](../post-assets/24fadbbf-fe3c-460b-9e81-33acd655565e.png)
 3. 挪动 resize-handle 的位置
    ```css
    .vue-grid-item:not(.vue-grid-placeholder) > .vue-resizable-handle {
      bottom: 50px !important;
    }
    ```
-   ![在这里插入图片描述](..\post-assets\951c7f80-c992-4ee6-865c-c2f059818bbc.png)
+   ![在这里插入图片描述](../post-assets/951c7f80-c992-4ee6-865c-c2f059818bbc.png)
 4. 把 placeholder 改小：
 
    placeholder 是在 drag 或者 resize 时的一个图形提示，下图粉色背景的：
 
-   ![在这里插入图片描述](..\post-assets\0a605659-33c2-4e2d-a96e-6fba3425d06b.png)
+   ![在这里插入图片描述](../post-assets/0a605659-33c2-4e2d-a96e-6fba3425d06b.png)
 
    placeholder 的大小没法改。正好它下面有一个没用的 .vue-resizable-handle。把真正的 placehoder 背景去掉，用它内部的 handle 伪装 placeholder。
 
@@ -77,8 +77,8 @@ description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导
 
    改后的效果：
 
-   ![在这里插入图片描述](..\post-assets\d8787ff3-d003-4d56-b4fa-2e6e88f53faf.png)
+   ![在这里插入图片描述](../post-assets/d8787ff3-d003-4d56-b4fa-2e6e88f53faf.png)
 
 最终效果：
 
-![在这里插入图片描述](..\post-assets\7934da92-9a46-45ed-b6ff-ffd36703e3a0.png)
+![在这里插入图片描述](../post-assets/7934da92-9a46-45ed-b6ff-ffd36703e3a0.png)

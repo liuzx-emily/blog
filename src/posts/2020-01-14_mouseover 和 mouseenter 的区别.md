@@ -28,9 +28,9 @@ description:
 ```
 
 如下图 A、B、C 三个区域：A+B 是父元素 div1，A 是子元素 div2，C 是外部区域
-![在这里插入图片描述](..\post-assets\82d584fa-bfc8-4193-a43f-228d541f9569.png)
+![在这里插入图片描述](../post-assets/82d584fa-bfc8-4193-a43f-228d541f9569.png)
 实验结果：
-![在这里插入图片描述](..\post-assets\a766fdfb-bdec-481a-8f74-b77626921c24.png)
+![在这里插入图片描述](../post-assets/a766fdfb-bdec-481a-8f74-b77626921c24.png)
 
 ## 3 总结
 
@@ -38,7 +38,7 @@ mouseover 和 mouseenter 的区别：
 
 - mouseover 会冒泡，mouseenter 不冒泡。
 - 鼠标在父子元素之间来回转悠时，会触发父元素的 mouseover ，不会触发父元素的 mouseenter
-  ![在这里插入图片描述](..\post-assets\c1970d7a-4c1f-445b-8e99-e7a2532d975c.png)
+  ![在这里插入图片描述](../post-assets/c1970d7a-4c1f-445b-8e99-e7a2532d975c.png)
 
 所以：
 

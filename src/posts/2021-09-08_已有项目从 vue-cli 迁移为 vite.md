@@ -56,7 +56,7 @@ const CodeMirror = require("codemirror/lib/codemirror");
 require("codemirror/addon/hint/show-hint");
 ```
 
-![在这里插入图片描述](..\post-assets\91fed986-1c48-4d6a-a956-b574df2da1d4.png)
+![在这里插入图片描述](../post-assets/91fed986-1c48-4d6a-a956-b574df2da1d4.png)
 需要改为
 
 ```js
@@ -180,7 +180,7 @@ import "dirA/dirB/index.js";
 import "dirA/dirB";
 ```
 
-这是因为[ webpack 提供了 resolve.mainFiles 配置项](https://webpack.js.org/configuration/resolve/#resolvemainfiles)![在这里插入图片描述](..\post-assets\412befc3-458a-4907-b7d1-741f2b0b4767.png)
+这是因为[ webpack 提供了 resolve.mainFiles 配置项](https://webpack.js.org/configuration/resolve/#resolvemainfiles)![在这里插入图片描述](../post-assets/412befc3-458a-4907-b7d1-741f2b0b4767.png)
 vite 没有提供这个配置项，根据简写的路径找不到文件，所以要把路径补全
 
 #### vite 启动时可能不报错
@@ -227,7 +227,7 @@ resolve: {
 `import '@/assets/style/commons.css' `
 
 启动后报错：
-![在这里插入图片描述](..\post-assets\5b329ac5-924d-4064-bd9a-8a5313d8687b.png)
+![在这里插入图片描述](../post-assets/5b329ac5-924d-4064-bd9a-8a5313d8687b.png)
 查看 [官网文档](https://cn.vitejs.dev/config/#resolve-alias) ，发现 alias 必须用绝对路径。所以改成：
 
 ```js
@@ -273,9 +273,9 @@ import "virtual:svg-icons-register";
 ### element 自定义主题
 
 vue-cli 项目中按照 element 官方说明配置的，可以正常运行：
-![在这里插入图片描述](..\post-assets\fce63157-9154-42d1-b73e-cec3b9c00cff.png)
+![在这里插入图片描述](../post-assets/fce63157-9154-42d1-b73e-cec3b9c00cff.png)
 将这段代码迁移到 vite 项目中，启动后报错：
-![在这里插入图片描述](..\post-assets\f5578034-a8d8-468b-b550-6a75f870e2c1.png)
+![在这里插入图片描述](../post-assets/f5578034-a8d8-468b-b550-6a75f870e2c1.png)
 将 `'~element-ui/` 改为 `'element-ui/` 就可以了
 
 ---
@@ -283,7 +283,7 @@ vue-cli 项目中按照 element 官方说明配置的，可以正常运行：
 ### json 读取失败
 
 项目中使用了一个 json 文件，在 vue-cli 中一切正常，但是在 vite 中会报错：
-![在这里插入图片描述](..\post-assets\075c3318-aa50-42d4-8a3a-f5c9c111bbca.png)
+![在这里插入图片描述](../post-assets/075c3318-aa50-42d4-8a3a-f5c9c111bbca.png)
 不是 json 内容格式的问题，也不是中文路径的问题（后来试过，中文路径也 ok）
 
 最后发现是编码不对，现在是 `UTF-8 WITH BOM` 格式，改成 `UTF-8` 就可以了

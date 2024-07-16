@@ -159,7 +159,7 @@ myWordList: {
 
 效果：
 
-![在这里插入图片描述](..\post-assets\bfc7a67a-2e7e-4fc5-b7f7-84b4849b1273.png)
+![在这里插入图片描述](../post-assets/bfc7a67a-2e7e-4fc5-b7f7-84b4849b1273.png)
 
 ---
 
@@ -224,7 +224,7 @@ function fatherLevel() {
 
 效果：
 
-![在这里插入图片描述](..\post-assets\0150f28c-6e92-4851-8ed7-dc569f9f357c.png)
+![在这里插入图片描述](../post-assets/0150f28c-6e92-4851-8ed7-dc569f9f357c.png)
 
 ### 添加快捷键
 
@@ -253,7 +253,7 @@ function changeListItemLevel(handler) {
 
 效果：
 
-![在这里插入图片描述](..\post-assets\0624fa9a-8861-4ae0-b6b9-6686406ded39.png)
+![在这里插入图片描述](../post-assets/0624fa9a-8861-4ae0-b6b9-6686406ded39.png)
 
 ### 切换为列表
 
@@ -283,6 +283,6 @@ function setParagraph() {
 
 效果：
 
-## ![在这里插入图片描述](..\post-assets\9214ea13-983f-48b5-9a67-845f52a9d7f5.png)
+## ![在这里插入图片描述](../post-assets/9214ea13-983f-48b5-9a67-845f52a9d7f5.png)
 
 基本功能完成，后续就是完善、添加 commands 了。不演示了

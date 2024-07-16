@@ -9,7 +9,7 @@ description:
 ---
 
 工作需要写一个多级地址组件，支持数据回显：
-![在这里插入图片描述](..\post-assets\537c9bb2-030e-4bac-8e47-888283a90e3c.png)
+![在这里插入图片描述](../post-assets/537c9bb2-030e-4bac-8e47-888283a90e3c.png)
 开发组件的过程中，遇到各种问题。所以专门研究了一下 select，就有了这篇文章。
 
 ---
@@ -34,7 +34,7 @@ description:
 
 ### 运行结果
 
-![在这里插入图片描述](..\post-assets\14698de4-8e0b-48f7-8174-ca88a381e3dd.png)
+![在这里插入图片描述](../post-assets/14698de4-8e0b-48f7-8174-ca88a381e3dd.png)
 
 ### 结论
 

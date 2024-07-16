@@ -50,9 +50,9 @@ span[custom-node-type="apple"]::before {
 ```
 
 效果：
-![在这里插入图片描述](..\post-assets\5b3cc7e9-e30b-41fe-9220-8079d36d4e57.png)
+![在这里插入图片描述](../post-assets/5b3cc7e9-e30b-41fe-9220-8079d36d4e57.png)
 
-![在这里插入图片描述](..\post-assets\2f22c195-5bbd-4915-b91b-708a642dc1c3.png)
+![在这里插入图片描述](../post-assets/2f22c195-5bbd-4915-b91b-708a642dc1c3.png)
 
 ## insertApple
 
@@ -83,7 +83,7 @@ span[custom-node-type="apple"]::before {
 ```
 
 点击按钮就可以在文档中插入一个 apple 节点
-![在这里插入图片描述](..\post-assets\9f6bf36a-8c47-4e07-8dda-e2500a2bb08b.png)
+![在这里插入图片描述](../post-assets/9f6bf36a-8c47-4e07-8dda-e2500a2bb08b.png)
 
 ### 实时更新按钮状态
 
@@ -113,12 +113,12 @@ function findNodeIndex(doc, isMyNode) {
 }
 ```
 
-![在这里插入图片描述](..\post-assets\9e56ed9c-825f-43cb-a15d-d250ae3ef2aa.png)
+![在这里插入图片描述](../post-assets/9e56ed9c-825f-43cb-a15d-d250ae3ef2aa.png)
 
 增加功能：按钮不可用时，将按钮禁用。
 
 改写 insertApple 方法：添加 just_check 参数
-![在这里插入图片描述](..\post-assets\ccf152e2-5145-4dd1-a9a1-34eac574b0b1.png)
+![在这里插入图片描述](../post-assets/ccf152e2-5145-4dd1-a9a1-34eac574b0b1.png)
 
 - `insertApple(name, true)` 只想看看命令是否可用，并不想真的插入一个苹果
 - `insertApple(name)` 确实是想插入一个苹果
@@ -391,4 +391,4 @@ TestEditor.vue：
 ```
 
 效果：
-![在这里插入图片描述](..\post-assets\e9f0da24-ab49-42d1-be51-f225e1a1362b.png)
+![在这里插入图片描述](../post-assets/e9f0da24-ab49-42d1-be51-f225e1a1362b.png)

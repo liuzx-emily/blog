@@ -65,9 +65,9 @@ async function generateDataPosts() {
     const dom = new JSDOM(htmlContent);
     const doc = dom.window.document;
     doc.querySelectorAll("img").forEach((img) => {
-      const src = img.getAttribute("src"); // "..\\post-assets\\d8254493-7b2e-410e-bd40-236711f2b884.png"
-      const [imageName, imgNameWithoutSuffix, suffix] = src.match(/([^\\]+)\.([^\.]+)$/);
-      const newSrc = `\\liuzx-emily\\post-assets\\${imageName}`;
+      const src = img.getAttribute("src"); // "../post-assets/d8254493-7b2e-410e-bd40-236711f2b884.png"
+      const [imageName] = src.match(/[^/]+$/);
+      const newSrc = `/liuzx-emily/post-assets/${imageName}`;
       img.setAttribute("src", newSrc);
     });
     htmlContent = doc.body.outerHTML;

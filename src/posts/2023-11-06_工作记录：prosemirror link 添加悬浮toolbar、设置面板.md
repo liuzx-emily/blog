@@ -10,7 +10,7 @@ description: 使用 prosemirror，实现添加、编辑 link 的功能。
 
 为了描述清晰，先区分两个概念：光标 vs 鼠标
 
-![在这里插入图片描述](..\post-assets\cdd2093c-0627-4871-a8da-d18cb28e433e.png)
+![在这里插入图片描述](../post-assets/cdd2093c-0627-4871-a8da-d18cb28e433e.png)
 上图中，光标位置不变，一直在句号的后面。鼠标位置一直在变
 
 ## 需求
@@ -20,21 +20,21 @@ editor 需要实现这样的效果：
 1. 添加超链接：
    点击“插入超链接”按钮后，在 editor 中光标附近出现一个设置面板。填写文本、链接后点击确定，在光标位置插入超链接
 
-   ![在这里插入图片描述](..\post-assets\1f27c68a-f0d3-438b-aea4-12826974052c.png)
+   ![在这里插入图片描述](../post-assets/1f27c68a-f0d3-438b-aea4-12826974052c.png)
 
 2. 编辑超链接：
 
    鼠标移动到 link 上时，显示 toolbar。光标移开时，toolbar 消失。
 
-   ![在这里插入图片描述](..\post-assets\3568ba3c-9252-42b0-8a94-810f73789f17.png)
+   ![在这里插入图片描述](../post-assets/3568ba3c-9252-42b0-8a94-810f73789f17.png)
 
    点击 toolbar 中的“编辑链接”，弹出设置面板。这个设置面板和添加链接时的一样，不会随着光标移出而消失：
 
-   ![在这里插入图片描述](..\post-assets\967dc9fe-f9c6-4e4a-aaf2-4638acd8ca4d.png)
+   ![在这里插入图片描述](../post-assets/967dc9fe-f9c6-4e4a-aaf2-4638acd8ca4d.png)
 
    点击 toolbar 中的“移除链接”：
 
-   ![在这里插入图片描述](..\post-assets\08c53cfc-8127-4204-b151-46c05736f095.png)
+   ![在这里插入图片描述](../post-assets/08c53cfc-8127-4204-b151-46c05736f095.png)
 
 ## 遇到问题
 
@@ -69,7 +69,7 @@ link: {
 
 link 设置成 node 后，能显示出来。但是光标在 link 内部时，按回车不会换行。
 
-![在这里插入图片描述](..\post-assets\b7467ded-35d0-4b6c-ab9c-7902517fe66b.png)
+![在这里插入图片描述](../post-assets/b7467ded-35d0-4b6c-ab9c-7902517fe66b.png)
 
 其实已经有预感了，mark 和 node 完全不同，强行改肯定会遇到问题。
 
@@ -141,16 +141,16 @@ if (node1 !== node2) {
 
 当光标在 link 上时，`posAtCoords` 和 `posAtDOM` 最终都能找到 `TextNode<苹果 linkMark>`
 
-![在这里插入图片描述](..\post-assets\a598b0cd-1c14-44f5-a0c4-40eb3a45c950.png)
+![在这里插入图片描述](../post-assets/a598b0cd-1c14-44f5-a0c4-40eb3a45c950.png)
 
 重点看看取到的 node 不一样的情况。
 
 - 当光标在纯文本上时：
 
-  ![在这里插入图片描述](..\post-assets\81f86c3e-ee49-4876-b68e-b8ac8b32838a.png)
+  ![在这里插入图片描述](../post-assets/81f86c3e-ee49-4876-b68e-b8ac8b32838a.png)
 
   结果：
-  ![在这里插入图片描述](..\post-assets\5165ad2e-b34f-4a02-acf1-55f3787af3f8.png)
+  ![在这里插入图片描述](../post-assets/5165ad2e-b34f-4a02-acf1-55f3787af3f8.png)
 
   `posAtCoords`：找到的 pmNode 是 `TextNode<香蕉>`
   `posAtDOM`：==e.target 是 p==，pos 是 p 段首位置，pmNode 是 `TextNode<水果>`。怪怪的
@@ -162,11 +162,11 @@ if (node1 !== node2) {
 
 - 当光标在空白处时：
 
-  ![在这里插入图片描述](..\post-assets\dadccde1-e5e7-4acf-a5a3-7b7bcb6c5bcd.png)
+  ![在这里插入图片描述](../post-assets/dadccde1-e5e7-4acf-a5a3-7b7bcb6c5bcd.png)
 
   结果：
 
-  ![在这里插入图片描述](..\post-assets\d4dec0df-1c4d-43b6-a062-703c19acd37c.png)
+  ![在这里插入图片描述](../post-assets/d4dec0df-1c4d-43b6-a062-703c19acd37c.png)
 
   `posAtCoords`：没有对应的 pmNode
   `posAtDOM`：e.target 是 p，pos 是 p 段首位置，pmNode 是 `TextNode<水果>`。还是怪怪的
@@ -201,7 +201,7 @@ view.state.doc.descendants((_node, pos) => {
 ```
 
 但是 link 是可以跨行的，如下图：
-![在这里插入图片描述](..\post-assets\57496a26-4ab1-4fc5-a2ba-b17bf4731035.png)
+![在这里插入图片描述](../post-assets/57496a26-4ab1-4fc5-a2ba-b17bf4731035.png)
 
 只说水平方向，如果只考虑 link 的首、尾 pos，即图中红点位置，那么悬浮窗就会很靠右！
 所以还要考虑段首、段尾坐标（图中绿色竖线）。注意：段尾坐标不是段尾文字的位置，因为文字可能没有铺满整行。
@@ -243,7 +243,7 @@ if (!linkMark) {
 
 悬浮窗一般不会紧贴着 link，不好看，会留出一个间距。如下图红框区域：
 
-![在这里插入图片描述](..\post-assets\f924fbfc-b86a-46f1-8e5f-928c747c0386.png)
+![在这里插入图片描述](../post-assets/f924fbfc-b86a-46f1-8e5f-928c747c0386.png)
 
 光标移向浮窗的过程中，经过红框区域，光标已经不在 link 上了，就会关闭浮窗。
 但我们此时是希望浮窗保持不关的，怎么办？
@@ -252,7 +252,7 @@ if (!linkMark) {
 
 一种偷懒的想法是，给 toolbar 底部加一个透明 padding，伪装成间距。光标在移动的过程中，虽然移出了 link，但是直接移动到 toolbar 上了，toolbar 是 editor 外的元素，不会触发我们的 mousemove handler。
 实现效果！但是这样做的坏处是遮挡了 editor。如果用户在这个区域想点击 editor，就点不上了。我把这个间距调大，容易看出效果：
-![在这里插入图片描述](..\post-assets\f4fb6373-0c71-4a10-8023-42fca95f7279.png)
+![在这里插入图片描述](../post-assets/f4fb6373-0c71-4a10-8023-42fca95f7279.png)
 当然一般间距都比较小，影响不大
 
 ```html
@@ -284,20 +284,20 @@ if (!linkMark) {
 
 如果计算 top 时没有加 1，就是下图这种效果：为了看得清楚，我给 toolbar 添加绿色背景，p 添加深灰色背景。在绿色和深灰色之间有一条空隙！
 
-![在这里插入图片描述](..\post-assets\584a2d65-421e-4dad-8157-697db2575fef.png)
+![在这里插入图片描述](../post-assets/584a2d65-421e-4dad-8157-697db2575fef.png)
 
 这个 1px 距离是哪里来的我还不知道，我试过调字号、间距、边框等，都是差 1px。。。
 
 #### 方法 2：mousemove 中判断坐标位置
 
-![在这里插入图片描述](..\post-assets\f924fbfc-b86a-46f1-8e5f-928c747c0386.png)
+![在这里插入图片描述](../post-assets/f924fbfc-b86a-46f1-8e5f-928c747c0386.png)
 mousemove handler 中判断，如果 toolbar 是显示状态，且光标在红框区域移动，就不要关闭 toolbar。
 
 #### 效果
 
 方法 1 写起来比较省事，我就用方法 1 了。看看效果：
 
-![在这里插入图片描述](..\post-assets\a3272a4a-a0da-486c-bb0c-f6915c783895.png)
+![在这里插入图片描述](../post-assets/a3272a4a-a0da-486c-bb0c-f6915c783895.png)
 
 ### toolbar 用 absolute 还是 fixed？
 
@@ -307,7 +307,7 @@ mousemove handler 中判断，如果 toolbar 是显示状态，且光标在红�
 - 【优】滚动时会跟着走
 - 【缺】会被父元素“框住”（超出父元素尺寸的内容显示不出来）
 
-![在这里插入图片描述](..\post-assets\52e738c7-2c86-4bfe-a865-c4c4eed10a99.png)
+![在这里插入图片描述](../post-assets/52e738c7-2c86-4bfe-a865-c4c4eed10a99.png)
 
 #### fixed
 
@@ -315,7 +315,7 @@ mousemove handler 中判断，如果 toolbar 是显示状态，且光标在红�
 - 【缺】滚动时不会自动跟着走。如果想要跟着走，需要自己监听 scroll 事件修改浮窗坐标
 - 【优】不会被“框住”
 
-![在这里插入图片描述](..\post-assets\8909d450-c478-4ef1-8d37-c3e98a6ce4c2.png)
+![在这里插入图片描述](../post-assets/8909d450-c478-4ef1-8d37-c3e98a6ce4c2.png)
 上面说的优缺点，无论是算起来麻烦，还是滚动时会不会自动跟着走，都是能解决的。唯一不能解决的是“被框住”（指用 absolute 的情况）。
 
 我现在的需求是写 toolbar，高度很小，所以不怕“被框住”，可以用 absolute。
@@ -325,7 +325,7 @@ mousemove handler 中判断，如果 toolbar 是显示状态，且光标在红�
 - 用 absolute 时判断，如果上面有位置，就在上面显示。如果下面有位置，就在下面显示。
 - 用 fixed 吧。
 
-![在这里插入图片描述](..\post-assets\758d9aa7-bb38-4b32-ba3b-4ef356234dde.png)
+![在这里插入图片描述](../post-assets/758d9aa7-bb38-4b32-ba3b-4ef356234dde.png)
 
 ## 实现设置窗口
 
@@ -338,7 +338,7 @@ mousemove handler 中判断，如果 toolbar 是显示状态，且光标在红�
 如下图：此时光标在 link-B 中，鼠标 hover 到 link-A 上。
 编辑时，反显的 text 和 link 都是 link-A 的。保存后，也是 link-A 被替换：
 
-![在这里插入图片描述](..\post-assets\e5cd8b8a-baa1-4ef4-a546-66d7b729fefc.png)
+![在这里插入图片描述](../post-assets/e5cd8b8a-baa1-4ef4-a546-66d7b729fefc.png)
 
 显示设置弹窗：
 
@@ -368,7 +368,7 @@ function updateLink_trigger_by_hover_toolbar() {
 ### 通过外部按钮触发
 
 目标是光标位置，可能是任意内容，根据 view.selection 找。
-![在这里插入图片描述](..\post-assets\adcaf131-e09b-4d72-a4ec-820cba8c6c41.png)
+![在这里插入图片描述](../post-assets/adcaf131-e09b-4d72-a4ec-820cba8c6c41.png)
 
 显示设置弹窗
 

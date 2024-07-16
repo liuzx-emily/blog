@@ -39,20 +39,20 @@ npm 和 yarn 均可成功启动并运行。pnpm 启动失败，报错： `Failed
 google 找到 [pnpm issue: Failed to resolve loader: cache-loader You may need to install it.](https://github.com/pnpm/pnpm/issues/3585)
 
 pnpm maintainer 回复：
-![在这里插入图片描述](..\post-assets\1bc23de6-0062-4b88-84ec-2cea78575d0a.png)
+![在这里插入图片描述](../post-assets/1bc23de6-0062-4b88-84ec-2cea78575d0a.png)
 按照他的方法尝试。再新建项目 vue-grid-layout-pnpm-hoisted，设置好 `.npmrc` 后用 pnpm 安装依赖。再启动，成功！
 
 [官方文档中 node-linker=hoisted 的含义](https://pnpm.io/npmrc#node-linker) ：所有包平铺在 node_modules 下，不使用 symlink，和 npm 或 yarn 的安装效果相同。
 
-![在这里插入图片描述](..\post-assets\525b3592-6e05-425f-929f-8e0188dd116b.png)
+![在这里插入图片描述](../post-assets/525b3592-6e05-425f-929f-8e0188dd116b.png)
 
 pnpm 默认（node-linker=isolated) 安装的 node_modules，子文件夹有 30 个。下图红框部分可以看到使用了 symlink：
 
-![在这里插入图片描述](..\post-assets\1bec758e-4bbb-4d0e-9d5b-91b10357a6e4.png)
+![在这里插入图片描述](../post-assets/1bec758e-4bbb-4d0e-9d5b-91b10357a6e4.png)
 
 用 npm、yarn、或者设置了 node-linker=hoisted 的 pnpm 安装的 node_modules：
 
-![在这里插入图片描述](..\post-assets\75a61733-5eca-433b-bc94-18a1e4450b36.png)
+![在这里插入图片描述](../post-assets/75a61733-5eca-433b-bc94-18a1e4450b36.png)
 子文件夹非常多（npm 997，yarn 994，hoisted pnpm 1045），因为所有直接、间接的依赖都平铺在 node_modules 中了
 
 ---
@@ -65,11 +65,11 @@ pnpm 默认（node-linker=isolated) 安装的 node_modules，子文件夹有 30 
 在 vue-grid-layout-pnpm 项目中手动安装 cache-loader，启动仍报错 `Failed to resolve loader: babel-loader'`
 手动安装 babel-loader，启动报错：`Syntax Error: TypeError: this.getOptions is not a function`
 
-![在这里插入图片描述](..\post-assets\53807c88-2484-4f28-a69e-c5472636f61c.png)
+![在这里插入图片描述](../post-assets/53807c88-2484-4f28-a69e-c5472636f61c.png)
 
 google 了一下，是包和包之间版本不匹配。但是通过报错信息看不出是哪个包的哪个文件报错。在 node_modules 下全局搜索 `this.getOptions`，锁定嫌疑人 babel-loader。用 pnpm why 查看：
 
-![在这里插入图片描述](..\post-assets\dd60c197-3589-4064-b8fc-2d8ba5ae4798.png)
+![在这里插入图片描述](../post-assets/dd60c197-3589-4064-b8fc-2d8ba5ae4798.png)
 
 需要安装 8.3.0 版本，但是刚刚安装的是 9.1.3 版本。重新安装：`pnpm i babel-loader@8.3.0`，启动报错 `Failed to resolve loader: vue-loader`。
 

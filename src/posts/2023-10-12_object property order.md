@@ -24,7 +24,7 @@ const mySchema = new Schema({
 ```
 
 在浏览器控制台查看 mySchema，发现两个地方有 nodes：
-![](..\post-assets\bd78502f-7f6c-4fe4-b268-cd0f8ae6899b.png)
+![](../post-assets/bd78502f-7f6c-4fe4-b268-cd0f8ae6899b.png)
 
 - `mySchema.nodes` 是普通对象，有三个属性，就是我想要获取的 nodes。但是我设置时顺序是 doc - customBlock - text，而控制台显示的顺序是 customBlock - doc -text，不一致
 - `mySchema.spec.nodes` 是一个 [OrderedMap](https://github.com/marijnh/orderedmap) 对象
@@ -65,16 +65,16 @@ var obj = {
 
 打印 obj，显示的顺序正确：
 
-![在这里插入图片描述](..\post-assets\5f4d6129-fcac-432d-a16a-51c3ab093f59.png)
+![在这里插入图片描述](../post-assets/5f4d6129-fcac-432d-a16a-51c3ab093f59.png)
 
 但是点击箭头查看详情时，会看到详情里展示顺序变了：
 
-![在这里插入图片描述](..\post-assets\85fe65ab-17dc-4495-bc9d-680079ac4819.png)
+![在这里插入图片描述](../post-assets/85fe65ab-17dc-4495-bc9d-680079ac4819.png)
 应该是浏览器为了开发者查看详情方便，展示的时候重新排序了。
 
 多加几个属性测试一下，也是如此：
 
-![在这里插入图片描述](..\post-assets\8ddadac1-99d0-4910-826d-532125389308.png)
+![在这里插入图片描述](../post-assets/8ddadac1-99d0-4910-826d-532125389308.png)
 
 结论：**在浏览器控制台中，点击按钮查看对象详情时，显示的并不是对象属性的真正顺序！**
 （以前没想过这个问题，觉得控制台里展现的就是数据最真实的、原始的样子。发现了个盲区，好玩，但也要警惕）

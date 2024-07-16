@@ -53,7 +53,7 @@ margin 很复杂，这里只讨论如下特定代码的情况
 ```
 
 准备两层 div `.outer > .inner` （带有文字的`.item` 是为了 `.inner` 滚动时能看到文字在动，更直观）
-![在这里插入图片描述](..\post-assets\8158afca-ad1b-46aa-8066-8d4030262c0f.png)
+![在这里插入图片描述](../post-assets/8158afca-ad1b-46aa-8066-8d4030262c0f.png)
 现在 `.inner` 的尺寸是 185x300。
 宽度 185px 是父级 `.outer` 的 200px 宽减去滚动条的宽度。
 高度 300px 是由内容撑起的
@@ -73,11 +73,11 @@ margin 很复杂，这里只讨论如下特定代码的情况
 
 记住 .inner 的原始宽度是 185px
 
-![在这里插入图片描述](..\post-assets\1cdf963a-8e02-4f94-b38c-5be02eb9ce66.png)
+![在这里插入图片描述](../post-assets/1cdf963a-8e02-4f94-b38c-5be02eb9ce66.png)
 
 再测试 margin 为负的情况
 
-![在这里插入图片描述](..\post-assets\7d6b21a9-8b97-4b94-ad2b-70d6ae6c1b7c.png)
+![在这里插入图片描述](../post-assets/7d6b21a9-8b97-4b94-ad2b-70d6ae6c1b7c.png)
 
 总结：==width 为 auto 时，设置横向 margin （无论正负）可以改变内容宽度==
 
@@ -94,22 +94,22 @@ margin 很复杂，这里只讨论如下特定代码的情况
 
 纵向正 margin 不会改变内容高度
 
-![在这里插入图片描述](..\post-assets\ee4644d8-d0e1-43cf-9abb-93feeeb42398.png)
+![在这里插入图片描述](../post-assets/ee4644d8-d0e1-43cf-9abb-93feeeb42398.png)
 
-![在这里插入图片描述](..\post-assets\749e6ed8-61f1-4b16-a3d1-a5cde1ea1531.png)
+![在这里插入图片描述](../post-assets/749e6ed8-61f1-4b16-a3d1-a5cde1ea1531.png)
 
-![在这里插入图片描述](..\post-assets\29553800-d961-4bb3-adec-e1905d92777b.png)
+![在这里插入图片描述](../post-assets/29553800-d961-4bb3-adec-e1905d92777b.png)
 再试负值，marginTop 和 marginBottom 的行为就不同了。
 
 ### `margin-top: -30px`
 
 上移 30px，内容为 000000 的 .item 已经完全移出视区，看不到了。
-![在这里插入图片描述](..\post-assets\a3d935dd-a21e-4bef-9bbd-106572a144cc.png)
+![在这里插入图片描述](../post-assets/a3d935dd-a21e-4bef-9bbd-106572a144cc.png)
 
 ### `margin-bottom: -30px`
 
 最后一个 item999999 还能看到，并不会挪出视区外。
-![在这里插入图片描述](..\post-assets\e1a1653d-ae8a-493c-80b2-f6b20f90fb42.png)
+![在这里插入图片描述](../post-assets/e1a1653d-ae8a-493c-80b2-f6b20f90fb42.png)
 
 ## 总结
 

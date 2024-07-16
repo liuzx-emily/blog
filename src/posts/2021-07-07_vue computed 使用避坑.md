@@ -70,7 +70,7 @@ description:
 </script>
 ```
 
-![在这里插入图片描述](..\post-assets\1551efea-cb84-445e-b8eb-c1c487a398cd.png)
+![在这里插入图片描述](../post-assets/1551efea-cb84-445e-b8eb-c1c487a398cd.png)
 
 list2.push 和 list3.push 都没有触发的 computed setter。对于引用类型的计算属性，只有 `list2=...` 这样修改引用地址，才会触发 setter
 

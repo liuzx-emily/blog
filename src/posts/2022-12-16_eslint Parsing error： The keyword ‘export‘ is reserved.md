@@ -10,7 +10,7 @@ description: eslint language options
 
 ## 报错
 
-![在这里插入图片描述](..\post-assets\566c0a0f-f350-45fc-8192-e21661d980e5.png)
+![在这里插入图片描述](../post-assets/566c0a0f-f350-45fc-8192-e21661d980e5.png)
 
 ## 原因
 
@@ -18,7 +18,7 @@ ECMAScript modules(import/export) 是 es6 的语法。
 
 根据 eslint 官方文档 [Configure language options](https://eslint.org/docs/latest/user-guide/configuring/language-options) ，eslint 默认使用 es5 语法：
 
-![在这里插入图片描述](..\post-assets\987a19f9-34d6-47d9-87a4-500f95cb6961.png)
+![在这里插入图片描述](../post-assets/987a19f9-34d6-47d9-87a4-500f95cb6961.png)
 
 ## 解决
 
@@ -36,11 +36,11 @@ ECMAScript modules(import/export) 是 es6 的语法。
   ```
 
   此时还是会报错，但是报错内容变了：
-  ![在这里插入图片描述](..\post-assets\325374d3-b326-4dba-aff3-4f04b11889ab.png)
+  ![在这里插入图片描述](../post-assets/325374d3-b326-4dba-aff3-4f04b11889ab.png)
 
   这是因为虽然 es modules 是 es6 的功能，但是 eslint 中的 env: es6 是不包含 modules 功能的：
-  ![在这里插入图片描述](..\post-assets\1a974ec3-3254-40cb-b91a-4c05d7ea4211.png)
-  根据报错内容的提示，将 parserOptions.sourceType 设为 module ![在这里插入图片描述](..\post-assets\ec1fa1f0-7233-45fa-be14-975cc286d914.png)
+  ![在这里插入图片描述](../post-assets/1a974ec3-3254-40cb-b91a-4c05d7ea4211.png)
+  根据报错内容的提示，将 parserOptions.sourceType 设为 module ![在这里插入图片描述](../post-assets/ec1fa1f0-7233-45fa-be14-975cc286d914.png)
 
   ```js
   module.exports = {

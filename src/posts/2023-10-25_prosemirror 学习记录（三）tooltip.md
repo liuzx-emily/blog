@@ -50,7 +50,7 @@ export const MyTooltipPlugin = new Plugin({
 ```
 
 效果：
-![在这里插入图片描述](..\post-assets\e0991e34-943b-4d66-ab4c-6a6f01ab05b4.png)
+![在这里插入图片描述](../post-assets/e0991e34-943b-4d66-ab4c-6a6f01ab05b4.png)
 
 关键点：
 

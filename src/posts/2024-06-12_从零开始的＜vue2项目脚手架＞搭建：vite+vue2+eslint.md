@@ -134,16 +134,16 @@ npm init 有两种用法：
 - `npm init` 在一连串问题后，根据你的回答自动创建 package.json 文件。`-y` 可以跳过问题
 - `npm init <initializer>`：根据指定的 initializer 初始化项目。通过 npx 安装 `create-<initializer>` 包并执行它的 bin。
 
-![在这里插入图片描述](..\post-assets\29392aa3-6c9f-43b7-8e3f-0b74be25bb17.png)
+![在这里插入图片描述](../post-assets/29392aa3-6c9f-43b7-8e3f-0b74be25bb17.png)
 
 我的脚手架名称是 lily-cli，所以 npm package 名字应该是 `create-lily-cli`。并且要设置 bin 字段。
 
 简单了解一下 bin 字段，[点这里查看官方文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bin)：
 
-![在这里插入图片描述](..\post-assets\8548980f-88af-427a-bd83-8ea265506ca8.png)
+![在这里插入图片描述](../post-assets/8548980f-88af-427a-bd83-8ea265506ca8.png)
 注意：bin 的入口文件必须以 `#!/usr/bin/env node` 开头，告诉操作系统要用 nodejs 运行此脚本。不然的话，在 npm exec 时会报错 800A03EA：
 
-![在这里插入图片描述](..\post-assets\793ccb2e-3f02-43fd-a366-5ec67fd5a411.png)
+![在这里插入图片描述](../post-assets/793ccb2e-3f02-43fd-a366-5ec67fd5a411.png)
 
 ### 初始化项目
 
@@ -226,7 +226,7 @@ async function initGit(dirPath) {
 在开发阶段我用 `npm link` + `npx create-lily-cli` 进行本地调试。调试完成准备发布，我需要解除本地 link。
 我尝试了多种方法： `unlink`、`uninstall -g`、清除 npm cache、清除 npx cache，但都清理不掉 npx 中的缓存！（npm 的 link 应该是清理干净了，`npm i create-lily-cli` 已经不生效了）。
 在我 publish 了之后再执行 npx，它还是用的之前本地 link 的版本。我最后是卸载 nodejs 重装才清理掉。。。。
-![在这里插入图片描述](..\post-assets\e5bc8550-ee9c-4afa-beae-99b43f796c0d.png)
+![在这里插入图片描述](../post-assets/e5bc8550-ee9c-4afa-beae-99b43f796c0d.png)
 
 ### 发布到 npm
 
@@ -238,5 +238,5 @@ async function initGit(dirPath) {
 
 ---
 
-写这个脚手架是受 [@eslint/config](https://github.com/eslint/create-config) 的启发 ![在这里插入图片描述](..\post-assets\20c0c884-21a0-48b9-bcf4-ffe8af340069.png)
+写这个脚手架是受 [@eslint/config](https://github.com/eslint/create-config) 的启发 ![在这里插入图片描述](../post-assets/20c0c884-21a0-48b9-bcf4-ffe8af340069.png)
 之前以为写这类东西很复杂，但是在研究 @eslint/config 源码的时候，发现还蛮简单的，所以才决定自己试试。

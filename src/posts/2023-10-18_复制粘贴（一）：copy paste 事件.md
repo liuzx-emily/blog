@@ -18,17 +18,17 @@ description: 页面内容如下：</</</</
 </body>
 ```
 
-![在这里插入图片描述](..\post-assets\58277e1e-ede8-462c-b3fc-589e36db8e13.png)
+![在这里插入图片描述](../post-assets/58277e1e-ede8-462c-b3fc-589e36db8e13.png)
 
 选择所有内容：
 
-![在这里插入图片描述](..\post-assets\f68eee55-5811-4046-be8e-3b512f0fe886.png)
+![在这里插入图片描述](../post-assets/f68eee55-5811-4046-be8e-3b512f0fe886.png)
 
 ## user-select
 
 按钮左右两侧的文字背景都变蓝了，但是按钮没有变。这是因为按钮的 [user-select](https://developer.mozilla.org/en-US/docs/Web/CSS/user-select) 默认值是 `none`
 
-![在这里插入图片描述](..\post-assets\8bf6dddb-5ec5-42b1-8d51-7e5a280872e0.png)
+![在这里插入图片描述](../post-assets/8bf6dddb-5ec5-42b1-8d51-7e5a280872e0.png)
 如果希望按钮也可以选择，手动设置 `user-select`：
 
 ```css
@@ -39,7 +39,7 @@ input[type="button"] {
 
 此时再全选：
 
-![在这里插入图片描述](..\post-assets\02c43107-145a-4c85-9d8a-d99a2d4feeb6.png)
+![在这里插入图片描述](../post-assets/02c43107-145a-4c85-9d8a-d99a2d4feeb6.png)
 
 ## 禁止复制
 
@@ -71,7 +71,7 @@ container1.addEventListener("copy", (e) => {
 });
 ```
 
-![在这里插入图片描述](..\post-assets\8e2e7e7c-4ae6-40fe-abd9-faf2cbc27c3d.png)
+![在这里插入图片描述](../post-assets/8e2e7e7c-4ae6-40fe-abd9-faf2cbc27c3d.png)
 
 `selection.toString` 获取选择区域中的纯文本
 
@@ -97,7 +97,7 @@ container1.addEventListener("copy", (e) => {
 
 输出：
 
-![在这里插入图片描述](..\post-assets\87d7977b-7041-468b-8b72-1c258acdcf78.png)
+![在这里插入图片描述](../post-assets/87d7977b-7041-468b-8b72-1c258acdcf78.png)
 
 ## 在 copy 事件中修改内容
 
@@ -126,7 +126,7 @@ container1.addEventListener("paste", (e) => {
 
 输出：
 
-![在这里插入图片描述](..\post-assets\0d2bfc63-4b09-49fb-b233-fd1687fcadc7.png)
+![在这里插入图片描述](../post-assets/0d2bfc63-4b09-49fb-b233-fd1687fcadc7.png)
 windows 系统用 `clipboardData` 获取 html 数据时，会自动包一层 html>body 和 startFragment，这个”特性“造成了 prosemirror 项目的 bug —— [fix: prosemirror adds two extra spaces when paste](https://blog.csdn.net/tangran0526/article/details/133815110)。
 
 下一篇文章会讲到用 `navigator.clipboard.read` 获取数据，用那个 API 拿到的 html 数据是纯净的，不会包 html>body 和 startFragment 标签。
@@ -166,7 +166,7 @@ windows 系统用 `clipboardData` 获取 html 数据时，会自动包一层 htm
 </html>
 ```
 
-![在这里插入图片描述](..\post-assets\389fabeb-fb26-4e6c-942d-6140353e69e1.png)
+![在这里插入图片描述](../post-assets/389fabeb-fb26-4e6c-942d-6140353e69e1.png)
 希望在粉色区域粘贴时，加上后缀”-后缀 1”。在灰色区域粘贴是，加上后缀“-后缀 2”
 
 要实现这个效果，只能阻止默认事件，然后自己执行 insertHTML
@@ -185,4 +185,4 @@ target2.addEventListener("paste", (e) => {
 ```
 
 效果：
-![在这里插入图片描述](..\post-assets\b3d43e91-bd98-4af6-9ca4-e5023d55c17f.png)
+![在这里插入图片描述](../post-assets/b3d43e91-bd98-4af6-9ca4-e5023d55c17f.png)

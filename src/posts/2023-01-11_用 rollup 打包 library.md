@@ -49,7 +49,7 @@ export default {
 
 执行 `pnpm run build` 打包。报错：
 
-![在这里插入图片描述](..\post-assets\6a86b70f-04fd-4315-9ad9-9c42c1b79380.png)
+![在这里插入图片描述](../post-assets/6a86b70f-04fd-4315-9ad9-9c42c1b79380.png)
 
 package.json 中 的 [type](https://nodejs.org/api/packages.html#type) 字段指定 .js 文件使用的模块语法。可选值： `commonjs` `module`，默认 `commonjs`。
 因为我没有在 package.json 中设置 type，所以默认使用 commonjs 模块语法，但是在 rollup.config.js 中我使用了 export ，这是 es 的模块语法，所以 rollup 会报错。
@@ -58,11 +58,11 @@ package.json 中 的 [type](https://nodejs.org/api/packages.html#type) 字段指
 
 重新打包，成功：
 
-![在这里插入图片描述](..\post-assets\865236d2-6060-445c-a96d-5f02b9d12a50.png)
+![在这里插入图片描述](../post-assets/865236d2-6060-445c-a96d-5f02b9d12a50.png)
 
 自动生成了 dist/index.js 文件：
 
-![在这里插入图片描述](..\post-assets\8c537506-ae6d-4869-a187-532c22008a7e.png)
+![在这里插入图片描述](../post-assets/8c537506-ae6d-4869-a187-532c22008a7e.png)
 因为内容简单，打包后的内容也是一目了然，不需要再测试代码的正确性了。
 
 ### 设置 package.json 中的 main 字段
@@ -96,9 +96,9 @@ output: [
 
 打包成功，生成两个文件：
 
-![在这里插入图片描述](..\post-assets\72842fa2-1c22-4bfc-8566-e715b384e39d.png)
+![在这里插入图片描述](../post-assets/72842fa2-1c22-4bfc-8566-e715b384e39d.png)
 
-![在这里插入图片描述](..\post-assets\a69bdf0e-47e4-4543-8d25-7b9423f109cf.png)
+![在这里插入图片描述](../post-assets/a69bdf0e-47e4-4543-8d25-7b9423f109cf.png)
 
 ---
 
@@ -123,9 +123,9 @@ export const name = "emily";
 
 打包成功：
 
-![在这里插入图片描述](..\post-assets\488bb1e5-71e9-4666-85d2-7def6c9a75e6.png)
+![在这里插入图片描述](../post-assets/488bb1e5-71e9-4666-85d2-7def6c9a75e6.png)
 
-![在这里插入图片描述](..\post-assets\7c93af21-7482-4049-926d-9de3eba99928.png)
+![在这里插入图片描述](../post-assets/7c93af21-7482-4049-926d-9de3eba99928.png)
 
 ---
 
@@ -139,32 +139,32 @@ export { map } from "lodash";
 
 打包成功，但给出了两个警告：
 
-![在这里插入图片描述](..\post-assets\29a52d5c-f872-481f-b372-cdd14a282a45.png)
+![在这里插入图片描述](../post-assets/29a52d5c-f872-481f-b372-cdd14a282a45.png)
 
 先不管这两个警告，看打包结果：
 
-![在这里插入图片描述](..\post-assets\4f810f6c-6923-4fe7-92a5-2ed5ec0c8995.png)
+![在这里插入图片描述](../post-assets/4f810f6c-6923-4fe7-92a5-2ed5ec0c8995.png)
 
-![在这里插入图片描述](..\post-assets\18b9d4ce-7e1e-4133-9647-0ee3d6316158.png)
+![在这里插入图片描述](../post-assets/18b9d4ce-7e1e-4133-9647-0ee3d6316158.png)
 可以看到，rollup 没有把 lodash 打包进来。在使用 bundle 的时候，如果环境中没有 lodash 的话，就会报错。
 
 回过头来看刚才的两个警告：
 
 警告 1：
 
-![在这里插入图片描述](..\post-assets\8f2509a0-8e6a-4aca-8a35-88ea4eda13ba.png)
+![在这里插入图片描述](../post-assets/8f2509a0-8e6a-4aca-8a35-88ea4eda13ba.png)
 
 点进[链接](https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency)查看详情：
 
-![在这里插入图片描述](..\post-assets\8a0286b6-5e63-4c62-a42e-0bd85c4d9742.png)
+![在这里插入图片描述](../post-assets/8a0286b6-5e63-4c62-a42e-0bd85c4d9742.png)
 
 警告 2：
 
-![在这里插入图片描述](..\post-assets\ee8e171f-4765-468c-955b-7261eec21181.png)
+![在这里插入图片描述](../post-assets/ee8e171f-4765-468c-955b-7261eec21181.png)
 
 点进[链接](https://rollupjs.org/guide/en/#outputglobals)查看详情：
 
-![在这里插入图片描述](..\post-assets\e6a796b3-b1d6-4934-87a2-3d34362204c0.png)
+![在这里插入图片描述](../post-assets/e6a796b3-b1d6-4934-87a2-3d34362204c0.png)
 
 这两个警告都和代码中引用了 npm 包有关。用 rollup 打包时，处理引用的 npm 包有两种方法：
 
@@ -198,7 +198,7 @@ export { map } from "lodash";
 
 bundle.es.js 不变。bundle.iife.js 中全局变量名称变为我们在 rollup.config.js 中提供的了：
 
-![在这里插入图片描述](..\post-assets\e70af8b0-6c93-4975-a549-5b0a1e606fe3.png)
+![在这里插入图片描述](../post-assets/e70af8b0-6c93-4975-a549-5b0a1e606fe3.png)
 
 ### 把 npm 包打包进来
 
@@ -218,7 +218,7 @@ export default {
 
 打包报错：
 
-![在这里插入图片描述](..\post-assets\3b0993a4-854f-4867-80a3-d6bcca4936e6.png)
+![在这里插入图片描述](../post-assets/3b0993a4-854f-4867-80a3-d6bcca4936e6.png)
 
 因为 lodash 包使用 commonjs 模块语法，而 src/index.js 中的 `export {map} from 'lodash'` 是 es 模块语法，所以会报错。
 
@@ -242,7 +242,7 @@ export default {
 
 打包成功。两个 bundle 文件都很大，因为把整个 lodash 都打包进来了
 
-![在这里插入图片描述](..\post-assets\16c6632a-c863-431b-a212-5365cc333361.png)
+![在这里插入图片描述](../post-assets/16c6632a-c863-431b-a212-5365cc333361.png)
 
 修改 src/index.js，只引用 map 包
 
@@ -253,7 +253,7 @@ export { map } from "lodash/map";
 
 重新打包，两个 bundle 文件都变小了很多：（500kb -> 80kb)
 
-![在这里插入图片描述](..\post-assets\f4165e13-9d89-477c-9350-778bacf9a9eb.png)
+![在这里插入图片描述](../post-assets/f4165e13-9d89-477c-9350-778bacf9a9eb.png)
 
 #### 直接使用 lodash-es
 
@@ -305,7 +305,7 @@ export default {
 
 打包结果：
 
-![在这里插入图片描述](..\post-assets\656f56f5-62c5-4ee1-9d3a-b514dbf133a0.png)
+![在这里插入图片描述](../post-assets/656f56f5-62c5-4ee1-9d3a-b514dbf133a0.png)
 
 rollup 和 babel 共同使用时，有两种策略：
 
@@ -378,18 +378,18 @@ export default (commandLineArgs) => {
 
 执行 `pnpm run dev`， 在 example 文件夹下生成 bundle.js 和 bundle.js.map
 
-![在这里插入图片描述](..\post-assets\4c2b2151-4af0-41ea-87ae-5a126615512d.png)
+![在这里插入图片描述](../post-assets/4c2b2151-4af0-41ea-87ae-5a126615512d.png)
 
 打开 example.html，控制台输出‘吃苹果’。如果像下图中一样 sourcemap 没有生效，可能是浏览器没开启此功能：
 
-![在这里插入图片描述](..\post-assets\dfc78387-bbaf-4075-9a4a-01c311015100.png)
+![在这里插入图片描述](../post-assets/dfc78387-bbaf-4075-9a4a-01c311015100.png)
 
 ctrl+shift+p 调出浏览器的 command，启用 soucemap 功能：
 
-![在这里插入图片描述](..\post-assets\16606fbd-0135-4f27-8c59-5535ed144a68.png)
+![在这里插入图片描述](../post-assets/16606fbd-0135-4f27-8c59-5535ed144a68.png)
 sourcemap 生效了：
 
-![在这里插入图片描述](..\post-assets\0af3e274-133d-4df6-8482-cc4333f7e7fd.png)
+![在这里插入图片描述](../post-assets/0af3e274-133d-4df6-8482-cc4333f7e7fd.png)
 
 ### HMR Dev Server
 
@@ -413,7 +413,7 @@ export default (commandLineArgs) => {
 
 执行 pnpm run dev
 
-![在这里插入图片描述](..\post-assets\7da9209d-3cbd-4f32-8018-eab3a140b19c.png)
+![在这里插入图片描述](../post-assets/7da9209d-3cbd-4f32-8018-eab3a140b19c.png)
 由上图可知：
 
 1. rollup 打包成功。监听 src 的变化，一有变化就自动重新打包
@@ -535,7 +535,7 @@ export default (commandLineArgs) => {
 
 `pnpm run dev` 成功，打开 localhost:8050：
 
-![在这里插入图片描述](..\post-assets\f6013331-de00-424d-82d4-a6986ced6cde.png)
+![在这里插入图片描述](../post-assets/f6013331-de00-424d-82d4-a6986ced6cde.png)
 
 ---
 

@@ -43,7 +43,7 @@ span[custom-node-type="apple"].highlight::before {
 
 效果：
 
-![在这里插入图片描述](..\post-assets\705e1b1d-9309-4d58-8ce3-7e3562aa6e5b.png)
+![在这里插入图片描述](../post-assets/705e1b1d-9309-4d58-8ce3-7e3562aa6e5b.png)
 
 ## 用 Plugin - state 存储数据
 
@@ -170,7 +170,7 @@ function toggleHighlightApples() {
 
 效果
 
-![在这里插入图片描述](..\post-assets\b57a3c01-1cc2-4e93-accc-8a8ea834110e.png)
+![在这里插入图片描述](../post-assets/b57a3c01-1cc2-4e93-accc-8a8ea834110e.png)
 
 ## set.map(tr.mapping, tr.doc) 的作用
 
@@ -216,21 +216,21 @@ function addRedBg(doc) {
 
 效果：
 
-![在这里插入图片描述](..\post-assets\32d8edab-7935-43a3-a4ca-151636442390.png)
+![在这里插入图片描述](../post-assets/32d8edab-7935-43a3-a4ca-151636442390.png)
 
 因为只在 init 中设置 deco，在 apply 中什么都没做。所以插件不会响应后续视图变化
 
 新增 bold 文本，不会变红：
 
-![在这里插入图片描述](..\post-assets\bb664063-1f08-43f2-abd0-41e6eff8b6f6.png)
+![在这里插入图片描述](../post-assets/bb664063-1f08-43f2-abd0-41e6eff8b6f6.png)
 
 移除 bold，不会消失：
 
-![在这里插入图片描述](..\post-assets\6af9aac2-6add-4a32-a531-8977de1f9048.png)
+![在这里插入图片描述](../post-assets/6af9aac2-6add-4a32-a531-8977de1f9048.png)
 
 修改文档内容，致使 bold 文字位置变动，红色不跟着挪位置：
 
-![在这里插入图片描述](..\post-assets\8f075d0e-41f4-458a-a063-b94ee8a11700.png)
+![在这里插入图片描述](../post-assets/8f075d0e-41f4-458a-a063-b94ee8a11700.png)
 这些都是意料之中的效果。现在在 apply 中添加上这一句：
 
 ```js
@@ -244,7 +244,7 @@ function addRedBg(doc) {
 
 修改文档内容，致使 bold 文字位置变动，效果和之前不同了：
 
-![在这里插入图片描述](..\post-assets\8c0d3f19-e93e-480d-ba29-71d3cf4c2c69.png)
+![在这里插入图片描述](../post-assets/8c0d3f19-e93e-480d-ba29-71d3cf4c2c69.png)
 
 [transform Guide](https://prosemirror.net/docs/guide/#transform) 中讲到了 Mapping 的用法
 
@@ -258,7 +258,7 @@ console.log(tr.mapping.map(10)); // → 9
 ```
 
 结合 DecorationSet.map 的说明：
-![在这里插入图片描述](..\post-assets\ac8ab08d-f0fb-44de-8938-235fa560bd08.png)
+![在这里插入图片描述](../post-assets/ac8ab08d-f0fb-44de-8938-235fa560bd08.png)
 `set.map(tr.mapping, tr.doc)` 的含义就明白了 —— 所有 deco 都应用 tr.mapping 找到新位置。
 
 但是对于新增的 bold 文本（需要新增 deco），或者已经有的 bold 文本去掉 bold 效果（需要移除 deco），`set.map(tr.mapping, tr.doc)` 就无能为力了（剪切、复制、拖拽等同样处理不了）

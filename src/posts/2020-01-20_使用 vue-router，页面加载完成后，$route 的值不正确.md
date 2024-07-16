@@ -29,7 +29,7 @@ mounted(){
 ## 2 找到问题
 
 在 mounted 中打印 `$route`：
-![在这里插入图片描述](..\post-assets\d7782366-b233-4ece-ba38-6d3a51913737.png)
+![在这里插入图片描述](../post-assets/d7782366-b233-4ece-ba38-6d3a51913737.png)
 可以看到，所有的值都不对。最明显的是`path` 和 `fullPath` ，明明应该有值，但现在只是一个 `"/"` 。
 
 我猜测：在 mounted 中，router 的初始化还没有完成，所以取到的是一个初始默认值。
@@ -47,7 +47,7 @@ mounted(){
 ```
 
 延时 1000ms ，此时 router 的值是对的了：
-![在这里插入图片描述](..\post-assets\5e07b753-77a3-4364-ab63-a227401e0d9d.png)
+![在这里插入图片描述](../post-assets/5e07b753-77a3-4364-ab63-a227401e0d9d.png)
 问题确定了：
 
 - **vue-router 初始化是需要一段时间的，在完成之前，取值只能拿到初始的默认值。**
@@ -105,7 +105,7 @@ mounted(){
 ```
 
 会弹出：
-![在这里插入图片描述](..\post-assets\e8eb8c44-ea26-4f24-b790-5266c63f220f.png)
+![在这里插入图片描述](../post-assets/e8eb8c44-ea26-4f24-b790-5266c63f220f.png)
 
 如果延迟一会儿，再绑定事件呢：
 
@@ -142,14 +142,14 @@ router.onReady(cb);
 ```
 
 去看看 [源码](https://github.com/vuejs/vue-router/blob/dev/src/history/base.js) ，onReady 到底是做了什么：
-![在这里插入图片描述](..\post-assets\b9501e15-e6e0-4c40-8803-4d4657aa438c.png)
+![在这里插入图片描述](../post-assets/b9501e15-e6e0-4c40-8803-4d4657aa438c.png)
 onReady：
 
 - 如果路由已经 ready 了，就立即执行 `cb`。
 - 如果路由还没有 ready，就把 `cb` 放到 readyCbs 中。
 
 接着看源码，发现：
-![在这里插入图片描述](..\post-assets\541c498c-a992-4df3-ba61-4006ad51a43a.png)
+![在这里插入图片描述](../post-assets/541c498c-a992-4df3-ba61-4006ad51a43a.png)
 上面这段代码是在初始化完成后立即调用的：修改 ready 为 true ，并执行 readyCbs 中的 cb 。
 
 所以，onReady 不会错过，放心的用！

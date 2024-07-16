@@ -17,7 +17,7 @@ vite + vue 项目
 ### 一：使用本地的 tinymce（⭐ 推荐）
 
 下载 tinymce ，放到 public 文件夹中
-![在这里插入图片描述](..\post-assets\c42ca173-3bd8-4cef-abc8-877354ef7fe3.png)
+![在这里插入图片描述](../post-assets/c42ca173-3bd8-4cef-abc8-877354ef7fe3.png)
 在 index.html 中引用：
 
 ```html
@@ -49,9 +49,9 @@ vite + vue 项目
 相关的网络请求如下：
 
 1. 先获取本地的 tinymce（因为在 index.html 中引用了）
-   ![在这里插入图片描述](..\post-assets\6fa51634-cec4-49fe-a68f-9d1ce9a3ed35.png)
+   ![在这里插入图片描述](../post-assets/6fa51634-cec4-49fe-a68f-9d1ce9a3ed35.png)
 2. 加载到 demo.vue 组件时，获取 `@tinymce/tinymce-vue`：
-   ![在这里插入图片描述](..\post-assets\47eb3d51-8303-4195-8d90-e5f53673afc1.png)
+   ![在这里插入图片描述](../post-assets/47eb3d51-8303-4195-8d90-e5f53673afc1.png)
 
 此时， `@tinymce/tinymce-vue` 中使用的是本地 public 文件夹中的 tinymce
 
@@ -75,13 +75,13 @@ demo.vue ：
 相关的网络请求如下：
 
 1. 加载 demo.vue 时，获取 `@tinymce/tinymce-vue`：
-   ![在这里插入图片描述](..\post-assets\d2a834f0-c93d-47a3-a638-59a2b4c9f75b.png)
-2. 没有找到可用的 tinymce，去 cdn 请求 tinymce 5。触发 307（临时重定向）寻找具体的版本 ![在这里插入图片描述](..\post-assets\79ae0489-a024-4224-9747-382fdfdefefa.png)
-3. 重定向到具体的版本 ![在这里插入图片描述](..\post-assets\2469ab78-470e-40d0-b0c5-2a1b72f69511.png)
+   ![在这里插入图片描述](../post-assets/d2a834f0-c93d-47a3-a638-59a2b4c9f75b.png)
+2. 没有找到可用的 tinymce，去 cdn 请求 tinymce 5。触发 307（临时重定向）寻找具体的版本 ![在这里插入图片描述](../post-assets/79ae0489-a024-4224-9747-382fdfdefefa.png)
+3. 重定向到具体的版本 ![在这里插入图片描述](../post-assets/2469ab78-470e-40d0-b0c5-2a1b72f69511.png)
    此时， `@tinymce/tinymce-vue` 中使用的 cdn 提供的 tinymce 资源（tinymce 暴露到全局作用域，即 window.tinymce）
 
 这种用法必须提供 api-key。否则就会显示：
-![在这里插入图片描述](..\post-assets\692a8048-9bd5-4c21-b8d7-84c98bccf0cc.png)
+![在这里插入图片描述](../post-assets/692a8048-9bd5-4c21-b8d7-84c98bccf0cc.png)
 总结：必须连接外网，不能固定 tinymce 的具体版本（可以用 [cloudChannel](https://www.tiny.cloud/docs/tinymce/6/blazor-ref/#cloudchannel) 指定大版本）。必须提供有效的 api-key
 
 ### 三：使用 tinymce 的 npm 包
@@ -108,9 +108,9 @@ const init = {
 ```
 
 tinymce 本体在 node_modules 中，但样式和语言包都要放在 public 里（麻烦）：
-![在这里插入图片描述](..\post-assets\d2c967b5-e63a-4636-86e5-0e27dc535d7a.png)
+![在这里插入图片描述](../post-assets/d2c967b5-e63a-4636-86e5-0e27dc535d7a.png)
 相关网络请求：
-![在这里插入图片描述](..\post-assets\135cb071-5358-46c2-be8a-e62a8c8200e7.png)
+![在这里插入图片描述](../post-assets/135cb071-5358-46c2-be8a-e62a8c8200e7.png)
 
 要加插件的话， 不能放在 tinymce/plugins 里（因为在 node_modules 中）。
 

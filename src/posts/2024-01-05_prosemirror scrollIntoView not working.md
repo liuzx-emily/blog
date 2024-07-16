@@ -12,7 +12,7 @@ description: 包起来了，但是 view.domAtPos 并不能找到这个 span，�
 
 prosemirror editor，开发**查找与替换**功能，点“下一个”时，希望 editor 自动滚动到结果所在位置。
 
-![在这里插入图片描述](..\post-assets\48157a78-3a40-4780-aa7c-7dc0b5ac8217.png)
+![在这里插入图片描述](../post-assets/48157a78-3a40-4780-aa7c-7dc0b5ac8217.png)
 查找 prosemirror 文档，找到了 [scrollIntoView()](https://prosemirror.net/docs/ref/#state.Transaction.scrollIntoView)
 
 > Indicate that the editor should scroll the selection into view when updated to the state produced by this transaction.
@@ -60,7 +60,7 @@ dispatch(tr);
 
 在 editor 中选中一部分内容，然后滚动到不可见的位置。点击按钮——成功滚动！在 scroll 事件中 debugger，查看 call stack 成功找到了 pm 相关代码：
 
-![在这里插入图片描述](..\post-assets\e643d8d9-77a7-4ca2-a811-81a64e6f690d.png)
+![在这里插入图片描述](../post-assets/e643d8d9-77a7-4ca2-a811-81a64e6f690d.png)
 
 ---
 
@@ -123,7 +123,7 @@ function scrollRectIntoView(view, rect, startDOM) {
 
 在查找与替换弹窗中，点击“下一步”的箭头，此时页面的焦点在这个文本框中。
 
-![在这里插入图片描述](..\post-assets\f2e1ee2c-4c7a-44ca-94a9-9c491b597a12.png)
+![在这里插入图片描述](../post-assets/f2e1ee2c-4c7a-44ca-94a9-9c491b597a12.png)
 
 pm 的 scrollRectIntoView 内部变量 `startDOM` 就是这个文本框，滚动的是这个文本框和它的祖先！这当然没效果了！
 
@@ -165,7 +165,7 @@ function scrollIntoViewByPmPos(pos) {
 举一个极端的例子：假设存在一个非常长的节点 p，它本身的高度就已经超过可视区域了。
 查询时点击下一个，在 p 的末尾发现了匹配的文本 a 。此时 a 不在可视区，需要滚动。但是通过 `view.domAtPos(pos)` 找到的是 p 元素，这时会向上滚动使 p 的顶端对齐可视区。
 
-![在这里插入图片描述](..\post-assets\5a8728c1-97b6-4e08-bdc8-163ef6e2118a.png)
+![在这里插入图片描述](../post-assets/5a8728c1-97b6-4e08-bdc8-163ef6e2118a.png)
 
 解释一下，p 末尾的文本 a 虽然被高亮显示了，被 `span.active-find` 包起来了，但是 view.domAtPos 并不能找到这个 span，因为它是通过 decorations 添加上的，并不在 pm 的 dom 树中。
 

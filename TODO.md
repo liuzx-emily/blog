@@ -18,7 +18,7 @@
   - 标签太多了，sticky 时放不下。
   - 检索的顶部条太丑了。。。改漂亮点
 
-- 写 command/clearUselessPostAssets：清理用不到的图片
+- commands/clear-useless-assets
 
 发现有的图片大小为 0，数量不多，直接人工处理吧。
 
@@ -130,6 +130,7 @@ posts.forEach((post) => {
 处理图片路径是一个难点。
 
 - 要保证 post.md 中图片路径正确，即在 vscode 中执行 `Markdown: Open Preview` 时能看到图片
+  - markdown 中统一图片路径中的目录分隔符（用\还是/）。从 CSDN 下载转换的数据中有\，我新添加的图片是/。其实这两种都可以，但是要规定一种，统一的格式方便后续处理。决定统一成/，因为我添加新图片使用 vscode 的 markdown 插件，它是用 /。
 - 要保证本地开发时，图片路径正确。
 - 要保证部署到 GitHub pages 上后，图片路径正确。
 

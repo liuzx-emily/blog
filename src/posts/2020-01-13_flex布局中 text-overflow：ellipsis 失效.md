@@ -44,7 +44,7 @@ CSS：
 ```
 
 结果：box2 中的内容溢出了，没有显示省略号
-![在这里插入图片描述](..\post-assets\226f436c-ce02-4c19-842c-c60a50f3780f.png)
+![在这里插入图片描述](../post-assets/226f436c-ce02-4c19-842c-c60a50f3780f.png)
 
 ---
 
@@ -53,7 +53,7 @@ CSS：
 先说解决方法： **给 .box 添加 `min-width:0;`**
 
 效果：
-![在这里插入图片描述](..\post-assets\ae0b05fb-5859-4e3f-bedd-5d8fab682dfd.png)
+![在这里插入图片描述](../post-assets/ae0b05fb-5859-4e3f-bedd-5d8fab682dfd.png)
 
 ---
 
@@ -81,7 +81,7 @@ flex item 元素的 `min-width` 默认是 `auto`
 
 ### 3.2 回头看我们的问题
 
-![在这里插入图片描述](..\post-assets\f711c225-fdaf-4ff0-a5e4-aa47dad7d68d.png)
+![在这里插入图片描述](../post-assets/f711c225-fdaf-4ff0-a5e4-aa47dad7d68d.png)
 给 box2 设置的 flex-basis 是 150px，所以原始大小的值是 150px ，但是受 min-width 限制。
 
 min-width 默认是 `auto` ，那么这个 `auto` 是多少呢？
@@ -92,7 +92,7 @@ flex 布局，而且内部不允许换行，这里 min-width 的`auto` 就是文
 
 ### 3.3 设置不同 `min-width`的效果：
 
-![在这里插入图片描述](..\post-assets\1668609c-0cae-4e9c-9612-e649b028e0d6.png)
+![在这里插入图片描述](../post-assets/1668609c-0cae-4e9c-9612-e649b028e0d6.png)
 box2 的 flex-basis 是 150px
 
 min-width 在 0~150px 之间时，box 的最终宽度都是 150px

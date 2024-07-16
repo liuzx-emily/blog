@@ -18,7 +18,7 @@ description:
 > HTTP communication usually takes place over TCP/IP connections.
 
 根据 [chrome developers docs](https://developer.chrome.com/docs/devtools/network/reference/#timing-explanation)：
-![在这里插入图片描述](..\post-assets\9b0c5094-ffb3-4622-ad99-f89f7988af44.png)
+![在这里插入图片描述](../post-assets/9b0c5094-ffb3-4622-ad99-f89f7988af44.png)
 对于不同的浏览器，或者同一浏览器的不同版本，这个数值是不同的。
 
 其他参考：

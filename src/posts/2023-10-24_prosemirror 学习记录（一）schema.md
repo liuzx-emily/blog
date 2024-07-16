@@ -30,7 +30,7 @@ const mySchema = new Schema({
 
 此时只能输入文字，文字直接放在（编辑区的）根节点中
 
-![在这里插入图片描述](..\post-assets\63ba36cc-e3ed-4eba-a644-3a12a6d92552.png)
+![在这里插入图片描述](../post-assets/63ba36cc-e3ed-4eba-a644-3a12a6d92552.png)
 
 ## 添加 block 类型
 
@@ -63,7 +63,7 @@ custom-block {
 
 效果：
 
-![在这里插入图片描述](..\post-assets\9446da07-1ea1-436d-a6d5-8987ef9ea2cd.png)
+![在这里插入图片描述](../post-assets/9446da07-1ea1-436d-a6d5-8987ef9ea2cd.png)
 
 ## NodeSpec 中的字段
 
