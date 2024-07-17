@@ -2,21 +2,7 @@ import { readdir } from "fs/promises";
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
-import process from "process";
-
-export function _getPath(str) {
-  return path.join(process.cwd(), str);
-}
-
-export function walkThroughTree(treeArr, cb) {
-  for (let i = 0; i < treeArr.length; i++) {
-    const element = treeArr[i];
-    cb(element);
-    if (element?.children?.length > 0) {
-      walkThroughTree(element.children, cb);
-    }
-  }
-}
+import { _getPath } from "./utils.js";
 
 export async function readMarkdownPosts() {
   const mdDirPath = _getPath("src/posts");

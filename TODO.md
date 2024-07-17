@@ -1,9 +1,5 @@
 ## TODO
 
-开发阶段同时运行两个脚本有时会报错：每次有变化重新生成/data/posts.js，vite 会报错说找不到文件（在家里的电脑可以稳定复现）
-
-文章页面，滚动时匹配目录高亮。
-
 ---
 
 ## 过程记录
@@ -186,3 +182,15 @@ showndown.js 支持转换 table，但功能是默认关闭的，需要配置开�
     </body>
   </html>
   ```
+  a_b_c
+- process.cwd() 和 \_\_dirname。不然用相对路径的话，从哪个文件夹调用会有不同的结果
+
+### command 参数命令
+
+```js
+import commandLineArgs from "command-line-args";
+
+const args = commandLineArgs([{ name: "dev", type: Boolean }]);
+// `node xxxx.js --dev` args = { dev: true}
+// `node xxxx.js` args = { dev: false}
+```

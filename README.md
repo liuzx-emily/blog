@@ -4,15 +4,26 @@
 
 首次运行先安装依赖 `npm run init`
 
-开两个 Terminal，分别执行 `npm run generate-data-dev` 和 `npm run serve`
+#### 仅修改页面
 
-注意事项：
+`npm run generate-data-draft` 获取数据文件
+`npm run serve` 开启服务器
 
-- post.md 的文件名格式为 `[日期]_[文章标题].md`
-  - `[日期]` 纯粹是为了更直观的展示时间，并不会使用这个值。后续获取文章时间都是从 md 内容中的 metadata.createTime（应该保证这两个值相同）
-  - `[文章标题]` 也是为了直观展示名字，并不会使用这个值。后续获取文章标题都是取 md 内容中的 metadata.title（无法保证两个值相同，因为文件名称中不能含有特殊符号，但是 metadata.title 中可以）
+在 build-static-html 目录下修改内容
+
+#### super dev 模式
+
+`npm run super-dev`
+
+执行此命令会开启 vite 服务器。并实时监听 posts.md、assets 和 categories 的变化，生成数据文件，并自动刷新页面。
+
 
 ### 写文章注意事项
+
+post.md 的文件名格式为 `[日期]_[文章标题].md`
+
+- `[日期]` 纯粹是为了更直观的展示时间，并不会使用这个值。后续获取文章时间都是从 md 内容中的 metadata.createTime（应该保证这两个值相同）
+- `[文章标题]` 也是为了直观展示名字，并不会使用这个值。后续获取文章标题都是取 md 内容中的 metadata.title（无法保证两个值相同，因为文件名称中不能含有特殊符号，但是 metadata.title 中可以）
 
 markdown 中不允许出现 h1；允许出现 h6，但不显示在文章详情页面的目录中。
 
@@ -40,28 +51,3 @@ markdown 中不允许出现 h1；允许出现 h6，但不显示在文章详情�
   - `post-assets/`: post 中引用的资源（图片）
   - `posts/`: markdown post
   - `categories.js`: 分类数据。因为分类存在父子关系，所以需要显示设置
-
----
-
-## Commands
-
-```js
-// 寻找在markdown中引用但不存在的图片；寻找未使用的图片并自动删除
-"clear-useless-assets": "node commands/clear-useless-assets.js",
-// 调试用工具
-"batch-modify-md": "node commands/batch-modify-md.js",
-"batch-scan-md": "node commands/batch-scan-md.js",
-// 初始化安装依赖，包括根目录、子项目
-"init": "npm install && cd build-static-html && npm install",
-// 生成数据文件
-"generate-data-dev": "node commands/generate-data.js --dev",
-"generate-data": "node commands/generate-data.js",
-// 本地开发，开启 vite server
-"serve": "cd build-static-html && npm run dev",
-// 本地预览部署效果
-"preview": "npm run generate-data && cd build-static-html && npm run build && npm run preview",
-// 部署
-"deploy": "npm run generate-data && cd build-static-html && npm run build",
-// todo
-"try-parallel-run(still-not-succeed)": "test-parallel-run.js"
-```

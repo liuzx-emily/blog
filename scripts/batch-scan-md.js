@@ -1,5 +1,5 @@
 // 批量搜索 md 的内容
-import { readMarkdownPosts } from "./utils.js";
+import { readMarkdownPosts } from "./helpers.js";
 
 async function run() {
   const posts = await readMarkdownPosts();

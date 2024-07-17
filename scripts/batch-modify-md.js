@@ -1,7 +1,8 @@
 // 批量修改 md 的内容。谨慎起见不修改 posts 中的文件，而是把修改后的内容输出到 batchModifyMdOutputs 中。确认结果无误后再自行替换。
 
 import { mkdir, writeFile } from "node:fs/promises";
-import { _getPath, readMarkdownPosts } from "./utils.js";
+import { readMarkdownPosts } from "./helpers.js";
+import { _getPath } from "./utils.js";
 
 const outputPath = "batchModifyMdOutputs";
 

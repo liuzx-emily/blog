@@ -4,7 +4,8 @@ import { JSDOM } from "jsdom";
 import path from "path";
 import Showdown from "showdown";
 import ShowdownHighlight from "showdown-highlight";
-import { _getPath, readMarkdownPosts } from "./utils.js";
+import { readMarkdownPosts } from "./helpers.js";
+import { _getPath } from "./utils.js";
 
 const converter = new Showdown.Converter({
   tables: true,

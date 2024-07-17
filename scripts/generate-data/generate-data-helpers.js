@@ -1,13 +1,10 @@
-import commandLineArgs from "command-line-args";
 import { JSDOM } from "jsdom";
-import { watch } from "node:fs";
 import { cp, writeFile } from "node:fs/promises";
 import Showdown from "showdown";
 import ShowdownHighlight from "showdown-highlight";
-import { _getPath, readMarkdownPosts, walkThroughTree } from "./utils.js";
-import { categories } from "../src/categories.js";
-
-const args = commandLineArgs([{ name: "dev", type: Boolean }]);
+import { categories } from "../../src/categories.js";
+import { readMarkdownPosts } from "../helpers.js";
+import { _getPath, walkThroughTree } from "../utils.js";
 
 const flattenedCategories = [];
 walkThroughTree(categories, (category) => {
@@ -24,39 +21,15 @@ const converter = new Showdown.Converter({
   ],
 });
 
-async function run() {
-  try {
-    await generateDataCategories();
-    await generateDataPosts();
-    await gererateAssets();
-    if (args.dev) {
-      watch(_getPath("src/posts"), async (eventType, filename) => {
-        console.log(`检测到 ${filename} 文件 ${eventType}！`);
-        await generateDataPosts();
-      });
-      watch(_getPath("src/categories.js"), async (eventType) => {
-        console.log(`检测到分类文件 ${eventType}！`);
-        await generateDataPosts();
-      });
-      watch(_getPath("src/post-assets"), async (eventType, filename) => {
-        console.log(`检测到 ${filename} 文件 ${eventType}！`);
-        await gererateAssets();
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function generateDataCategories() {
+export async function generateDataCategories() {
   await cp(_getPath("src/categories.js"), _getPath("build-static-html/data/categories.js"));
-  console.log("生成 data/categories.js");
+  console.log("已生成 data/categories.js");
 }
 
-async function generateDataPosts() {
+export async function generateDataPosts({ includeDrafts = false } = {}) {
   console.log("读取 markdown posts 中...");
   let posts = await readMarkdownPosts();
-  if (!args.dev) {
+  if (!includeDrafts) {
     // 在非dev模式中，不显示草稿文章
     posts = posts.filter(({ metadata }) => metadata.draft !== "1");
   }
@@ -88,7 +61,7 @@ async function generateDataPosts() {
       description: metadata.description,
       content: htmlContent,
     };
-    if (args.dev) {
+    if (includeDrafts) {
       res.draft = metadata.draft === "1";
     }
     return res;
@@ -97,16 +70,14 @@ async function generateDataPosts() {
     _getPath("build-static-html/data/posts.js"),
     `export const posts = ${JSON.stringify(posts)};`
   );
-  console.log("生成 data/posts.js");
+  console.log("已生成 data/posts.js");
 }
 
-async function gererateAssets() {
+export async function gererateAssets() {
   // await rm(_getPath("build-static-html/public/post-assets"), { recursive: true });
   await cp(_getPath("src/post-assets"), _getPath("build-static-html/public/post-assets"), {
     recursive: true,
     force: true,
   });
-  console.log("复制 post-assets");
+  console.log("已复制 post-assets");
 }
-
-run();

@@ -4,16 +4,28 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "clear-useless-assets": "node commands/clear-useless-assets.js",
-    "batch-modify-md": "node commands/batch-modify-md.js",
-    "batch-scan-md": "node commands/batch-scan-md.js",
+    "clear-useless-assets": "node scripts/clear-useless-assets.js",
+    "batch-modify-md": "node scripts/batch-modify-md.js",
+    "batch-scan-md": "node scripts/batch-scan-md.js",
     "init": "npm install && cd build-static-html && npm install",
-    "generate-data-dev": "node commands/generate-data.js --dev",
-    "generate-data": "node commands/generate-data.js",
+    "super-dev": "node scripts/super-dev",
+    "generate-data-draft": "node scripts/generate-data --draft",
+    "generate-data": "node scripts/generate-data",
     "serve": "cd build-static-html && npm run dev",
     "preview": "npm run generate-data && cd build-static-html && npm run build && npm run preview",
-    "deploy": "npm run generate-data && cd build-static-html && npm run build",
-    "try-parallel-run(still-not-succeed)": "test-parallel-run.js"
+    "deploy": "npm run generate-data && cd build-static-html && npm run build"
+  },
+  "scriptsComments": {
+    "clear-useless-assets": "寻找在 markdown 中引用但不存在的图片并提出警告；寻找未使用的图片并自动删除",
+    "batch-modify-md": "[调试用]批量修改 md 的内容，把修改后的内容输出到另一文件夹中",
+    "batch-scan-md": "[调试用]批量搜索 md 的内容",
+    "init": "初始化安装依赖，包括根目录、build-static-html 子项目",
+    "super-dev": "本地开发 super 模式。修改 md 的内容后，浏览器自动刷新",
+    "generate-data-draft": "生成数据文件，包含草稿",
+    "generate-data": "生成数据文件，不含草稿",
+    "serve": "本地开发，开启 vite server",
+    "preview": "本地预览部署效果",
+    "deploy": "部署"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +36,8 @@
     "jsdom": "^24.1.0",
     "showdown": "^2.1.0",
     "showdown-highlight": "^3.1.0",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "vite": "^5.3.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
