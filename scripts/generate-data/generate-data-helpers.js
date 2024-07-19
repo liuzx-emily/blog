@@ -13,6 +13,7 @@ walkThroughTree(categories, (category) => {
 
 const converter = new Showdown.Converter({
   tables: true,
+  disableForced4SpacesIndentedSublists: true,
   extensions: [
     ShowdownHighlight({
       pre: true, // Whether to add the classes to the <pre> tag, default is false
@@ -33,6 +34,7 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
     // 在非dev模式中，不显示草稿文章
     posts = posts.filter(({ metadata }) => metadata.draft !== "1");
   }
+  // TODO 检测重复id
   posts = posts.map(({ metadata, content }) => {
     let htmlContent = converter.makeHtml(content);
     // change image src
