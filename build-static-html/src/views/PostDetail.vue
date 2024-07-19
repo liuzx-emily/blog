@@ -100,26 +100,28 @@ function clickToc(index) {
   word-break: break-all;
 }
 
-.post-description {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-
 #content:deep() {
   font-size: 14px;
   color: #333;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
   h2 {
     background: #eff4f5;
     padding: 10px 0 10px 12px;
     margin: 0 0;
   }
-  h5,
+  h5 {
+    font-size: 14px;
+    margin: 16px 0;
+  }
   h6 {
-    font-size: 1em;
+    font-size: 14px;
+    margin: 10px 0;
   }
   p {
-    line-height: 20px;
-    margin: 16px 0;
+    line-height: 22px;
+    margin: 10px 0;
   }
   img {
     display: block;
@@ -128,7 +130,8 @@ function clickToc(index) {
 
   hr {
     margin: 35px 0;
-    border: 1px solid #eee;
+    border: none;
+    border-bottom: 1px solid #ddd;
   }
 
   blockquote {
@@ -140,9 +143,16 @@ function clickToc(index) {
   a {
     color: #2196f3;
   }
-
+  ul,
+  ol {
+    padding-left: 20px;
+  }
   ul > li {
     list-style: circle;
+  }
+  li {
+    line-height: 22px;
+    margin: 2px 0;
   }
   table {
     border-collapse: collapse;
@@ -184,6 +194,9 @@ function clickToc(index) {
     .hljs-regexp {
       color: #ac9739;
     }
+    .hljs-subst {
+      color: #ac3939;
+    }
   }
   pre.language-html {
     .hljs-tag > .hljs-name {
@@ -198,14 +211,12 @@ function clickToc(index) {
   background: white;
   box-sizing: border-box;
   width: 250px;
-  padding: 16px 0;
+  padding: 10px 0;
   border-radius: 2px;
   .post-toc {
-    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 36px;
     cursor: pointer;
     color: #333;
     &:hover {
@@ -214,15 +225,23 @@ function clickToc(index) {
   }
   .post-toc[data-level="2"] {
     padding-left: 16px;
+    font-size: 14px;
+    line-height: 36px;
   }
   .post-toc[data-level="3"] {
-    padding-left: 31px;
+    padding-left: 36px;
+    font-size: 13px;
+    line-height: 28px;
   }
   .post-toc[data-level="4"] {
     padding-left: 46px;
+    font-size: 13px;
+    line-height: 28px;
   }
   .post-toc[data-level="5"] {
     padding-left: 51px;
+    font-size: 13px;
+    line-height: 28px;
   }
 }
 </style>
