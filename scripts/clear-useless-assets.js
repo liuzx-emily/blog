@@ -9,6 +9,7 @@ import { _getPath } from "./utils.js";
 
 const converter = new Showdown.Converter({
   tables: true,
+  disableForced4SpacesIndentedSublists: true,
   extensions: [
     ShowdownHighlight({
       pre: true, // Whether to add the classes to the <pre> tag, default is false

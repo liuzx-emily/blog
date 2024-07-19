@@ -8,7 +8,6 @@ import { posts } from "../data/posts.js";
 
 const route = useRoute();
 
-// import { posts } from "./testbuildoutputdataposts.js?url";
 provide("posts", posts);
 </script>
 
