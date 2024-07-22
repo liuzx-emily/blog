@@ -43,7 +43,7 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
         const linkedPostId = href.slice(prefix.length);
         const newHref = `/liuzx-emily/#/post/${linkedPostId}`;
         el.setAttribute("href", newHref);
-        el.setAttribute("target", "__blank");
+        el.setAttribute("target", "_blank");
       }
     });
     htmlContent = doc.body.outerHTML;
