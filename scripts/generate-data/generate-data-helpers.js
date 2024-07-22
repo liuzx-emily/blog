@@ -46,6 +46,17 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
       const newSrc = `/liuzx-emily/post-assets/${imageName}`;
       img.setAttribute("src", newSrc);
     });
+    // change link which is linked to another post
+    doc.querySelectorAll("a").forEach((el) => {
+      const href = el.getAttribute("href");
+      const prefix = "post:";
+      if (href.startsWith(prefix)) {
+        const linkedPostId = href.slice(prefix.length);
+        const newHref = `/liuzx-emily/#/post/${linkedPostId}`;
+        el.setAttribute("href", newHref);
+        el.setAttribute("target", "__blank");
+      }
+    });
     htmlContent = doc.body.outerHTML;
     // 当检测到无效分类时，抛出错误提示，中止进程
     const categories = metadata.categories === "" ? [] : metadata.categories.split(", ");
