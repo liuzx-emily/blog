@@ -2,21 +2,10 @@
 import { readdir, rm } from "fs/promises";
 import { JSDOM } from "jsdom";
 import path from "path";
-import Showdown from "showdown";
-import ShowdownHighlight from "showdown-highlight";
 import { readMarkdownPosts } from "./helpers.js";
-import { _getPath } from "./utils.js";
+import { _getPath, createConverter } from "./utils.js";
 
-const converter = new Showdown.Converter({
-  tables: true,
-  disableForced4SpacesIndentedSublists: true,
-  extensions: [
-    ShowdownHighlight({
-      pre: true, // Whether to add the classes to the <pre> tag, default is false
-      auto_detection: true, // Whether to use hljs' auto language detection, default is true
-    }),
-  ],
-});
+const converter = createConverter();
 
 async function run() {
   const assets = await readdir(_getPath("src/post-assets"));
