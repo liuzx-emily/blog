@@ -1,5 +1,7 @@
 import path from "node:path";
 import process from "process";
+import Showdown from "showdown";
+import ShowdownHighlight from "showdown-highlight";
 
 export function _getPath(str) {
   return path.join(process.cwd(), str);
@@ -23,4 +25,18 @@ export function debounce(callback, wait) {
       callback(...args);
     }, wait);
   };
+}
+
+export function createConverter() {
+  const converter = new Showdown.Converter({
+    tables: true,
+    disableForced4SpacesIndentedSublists: true,
+    extensions: [
+      ShowdownHighlight({
+        pre: true, // Whether to add the classes to the <pre> tag, default is false
+        auto_detection: true, // Whether to use hljs' auto language detection, default is true
+      }),
+    ],
+  });
+  return converter;
 }

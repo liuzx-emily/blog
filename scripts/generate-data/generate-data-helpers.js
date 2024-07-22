@@ -1,26 +1,15 @@
 import { JSDOM } from "jsdom";
 import { cp, writeFile } from "node:fs/promises";
-import Showdown from "showdown";
-import ShowdownHighlight from "showdown-highlight";
 import { categories } from "../../src/categories.js";
 import { readMarkdownPosts } from "../helpers.js";
-import { _getPath, walkThroughTree } from "../utils.js";
+import { _getPath, createConverter, walkThroughTree } from "../utils.js";
 
 const flattenedCategories = [];
 walkThroughTree(categories, (category) => {
   flattenedCategories.push(category.name);
 });
 
-const converter = new Showdown.Converter({
-  tables: true,
-  disableForced4SpacesIndentedSublists: true,
-  extensions: [
-    ShowdownHighlight({
-      pre: true, // Whether to add the classes to the <pre> tag, default is false
-      auto_detection: true, // Whether to use hljs' auto language detection, default is true
-    }),
-  ],
-});
+const converter = createConverter();
 
 export async function generateDataCategories() {
   await cp(_getPath("src/categories.js"), _getPath("build-static-html/data/categories.js"));
