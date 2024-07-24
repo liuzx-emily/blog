@@ -5,7 +5,7 @@ createTime: 2023-10-13
 updateTime:
 categories: vue, prosemirror
 tags:
-description: vue3 project，prosemirror 报错：Uncaught RangeError
+description: vue3 项目中 prosemirror 报错：Applying a mismatched transaction。是因为在 vue3 中 ref().value 得到的不是原对象，而是原对象的 proxy。传给 prosemirror 的就是这个 proxy，未通过 prosemirror 的全等校验，所以报错 mismatched transaction。在 vue2 中 ref().value 就是原对象，所以不会触发这个 bug。
 ---
 
 ## bug 描述
@@ -31,12 +31,17 @@ function handleClick() {
 很奇怪，我没有用异步操作啊。顺着报错 stack，找到 applyInner 方法。发现当 eq() 返回 false 时，会抛出 error
 
 ![在这里插入图片描述](../post-assets/59a69758-2238-49f6-893a-3a1a4d9a962e.png)
+
 查看 eq 方法，根据注释知道它是用来判断 `this` 和 `other` 是否代表同一块内容。
+
 ![在这里插入图片描述](../post-assets/e2f8f85b-6779-4f26-bf61-9739f29f5d38.png)
+
 查看 this，是 Vue 的 Reactive 对象，包着 doc Node。
+
 ![在这里插入图片描述](../post-assets/77d41771-40db-4559-855d-e2b8583617ac.png)
 
 查看 other：是 doc Node 对象
+
 ![在这里插入图片描述](../post-assets/bdecc582-1c70-4769-8724-9f7da11b8aa9.png)
 
 破案了。
@@ -70,5 +75,7 @@ console.log(obj === ref(obj).value);
 ```
 
 同样一段代码，在 vue2 环境中是 `true`，在 vue3 中是 `false`
-平时工作项目里一直用 vue2，这次测试项目装的 vue3，没注意差别
+
+平时工作项目里一直用 vue2，这次测试项目装的 vue3，没注意差别。
+
 <span style="color:darkorange">一定要记得，vue2 和 vue3 的响应式原理是有区别的。平时开发不显眼，一旦踩坑就很麻烦</span>

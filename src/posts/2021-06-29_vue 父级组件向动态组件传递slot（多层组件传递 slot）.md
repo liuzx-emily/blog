@@ -16,9 +16,7 @@ description:
 - B 中有动态组件 `<component :is="动态组件" />`，根据情况在 C1 C2 C3（统称为 C）中切换
 - A 要经由 B 向 C 传递 slot
 
-### 错误写法、原因
-
-错误写法：（伪代码）
+### 错误写法
 
 ```html
 <!-- 组件A -->
@@ -42,8 +40,7 @@ description:
 </section>
 ```
 
-错误原因：**A 向 B 传递了 slot:buttons, B 也接受了。但是 B 没有向 C 传递 slot**
-![在这里插入图片描述](../post-assets/df605a92-9cc7-4dc8-b737-d959429c1811.png)
+错误原因：A 向 B 传递了 slot:buttons, B 也接受了。但是 B 没有向 C 传递 slot
 
 ### 正确写法
 
@@ -67,16 +64,16 @@ B 组件中，从 **A 拿到的 slot** 和 **给 C 传递的 slot** 的名称是
 ```html
 <!-- 组件A -->
 <组件B>
-	<template v-slot:slotHello> Hello </template>
+	<template v-slot:slotFoo>Hello</template>
 </组件B>
 ```
 
 ```html
 <!-- 组件B -->
 <component :is="component">
-  <template v-slot:slotWorld>
+  <template v-slot:slotBar>
     <span>你好呀</span>
-    <slot name="slotHello"></slot>
+    <slot name="slotFoo"></slot>
   </template>
 </component>
 ```
@@ -85,13 +82,11 @@ B 组件中，从 **A 拿到的 slot** 和 **给 C 传递的 slot** 的名称是
 <!-- 组件C -->
 <section>
   <header>组件C</header>
-  <slot name="slotWorld"></slot>
+  <slot name="slotBar"></slot>
 </section>
 ```
 
-最终插槽中的内容是：`你好呀 Hello`
-
----
+最终 C 插槽中的内容是：`你好呀 Hello`
 
 ## 多层组件传递 slot
 
@@ -156,4 +151,5 @@ B 组件中，从 **A 拿到的 slot** 和 **给 C 传递的 slot** 的名称是
 ```
 
 结果：
+
 ![在这里插入图片描述](../post-assets/e770371f-4c32-4b43-a6a7-3fe9619a2e1b.png)

@@ -5,7 +5,7 @@ createTime: 2024-01-05
 updateTime:
 categories: prosemirror
 tags:
-description: 包起来了，但是 view.domAtPos 并不能找到这个 span，因为它是通过 decorations 添加上的，并不在 pm 的 dom 树中。它先找到页面上的 focusNode，以这个 node 为起点进行 scroll，挪完之后接着挪 parentNode，一步步向上找，逐级挪。想要在 pm 源码中看看具体如何实现的，搜索 scrollIntoView，只在	prosemirror-state 包中找到了很短的内容。在查找与替换弹窗中，点击“下一步”的箭头，此时页面的焦点在这个文本框中。
+description:
 ---
 
 ## 问题描述
@@ -79,9 +79,14 @@ function scrollToSelection() {
   if (this.someProp("handleScrollToSelection", (f) => f(this)));
   else if (pmSelection instanceof NodeSelection) {
     let target = this.docView.domAfterPos(this.state.selection.from);
-    if (target.nodeType == 1) scrollRectIntoView(this, target.getBoundingClientRect(), startDOM);
+    if (target.nodeType == 1)
+      scrollRectIntoView(this, target.getBoundingClientRect(), startDOM);
   } else {
-    scrollRectIntoView(this, this.coordsAtPos(this.state.selection.head, 1), startDOM);
+    scrollRectIntoView(
+      this,
+      this.coordsAtPos(this.state.selection.head, 1),
+      startDOM
+    );
   }
 }
 
@@ -116,7 +121,8 @@ function scrollRectIntoView(view, rect, startDOM) {
       }
     }
     // 如果发现 parent 是 fixed 或者 sticky，终止挪动！
-    if (atTop || /^(fixed|sticky)$/.test(getComputedStyle(parent).position)) break;
+    if (atTop || /^(fixed|sticky)$/.test(getComputedStyle(parent).position))
+      break;
   }
 }
 ```

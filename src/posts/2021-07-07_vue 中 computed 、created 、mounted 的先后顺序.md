@@ -50,16 +50,17 @@ description:
 </script>
 ```
 
-![在这里插入图片描述](../post-assets/de64b715-aa86-47b6-8ed9-f237874f7f47.png)
-
 - 页面加载时，触发的顺序是：`created` => `computed c` => `mounted`
 - 点击按钮时：第一次点击触发 `computed b`，之后的点击不触发
 
 ## 原因
 
-![截图](../post-assets/abbb6ca9-ceb0-49bc-aed0-80b641fa5de2.png)
+初始化计算属性的时候，对每一个计算属性：
 
-具体看 [vue 源码思路理解（持续更新）](https://blog.csdn.net/tangran0526/article/details/104772671) 中的 **计算属性的实现**
+- 建立 watcher，设为 lazy
+- 设置 computedGetter（每次读取值的时候，调用 wathcer.evaluate() ，如果是 dirty 的就现算）
+
+具体见 [《vue2 源码思路理解（三）渲染函数的观察者》](post:3e93ed72-b6cd-45ca-8f0d-53b2f9c1b761) 中 **计算属性的实现**
 
 回过头分析上面的例子：
 
@@ -67,7 +68,7 @@ description:
 
 - 点击按钮时：用到了 b，第一次点击的时候，b 还没有值，触发一次 `computed b` 来求值；之后点击，此时 b 已经有值了，不会重复求值
 
-## 练手
+## 练习
 
 ```html
 <template>
@@ -104,12 +105,3 @@ description:
   };
 </script>
 ```
-
-初始化、点击两个按钮的时候，分别输出什么？
-
----
-
----
-
-答案：
-![在这里插入图片描述](../post-assets/468fcb02-2b00-4b44-95ee-845642dfe8a9.png)

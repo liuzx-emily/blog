@@ -5,7 +5,7 @@ createTime: 2023-10-26
 updateTime:
 categories: prosemirror
 tags:
-description: 学习使用 prosemirror 的 decorations
+description:
 ---
 
 ## 使用 decorations
@@ -200,7 +200,9 @@ function addRedBg(doc) {
   let arrs = [];
   doc.descendants((node, pos) => {
     if (node.marks.find((mark) => mark.type.name === "strong")) {
-      const deco = Decoration.inline(pos, pos + node.nodeSize, { style: "background:red" });
+      const deco = Decoration.inline(pos, pos + node.nodeSize, {
+        style: "background:red",
+      });
       arrs.push(deco);
     }
   });

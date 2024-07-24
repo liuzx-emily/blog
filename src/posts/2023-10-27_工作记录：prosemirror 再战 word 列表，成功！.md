@@ -5,13 +5,14 @@ createTime: 2023-10-27
 updateTime:
 categories: 工作记录, prosemirror
 tags:
-description: 最近又学习了 prosemirror，自认有些进步 —— 从只了解 1% 变成掌握 20%，决定再次挑战 word 列表。之前的尝试失败了，过程记录在中，简单总结如下：实现 word 列表不能用 ul>li，必须用平级标签，从而需要自行计算列表序号。我需要写一个计算序号的方法，view 每次变化时调用此方法修改序号。方法成功写出来了，但是我找不到地方去调用它！这次重新挑战，bye bye tiptap，我直接用 prosemirror。
+description:
 ---
 
 最近又学习了 prosemirror，自认有些进步 —— 从只了解 1% 变成掌握 20%，决定再次挑战 word 列表。
-之前的尝试失败了，过程记录在 [工作记录：在线 word - 列表](https://blog.csdn.net/tangran0526/article/details/130843375) 中，简单总结如下：实现 word 列表不能用 ul>li，必须用平级标签，从而需要自行计算列表序号。我需要写一个计算序号的方法，view 每次变化时调用此方法修改序号。`getListItemNumber` 方法成功写出来了，但是我找不到地方去调用它！
 
-这次重新挑战，bye bye tiptap，我直接用 prosemirror。
+之前的尝试失败了，过程记录在 [《工作记录：在线 word - 列表》](post:4d76dcbe-6221-4e23-8409-a0229a78bc02) 中，简单总结如下：实现 word 列表不能用 ul>li，必须用平级标签，从而需要自行计算列表序号。我需要写一个计算序号的方法，view 每次变化时调用此方法修改序号。`getListItemNumber` 方法成功写出来了，但是我找不到地方去调用它！
+
+这次重新挑战，放弃 tiptap，我直接用 prosemirror。
 
 ## listItem schema
 
@@ -203,14 +204,20 @@ function sonLevel() {
   editorView.value.focus();
   const state = editorView.value.state;
   const dispatch = editorView.value.dispatch;
-  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) + 1)(state, dispatch);
+  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) + 1)(
+    state,
+    dispatch
+  );
 }
 
 function fatherLevel() {
   editorView.value.focus();
   const state = editorView.value.state;
   const dispatch = editorView.value.dispatch;
-  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) - 1)(state, dispatch);
+  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) - 1)(
+    state,
+    dispatch
+  );
 }
 ```
 
@@ -232,7 +239,9 @@ function fatherLevel() {
 plugins: [
   keymap({
     Tab: changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) + 1),
-    "Shift-Tab": changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) - 1),
+    "Shift-Tab": changeListItemLevel(
+      (node) => parseInt(node.attrs.listItemlevel) - 1
+    ),
   }),
 ];
 ```

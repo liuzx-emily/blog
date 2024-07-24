@@ -5,7 +5,7 @@ createTime: 2024-06-06
 updateTime:
 categories: nodejs
 tags: crawler
-description:
+description: 因不满 csdn 的搜索功能，所以自己写一个爬虫自己搜。
 ---
 
 ## 起因
@@ -191,7 +191,11 @@ crawler.direct({
 
 const Crawler = require("crawler");
 const { writeFile } = require("fs");
-const { username, cookie_yd_captcha_token, cookie_waf_captcha_marker } = require("./configs.js");
+const {
+  username,
+  cookie_yd_captcha_token,
+  cookie_waf_captcha_marker,
+} = require("./configs.js");
 
 const crawler = new Crawler();
 

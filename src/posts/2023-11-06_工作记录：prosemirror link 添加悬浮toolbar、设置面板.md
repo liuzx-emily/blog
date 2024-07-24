@@ -91,8 +91,9 @@ prosemirror 之前是完全不支持 inline nodes with content 的。因为：
 
 最终作者决定仅对使用 custom node view 的节点支持此特性
 
-> marijnh:
-> I've decided to only support this when the node is drawn using a custom node view, since browsers just behave to awfully to have this work generally without custom special-case code.
+> marijnh: I've decided to only support this when the node is drawn using a custom node view, since browsers just behave to awfully to have this work generally without custom special-case code.
+
+---
 
 ## 监听 mousemove 实现 toolbar
 
@@ -272,12 +273,18 @@ if (!linkMark) {
 
   function show({ left, top, text, link }) {
     visible.value = true;
-    const { top: parentTop, left: parentLeft } = window.view.dom.getBoundingClientRect();
+    const { top: parentTop, left: parentLeft } =
+      window.view.dom.getBoundingClientRect();
     // 参数 left top 都是相对于浏览器的位置，要减去父容器自身偏移量
     containerStyle.left = left - parentLeft + "px";
     // 计算 top 时最后要 +1，不然会有空隙。
     containerStyle.top =
-      top - parentTop - toolbarHeight.value - parseInt(containerStyle.paddingBottom) + 1 + "px";
+      top -
+      parentTop -
+      toolbarHeight.value -
+      parseInt(containerStyle.paddingBottom) +
+      1 +
+      "px";
   }
 </script>
 ```
@@ -361,7 +368,12 @@ function hoverToolbarCallEditLink({ left, top, text, link, from, to }) {
 function updateLink_trigger_by_hover_toolbar() {
   const from = linkData.pmNodePos;
   const to = from + linkData.pmNode.nodeSize;
-  return setLink(from, to, linkData.link, linkData.text)(window.view.state, window.view.dispatch);
+  return setLink(
+    from,
+    to,
+    linkData.link,
+    linkData.text
+  )(window.view.state, window.view.dispatch);
 }
 ```
 

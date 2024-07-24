@@ -5,7 +5,7 @@ createTime: 2021-07-06
 updateTime:
 categories: css
 tags:
-description:
+description: 父级元素 A 被子元素 child1 撑出了滚动条；另一个子元素 child2 绝对定位在 A 的右下角。 当 A 滚动时，child2 也会跟着滚动。没有好的解决方案，只能尽量规避：多套一层，保证 absolute 元素的父级不会出现滚动条。
 ---
 
 ## 问题

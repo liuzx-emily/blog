@@ -5,7 +5,7 @@ createTime: 2021-07-07
 updateTime:
 categories: vue
 tags:
-description:
+description: computed 本质是一个有 value 的 Watcher，不要把它当数据用
 ---
 
 其实不是 computed 的坑，是我自己没弄清原理瞎用，导致出现各种问题。。
@@ -108,4 +108,4 @@ list2.push 和 list3.push 都没有触发的 computed setter。对于引用类�
 
   ````
 
-- <span style="color:darkorange">**computed 本质就是一个有 value 的 Watcher，别把它当数据用！！！**</span>
+- <span style="color:darkorange">**computed 本质就是一个有 value 的 Watcher，不要把它当数据用！！！**</span>

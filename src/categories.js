@@ -8,9 +8,6 @@ export const categories = [
     children: [
       { name: "prosemirror", description: "" },
       { name: "element-ui", description: "" },
-      { name: "vueuse", description: "" },
-      { name: "vue-router", description: "" },
-      { name: "tinymce", description: "" },
     ],
   },
   {

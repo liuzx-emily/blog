@@ -5,19 +5,12 @@ createTime: 2021-09-08
 updateTime:
 categories: build tools
 tags: vite, vue-cli
-description: 迁移过程 踩坑记录
+description: 记录我将项目从 vue-cli 迁移为 vite 的过程。
 ---
 
 ## 迁移过程
 
-```mermaid
-graph TB
-A(新建 vite+vue2 项目) --> B(迁代码)
- B --> C(迁 package 和配置项)
- C --> D(solve problems)
- D --> E(测试生产环境)
- E --> F(eslint, lint-stage等)
-```
+![alt text](../post-assets/25373908-fe86-4b04-bd86-4b2d53d567c9.png)
 
 1. 新建 vite+vue2 空项目：使用 [ vite-plugin-vue2 插件 ](https://github.com/underfin/vite-plugin-vue2)，确保项目可以正常启动、运行
    [vite-vue2 项目模板](https://github.com/liuzx-emily/vite-vue2-template-project)
@@ -43,7 +36,7 @@ A(新建 vite+vue2 项目) --> B(迁代码)
 
 6. 处理非必需项：配置 eslint prettier lint-stage 等
 
-PS：有的问题一直解决不了的话，可以试试把 node_modules 和 package-lock.json 删掉，重新安一次依赖。也许就好了。。
+PS：若出现解决不了的问题，可以试试删除 node_modules 和 package-lock.json 然后重新安装依赖，也许就好了
 
 ## 踩坑记录
 
@@ -56,18 +49,18 @@ const CodeMirror = require("codemirror/lib/codemirror");
 require("codemirror/addon/hint/show-hint");
 ```
 
-![在这里插入图片描述](../post-assets/91fed986-1c48-4d6a-a956-b574df2da1d4.png)
-需要改为
+报错：`require is not defined`
+
+需要改为 import
 
 ```js
 import * as CodeMirror from "codemirror/lib/codemirror";
 import "codemirror/addon/hint/show-hint";
 ```
 
-#### vite 兼容 commonjs
+###### vite 兼容 commonjs
 
-这句话**不是** 说： vite 项目中可以用 commonjs 的语法
-而是：**vite 可以将 commonjs 的包转换为 es modules 格式，这样在 vite 项目中就可以用 import 去使用这个包了**
+这句话不是说 vite 项目中可以用 commonjs 的 require 语法，而是说 vite 可以将 commonjs 的包转换为 es modules 格式，这样在 vite 项目中就可以用 import 去使用这个包了。
 
 vite 使用 `@rollup/plugin-commonjs` 插件进行转换。vite 内置这个插件，开箱即用。
 
@@ -76,8 +69,6 @@ vite 使用 `@rollup/plugin-commonjs` 插件进行转换。vite 内置这个插�
 - [vite 依赖预构建 - CommonJS 和 UMD 兼容性](https://cn.vitejs.dev/guide/dep-pre-bundling.html#the-why)
 - [A list of rollup plugins compatibility for Vite v2.4.0](https://vite-rollup-plugins.patak.dev/)
 - [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tree/master/packages/commonjs)
-
----
 
 ### dynamic import var
 
@@ -153,7 +144,7 @@ route.component = () => import(`./views/${path}.vue`);
 - [webpack 的处理机制 - Dynamic expressions in import()
   ](https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import)
 
-#### 解决方案
+###### 解决方案
 
 不用变量了，把所有要用的文件列出来：
 
@@ -168,8 +159,6 @@ const componentsMap = {
 route.component = componentsMap[path];
 ```
 
----
-
 ### 名称补全
 
 在 vue-cli 项目中，路径可以简写：
@@ -180,10 +169,13 @@ import "dirA/dirB/index.js";
 import "dirA/dirB";
 ```
 
-这是因为[ webpack 提供了 resolve.mainFiles 配置项](https://webpack.js.org/configuration/resolve/#resolvemainfiles)![在这里插入图片描述](../post-assets/412befc3-458a-4907-b7d1-741f2b0b4767.png)
+这是因为[ webpack 提供了 resolve.mainFiles 配置项](https://webpack.js.org/configuration/resolve/#resolvemainfiles)
+
+![在这里插入图片描述](../post-assets/412befc3-458a-4907-b7d1-741f2b0b4767.png)
+
 vite 没有提供这个配置项，根据简写的路径找不到文件，所以要把路径补全
 
-#### vite 启动时可能不报错
+###### vite 启动时可能不报错
 
 vite 是用什么才加载什么。所以可能启动时一切正常，点进子页面才会报错。
 在补全名称的时候，要把所有页面都点一遍，才能改全。
@@ -191,8 +183,6 @@ vite 是用什么才加载什么。所以可能启动时一切正常，点进子
 不想这样挨个页面点着找的话，也可以：
 先不迁移代码。在 vue-cli 框架下，把配置改为 `resolve.mainFiles=[] ` 。这样启动的时候就会把所有没写全的路径都报错。（这会导致 node_modules 的一些包也报错，不管就行了）
 全改完之后，再把代码复制到 vite 中。
-
----
 
 ### scss prependData
 
@@ -208,8 +198,6 @@ vite.config.js :
   },
 ```
 
----
-
 ### alias 必须使用绝对路径
 
 vite.config.js 中配置 alias
@@ -222,12 +210,12 @@ resolve: {
   },
 ```
 
-在项目中使用：
-
-`import '@/assets/style/commons.css' `
+在项目中使用：`import '@/assets/style/commons.css' `
 
 启动后报错：
+
 ![在这里插入图片描述](../post-assets/5b329ac5-924d-4064-bd9a-8a5313d8687b.png)
+
 查看 [官网文档](https://cn.vitejs.dev/config/#resolve-alias) ，发现 alias 必须用绝对路径。所以改成：
 
 ```js
@@ -239,8 +227,6 @@ resolve: {
     },
   },
 ```
-
----
 
 ### svg 使用插件 vite-plugin-svg-icons
 
@@ -268,27 +254,28 @@ export default {
 import "virtual:svg-icons-register";
 ```
 
----
-
 ### element 自定义主题
 
-vue-cli 项目中按照 element 官方说明配置的，可以正常运行：
-![在这里插入图片描述](../post-assets/fce63157-9154-42d1-b73e-cec3b9c00cff.png)
-将这段代码迁移到 vite 项目中，启动后报错：
-![在这里插入图片描述](../post-assets/f5578034-a8d8-468b-b550-6a75f870e2c1.png)
-将 `'~element-ui/` 改为 `'element-ui/` 就可以了
+vue-cli 项目中按照 [element 官方说明](https://element.eleme.cn/#/zh-CN/component/custom-theme#zai-xiang-mu-zhong-gai-bian-scss-bian-liang)自定义主题。但在代码迁移到 vite 项目后启动报错：
 
----
+![在这里插入图片描述](../post-assets/f5578034-a8d8-468b-b550-6a75f870e2c1.png)
+
+修改：
+
+```js
+@import "~element-ui/packages/theme-chalk/src/index"; // 运行报错
+@import "element-ui/packages/theme-chalk/src/index";  // 去掉路径前面的波浪号，成功运行
+```
 
 ### json 读取失败
 
 项目中使用了一个 json 文件，在 vue-cli 中一切正常，但是在 vite 中会报错：
+
 ![在这里插入图片描述](../post-assets/075c3318-aa50-42d4-8a3a-f5c9c111bbca.png)
+
 不是 json 内容格式的问题，也不是中文路径的问题（后来试过，中文路径也 ok）
 
 最后发现是编码不对，现在是 `UTF-8 WITH BOM` 格式，改成 `UTF-8` 就可以了
-
----
 
 ### 样式错乱
 
@@ -314,8 +301,6 @@ vue-cli 项目中按照 element 官方说明配置的，可以正常运行：
 ```
 
 重新启动， ok 了
-
----
 
 ### eslint
 
@@ -343,8 +328,6 @@ extends: [
 之后 eslint 报错：找不到 babel-eslint， 安装一下就好了
 
 把规则改了测试了一下，eslint 已经生效
-
----
 
 ### lint-staged
 
@@ -375,8 +358,6 @@ package.json 中添加：
 npm run lint-staged
 ```
 
----
-
 ### 打包失败，内存溢出
 
 打包时报错，因为内存不够
@@ -395,8 +376,6 @@ npm i cross-env --save-dev
 ```
 "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vite build",
 ```
-
----
 
 ### rollup treeshaking
 

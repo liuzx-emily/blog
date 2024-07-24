@@ -5,7 +5,7 @@ createTime: 2023-10-18
 updateTime:
 categories: css, js
 tags:
-description: 页面内容如下：</</</</
+description: 设置 user-select 让按钮也有选中效果；通过阻止浏览器默认事件来禁止复制；在复制（copy事件）时获取、修改内容；在粘贴（paste事件）时获取、修改内容
 ---
 
 页面内容如下：
@@ -29,6 +29,7 @@ description: 页面内容如下：</</</</
 按钮左右两侧的文字背景都变蓝了，但是按钮没有变。这是因为按钮的 [user-select](https://developer.mozilla.org/en-US/docs/Web/CSS/user-select) 默认值是 `none`
 
 ![在这里插入图片描述](../post-assets/8bf6dddb-5ec5-42b1-8d51-7e5a280872e0.png)
+
 如果希望按钮也可以选择，手动设置 `user-select`：
 
 ```css

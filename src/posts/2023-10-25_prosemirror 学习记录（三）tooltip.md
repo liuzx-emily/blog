@@ -5,7 +5,7 @@ createTime: 2023-10-25
 updateTime:
 categories: prosemirror
 tags:
-description: 学习实现 prosemirror tooltip
+description:
 ---
 
 [prosemirror Tooltip example](https://prosemirror.net/examples/tooltip/)
@@ -29,7 +29,10 @@ export const MyTooltipPlugin = new Plugin({
           return;
         }
         tooltip.style.display = "block";
-        const selectionFragment = view.state.doc.cut(selection.from, selection.to);
+        const selectionFragment = view.state.doc.cut(
+          selection.from,
+          selection.to
+        );
         const length = selectionFragment.textContent.length;
         tooltip.innerText = length;
         tooltip.style.left = view.coordsAtPos(selection.from).left + 10 + "px";
@@ -50,6 +53,7 @@ export const MyTooltipPlugin = new Plugin({
 ```
 
 效果：
+
 ![在这里插入图片描述](../post-assets/e0991e34-943b-4d66-ab4c-6a6f01ab05b4.png)
 
 关键点：
@@ -63,7 +67,11 @@ export const MyTooltipPlugin = new Plugin({
 
 - ```js
   // Don't do anything if the document/selection didn't change
-  if (lastState && lastState.doc.eq(state.doc) && lastState.selection.eq(state.selection)) {
+  if (
+    lastState &&
+    lastState.doc.eq(state.doc) &&
+    lastState.selection.eq(state.selection)
+  ) {
     return;
   }
   ```
