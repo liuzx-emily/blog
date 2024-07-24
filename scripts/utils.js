@@ -29,6 +29,7 @@ export function debounce(callback, wait) {
 
 export function createConverter() {
   const converter = new Showdown.Converter({
+    strikethrough: true,
     tables: true,
     disableForced4SpacesIndentedSublists: true,
     extensions: [
