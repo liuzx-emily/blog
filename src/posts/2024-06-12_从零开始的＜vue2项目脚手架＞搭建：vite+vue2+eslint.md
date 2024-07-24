@@ -4,7 +4,7 @@ title: 从零开始的＜vue2项目脚手架＞搭建：vite+vue2+eslint
 createTime: 2024-06-12
 updateTime:
 categories: vue, npm commands
-tags:
+tags: npm init, npm publish
 description: 自己搭建一个项目初始化的脚手架。只需要执行 npm init lily-cli 就可以自动创建 vite+vue2+eslint 项目。
 ---
 
@@ -215,7 +215,10 @@ async function initGit(dirPath) {
   const spawnOptions = { stdio: "inherit", cwd: dirPath };
   spawn.sync("git init", spawnOptions);
   // 为了解决《npm 在 publish package 时，不会把 .gitignore 文件上传到 npm 仓库》，有两种方案：
-  await rename(path.join(dirPath, "gitignore"), path.join(dirPath, ".gitignore")); // 方案1：template中给.gitignore改名。这里再改回来
+  await rename(
+    path.join(dirPath, "gitignore"),
+    path.join(dirPath, ".gitignore")
+  ); // 方案1：template中给.gitignore改名。这里再改回来
   // await writeFile(path.join(dirPath, ".gitignore"), "node_modules"); // 方案2：直接用代码创建 .gitignore
   spawn.sync("git add .", spawnOptions);
   spawn.sync("git commit", ["-m", "init project"], spawnOptions);

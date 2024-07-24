@@ -5,7 +5,7 @@ createTime: 2023-02-23
 updateTime:
 categories: typescript
 tags:
-description:
+description: 研究 typescript 中 extends 的含义
 ---
 
 ## 困惑
@@ -46,8 +46,6 @@ function longest<T extends { length: number }>(a: T, b: T) {
 T 除了 length，还可以有其他属性和方法。
 extends 似乎代表 _扩大_
 
----
-
 ## 解释
 
 说扩大或者缩小其实含义很模糊，没有实际意义。因为没有明确主语：具体是什么扩大/缩小了。
@@ -74,8 +72,6 @@ class Dog extends Animal {}
 
 大白话总结：子类特性多了，可取值少了。
 
----
-
 ## 引申
 
 前提 Dog extends Animal，考虑下面几种类型的关系：
@@ -91,11 +87,3 @@ class Dog extends Animal {}
 - `(arg:Animal) => void` 是 `(arg:Dog) => void` 的子类型。<span style="color:darkorange">注意这里反过来了。稍微有点绕，用 assignable 的思路去考虑</span>
 
 另外，ts 中强行规定了 `(arg:Dog) => void` 也是 `(arg:Animal) => void` 的子类型。这样是不安全的，运行时可能出错。但是 ts “为了方便实现常见的 js 编程模式“，就是这样设计了。
-
----
-
-最后说一说 ts 中的 any。虽然 any 和 unknown 常被放在一起讨论，但其实性质完全不同。在 ts 中，`unknown` 和 `never` 都是正规的类型体系的一部分。但 any 完全在这个体系之外：
-
-> ts 中，所有值都可以赋给 any 类型，any 类型的值也可以赋值给其他任何类型，从而绕过类型检查。
-
-写代码时如果用了 any 类型，就代表着：我完全知道我在做什么，这一部分代码的安全与正确性我自己负责。ts 请无视这段代码，不要进行任何类型检查。

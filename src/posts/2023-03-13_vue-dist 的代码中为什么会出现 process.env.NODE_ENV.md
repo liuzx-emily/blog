@@ -5,7 +5,7 @@ createTime: 2023-03-13
 updateTime:
 categories: build tools
 tags:
-description: 日常开发中，我们使用的 vue 代码是 build 后的。但是这个 build 后的代码里出现了  process.env.NODE_ENV，这是为什么？它为什么没有在 build 阶段被替换掉？
+description:
 ---
 
 ## 疑问

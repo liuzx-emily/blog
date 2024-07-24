@@ -22,8 +22,6 @@ npm init @eslint/config@latest
 
 按理说，此刻项目应该已经配置好 eslint 了。但是我的编辑器 **vscode** 并不能检测到代码中的错误？？？！！！
 
-![在这里插入图片描述](../post-assets/3e8be69c-c1a3-441c-98da-e9f283d93507.png)
-
 ---
 
 ## 破案了：eslint 无罪，是 vscode 版本过低
@@ -45,8 +43,6 @@ eslint v9+的 breaking changes 很多，不一一列举了，这里只说一个�
 ![在这里插入图片描述](../post-assets/bf20d032-666b-4e12-9383-05cf2b7599c2.png)
 
 我也是在研究途中才发现我的 vscode 已经两年没更新了。虽然我给 vscode 设置了自动更新，但是貌似因为我给 vscode 设置了“以管理员身份运行”，自动更新从来没生效。。。
-
-![在这里插入图片描述](../post-assets/ea1be895-0835-46ab-bd4f-49a7a790ab19.png)
 
 我一开始还升级过 vscode eslint 插件的版本，没用。原来病根在 vscode 身上。
 
@@ -77,5 +73,3 @@ eslint v9+的 breaking changes 很多，不一一列举了，这里只说一个�
 
 我应该查看 `@eslint/create-config` 包的版本（在上一部分安装@8 的报错信息也提到了这个包），看看它有没有哪个版本是对应 eslint 8 的。
 ——经过我一番查找，没有！这条路又堵死了，看来不能用自动化工具了。~~只能自己乖乖安包，自己写配置文件了~~（并不，升级 vscode 版本就好了）
-
-![在这里插入图片描述](../post-assets/1488fd81-e3d9-4cc2-a46c-d28212642597.png)
