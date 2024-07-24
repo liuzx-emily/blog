@@ -30,8 +30,8 @@ function clickTag(tag) {
 // table of content
 let toc = ref([]);
 onMounted(() => {
-  // 目录中只显示 h2-h5（内容中不允许出现h1。内容中允许出现h6，但不显示在标题中
-  toc.value = [...document.querySelectorAll("#content h2,h3,h4,h5")].map((el) => {
+  // 目录中只显示 h2-h4（内容中不允许出现h1。内容中允许出现h5 h6，但不显示在目录中
+  toc.value = [...document.querySelectorAll("#content h2,h3,h4")].map((el) => {
     return {
       text: el.innerText,
       level: parseInt(el.tagName.slice(1)),
@@ -39,7 +39,7 @@ onMounted(() => {
   });
 });
 function clickToc(index) {
-  const el = document.querySelectorAll("#content h2,h3,h4,h5")[index];
+  const el = document.querySelectorAll("#content h2,h3,h4")[index];
   el.scrollIntoView({ behavior: "smooth" });
 }
 </script>
@@ -52,11 +52,13 @@ function clickToc(index) {
         v-for="(o, index) in toc"
         :key="index"
         :data-level="o.level"
+        :title="o.text"
         @click="clickToc(index)"
       >
         {{ o.text }}
       </div>
     </div>
+    <router-link to="/" class="back-to-homepage">返回主页</router-link>
     <div id="title">
       <span v-if="post.draft" style="color: #ef6c00">[草稿]</span>
       {{ post.title }}
@@ -91,6 +93,12 @@ function clickToc(index) {
   background: white;
   padding: 20px;
   box-sizing: border-box;
+}
+.back-to-homepage {
+  color: #34538b;
+  font-size: 13px;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 #title {
   font-size: 26px;
@@ -165,7 +173,8 @@ function clickToc(index) {
       padding: 8px;
     }
   }
-  p > code {
+  p > code,
+  li > code {
     padding: 1px 4px;
     background: #f9f2f4;
     color: #c7254e;
@@ -231,17 +240,12 @@ function clickToc(index) {
   .post-toc[data-level="3"] {
     padding-left: 36px;
     font-size: 13px;
-    line-height: 28px;
+    line-height: 32px;
   }
   .post-toc[data-level="4"] {
-    padding-left: 46px;
+    padding-left: 56px;
     font-size: 13px;
-    line-height: 28px;
-  }
-  .post-toc[data-level="5"] {
-    padding-left: 51px;
-    font-size: 13px;
-    line-height: 28px;
+    line-height: 30px;
   }
 }
 </style>
