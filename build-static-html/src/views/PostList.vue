@@ -1,15 +1,14 @@
 <script setup>
 import { CloseSquareOutlined } from "@ant-design/icons-vue";
 import { computed, inject, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import PostCategory from "../components/PostCategory.vue";
 import PostDate from "../components/PostDate.vue";
 import PostTag from "../components/PostTag.vue";
-import { useTags } from "../composable/useTags";
 import { useCategories } from "../composable/useCategories";
+import { useTags } from "../composable/useTags";
 import { cloneDeep } from "../utils.js";
 
-const router = useRouter();
 const route = useRoute();
 
 const posts = inject("posts");
@@ -41,10 +40,6 @@ let filteredPosts = computed(() => {
   return res;
 });
 
-function clickPost(post) {
-  router.push(`/post/${post.id}`);
-}
-
 function clickTag(val) {
   tag.value = val;
 }
@@ -59,48 +54,46 @@ function selectTreeNode(selected) {
     category.value = selected[0];
   }
 }
+
+const activeLeftPanel = ref(["categories"]);
+
+document.title = "博客";
 </script>
 
 <template>
   <div class="wrapper">
     <div class="app-left">
       <div class="sticky-content">
-        <div class="categories-container">
-          <a-tree
-            :default-expand-all="true"
-            :tree-data="categories"
-            :fieldNames="{ children: 'children', title: 'name', key: 'name' }"
-            @select="selectTreeNode"
-          >
-            <template #title="{ name, count }">{{ name }} ({{ count }})</template>
-          </a-tree>
-        </div>
-        <div class="tags-container">
-          <div class="tags">
-            <PostTag
-              v-for="tag in tagsList"
-              :key="tag.name"
-              :tag="tag.name"
-              @click="clickTag(tag.name)"
+        <a-collapse v-model:activeKey="activeLeftPanel" expand-icon-position="end" ghost2>
+          <a-collapse-panel key="categories" header="分类">
+            <a-tree
+              :default-expand-all="true"
+              :tree-data="categories"
+              :fieldNames="{ children: 'children', title: 'name', key: 'name' }"
+              @select="selectTreeNode"
             >
-              {{ tag.name }}({{ tag.count }})
-            </PostTag>
-          </div>
-        </div>
+              <template #title="{ name, count }">{{ name }} ({{ count }})</template>
+            </a-tree>
+          </a-collapse-panel>
+          <a-collapse-panel key="tags" header="标签">
+            <div class="tags">
+              <PostTag
+                v-for="tag in tagsList"
+                :key="tag.name"
+                :tag="tag.name"
+                @click="clickTag(tag.name)"
+              >
+                {{ tag.name }}
+                <span class="tag-count" v-if="tag.count > 1"> ({{ tag.count }}) </span>
+              </PostTag>
+            </div>
+          </a-collapse-panel>
+        </a-collapse>
       </div>
     </div>
+
     <div class="app-right">
-      <div
-        v-if="category || tag"
-        style="
-          position: sticky;
-          top: 0px;
-          background: rgb(189 209 219);
-          padding: 16px 20px;
-          color: rgb(33 53 68);
-          font-size: 15px;
-        "
-      >
+      <div v-if="category || tag" class="sticky-filters">
         <span v-if="category" style="margin-right: 18px">
           分类：{{ category }}
           <CloseSquareOutlined style="cursor: pointer" @click="category = ''" />
@@ -113,10 +106,10 @@ function selectTreeNode(selected) {
       <ul style="padding: 0 24px">
         <li v-for="post in filteredPosts" :key="post.id" class="post-item">
           <div class="post-title">
-            <span @click="clickPost(post)">
+            <router-link :to="'/post/' + post.id">
               <span v-if="post.draft" style="color: #ef6c00">[草稿]</span>
               {{ post.title }}
-            </span>
+            </router-link>
           </div>
           <div class="post-description" v-if="post.description">{{ post.description }}</div>
           <div class="post-info-container">
@@ -146,7 +139,7 @@ function selectTreeNode(selected) {
     </div>
   </div>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 .wrapper {
   box-sizing: border-box;
   width: 1100px;
@@ -158,31 +151,45 @@ function selectTreeNode(selected) {
   background: white;
   flex: 0 0 280px;
   margin-right: 20px;
-  padding: 20px;
+
   box-sizing: border-box;
   .sticky-content {
     position: sticky;
-    top: 20px;
+    top: 0;
   }
-
-  .categories-container {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+  :deep(.ant-collapse) {
+    border-radius: 0;
+    .ant-collapse-item {
+      border-radius: 0;
+    }
+    .ant-collapse-header {
+      padding: 10px 16px;
+    }
+    .ant-collapse-content-box {
+      padding: 10px 12px;
+    }
   }
-
+  :deep(.ant-tree) {
+    .ant-tree-treenode {
+      padding-bottom: 3px;
+    }
+  }
   .category-name {
     cursor: pointer;
     font-size: 13px;
     line-height: 23px;
   }
-
-  .tags-container {
-    padding-top: 20px;
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      .post-tag {
-        margin-bottom: 10px;
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    .post-tag {
+      margin-bottom: 10px;
+      padding: 0 3px;
+      color: #445a64;
+      background: #f6f7f6;
+      outline: 1px solid #dcdddd;
+      .tag-count {
+        color: #b77309;
       }
     }
   }
@@ -191,6 +198,15 @@ function selectTreeNode(selected) {
 .app-right {
   flex: 1;
   background: white;
+  .sticky-filters {
+    position: sticky;
+    top: 0px;
+    font-size: 15px;
+    padding: 16px 20px;
+    background: #e9f0f3;
+    color: rgb(33, 53, 68);
+    border-bottom: 1px solid #beccd3;
+  }
   ul {
     margin: 0;
     padding: 0;
