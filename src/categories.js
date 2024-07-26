@@ -23,6 +23,4 @@ export const categories = [
   },
   { name: "nodejs", description: "" },
   { name: "工作记录", description: "" },
-  { name: "写着玩", description: "" },
-  { name: "一些方法论", description: "" },
 ];

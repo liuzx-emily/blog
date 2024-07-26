@@ -132,7 +132,6 @@ function clickToc(index) {
     margin: 10px 0;
   }
   img {
-    display: block;
     max-width: 100%;
   }
 
