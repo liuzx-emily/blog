@@ -115,18 +115,30 @@ function findNodeIndex(doc, isMyNode) {
 }
 ```
 
-![在这里插入图片描述](../post-assets/9e56ed9c-825f-43cb-a15d-d250ae3ef2aa.png)
+按钮不可用时，将按钮禁用。改写 insertApple 方法：添加 just_check 参数
 
-增加功能：按钮不可用时，将按钮禁用。
-
-改写 insertApple 方法：添加 just_check 参数
-
-![在这里插入图片描述](../post-assets/ccf152e2-5145-4dd1-a9a1-34eac574b0b1.png)
+```js
+function insertApple(name, just_check = false) {
+  const view = editorView.value;
+  const appleType = view.state.schema.nodes.apple;
+  const find = findNodeIndex(view.state.doc, (node) => {
+    return node.type.name === appleType.name && node.attrs.name === name;
+  });
+  if (find !== -1) {
+    return false;
+  }
+  if (!just_check) {
+    const newAppleNode = appleType.create({ name });
+    view.dispatch(view.state.tr.replaceSelectionWith(newAppleNode));
+  }
+  return true;
+}
+```
 
 - `insertApple(name, true)` 只想看看命令是否可用，并不想真的插入一个苹果
 - `insertApple(name)` 确实是想插入一个苹果
 
-根据 insertApple(name, true) 的返回值更新 button 的 disabled 状态：
+根据 `insertApple(name, true)` 的返回值更新 button 的 disabled 状态：
 
 ```js
 const button1 = ref();
@@ -284,8 +296,7 @@ export const menus = ref([
     label: "标题1",
     run: setBlockType(mySchema.nodes.heading, { attrs: { level: 1 } }),
     active: true,
-    updateActive: (state) =>
-      blockTypeActive(state, mySchema.nodes.heading, { level: 1 }),
+    updateActive: (state) => blockTypeActive(state, mySchema.nodes.heading, { level: 1 }),
     enable: true,
   },
   {

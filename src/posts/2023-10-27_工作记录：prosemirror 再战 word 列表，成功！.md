@@ -8,6 +8,8 @@ tags:
 description:
 ---
 
+[在线预览](https://liuzx-emily.github.io/study-prosemirror/)，[源码](https://github.com/liuzx-emily/study-prosemirror)
+
 最近又学习了 prosemirror，自认有些进步 —— 从只了解 1% 变成掌握 20%，决定再次挑战 word 列表。
 
 之前的尝试失败了，过程记录在 [《工作记录：在线 word - 列表》](post:4d76dcbe-6221-4e23-8409-a0229a78bc02) 中，简单总结如下：实现 word 列表不能用 ul>li，必须用平级标签，从而需要自行计算列表序号。我需要写一个计算序号的方法，view 每次变化时调用此方法修改序号。`getListItemNumber` 方法成功写出来了，但是我找不到地方去调用它！
@@ -158,10 +160,6 @@ myWordList: {
 
 成功！
 
-效果：
-
-![在这里插入图片描述](../post-assets/bfc7a67a-2e7e-4fc5-b7f7-84b4849b1273.png)
-
 ---
 
 插一句：`plugin` 的 view-update 和 decorations 都会在编辑器状态改变时响应。区别在于：
@@ -170,8 +168,6 @@ myWordList: {
 - view-update 的功能是：<span style="color:darkorange">在编辑器内容发生变化时通知你，你自己在外部做点什么</span>，比如修改菜单按钮的状态。你不能用它来修改编辑器内部的东西。如果在 view-update 中强行调用 `dispatch(tr)`会触发死循环
 
 ---
-
--
 
 ## 添加 commands
 
@@ -204,20 +200,14 @@ function sonLevel() {
   editorView.value.focus();
   const state = editorView.value.state;
   const dispatch = editorView.value.dispatch;
-  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) + 1)(
-    state,
-    dispatch
-  );
+  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) + 1)(state, dispatch);
 }
 
 function fatherLevel() {
   editorView.value.focus();
   const state = editorView.value.state;
   const dispatch = editorView.value.dispatch;
-  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) - 1)(
-    state,
-    dispatch
-  );
+  changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) - 1)(state, dispatch);
 }
 ```
 
@@ -229,19 +219,13 @@ function fatherLevel() {
   1.  手动 focus 回来：`editorView.value.focus();`
   2.  按钮上不用 click。改用 mousedown，并且阻止默认事件，这样编辑区的焦点就不会丢了。参考： [Why are menu functions executed on mousedown?](https://discuss.prosemirror.net/t/why-are-menu-functions-executed-on-mousedown/2923)
 
-效果：
-
-![在这里插入图片描述](../post-assets/0150f28c-6e92-4851-8ed7-dc569f9f357c.png)
-
 ### 添加快捷键
 
 ```js
 plugins: [
   keymap({
     Tab: changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) + 1),
-    "Shift-Tab": changeListItemLevel(
-      (node) => parseInt(node.attrs.listItemlevel) - 1
-    ),
+    "Shift-Tab": changeListItemLevel((node) => parseInt(node.attrs.listItemlevel) - 1),
   }),
 ];
 ```
@@ -259,10 +243,6 @@ function changeListItemLevel(handler) {
   };
 }
 ```
-
-效果：
-
-![在这里插入图片描述](../post-assets/0624fa9a-8861-4ae0-b6b9-6686406ded39.png)
 
 ### 切换为列表
 
@@ -290,8 +270,4 @@ function setParagraph() {
 }
 ```
 
-效果：
-
-## ![在这里插入图片描述](../post-assets/9214ea13-983f-48b5-9a67-845f52a9d7f5.png)
-
-基本功能完成，后续就是完善、添加 commands 了。不演示了
+基本功能完成，后续就是完善、添加 commands 了，不说了。

@@ -233,6 +233,7 @@ function addRedBg(doc) {
 修改文档内容，致使 bold 文字位置变动，红色不跟着挪位置：
 
 ![在这里插入图片描述](../post-assets/8f075d0e-41f4-458a-a063-b94ee8a11700.png)
+
 这些都是意料之中的效果。现在在 apply 中添加上这一句：
 
 ```js
