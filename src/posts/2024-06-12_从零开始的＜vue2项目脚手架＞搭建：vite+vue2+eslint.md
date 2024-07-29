@@ -117,7 +117,7 @@ new Vue({
 
 配置 eslint `npm init @eslint/config@latest`
 
-如有问题可参考 [《vscode 中 eslint 无效？npm init 是什么？》](https://blog.csdn.net/tangran0526/article/details/139477955)
+如有问题可参考 [《vscode 中 eslint 无效？npm init 是什么？》](post:2d32697a-e76c-4b96-a064-e96ae538af58)
 
 ---
 
@@ -174,7 +174,7 @@ npm init 有两种用法：
 功能 2 和 3 更简单，让脚本自动执行命令。
 
 需要注意的是，在功能 3 的 commit 之前，"成果项目" 中必须存在 .gitignore（不然成果项目/node_modules 也会被 commit）。
-但是在使用你发布的包时，npm 不会保留你包里的 .gitignore 文件（具体解释见[另一篇文章](https://blog.csdn.net/tangran0526/article/details/139673961)）。有两种解决方案：
+但是在使用你发布的包时，npm 不会保留你包里的 .gitignore 文件（具体解释见[另一篇文章](post:271015ca-d7a2-4a0d-a351-fbc598acfdbe)）。有两种解决方案：
 
 1. 给 `template/.gitignore` 文件改名（比如改成 `template/gitignore`，去掉最前面的`.`)，这时就可以成功 publish 到 npm 仓库了。在脚本中写代码，对成果项目进行 git 操作前，先把 gitignore 文件的名字改回来
 2. 干脆把 `template/.gitignore` 文件去掉。在脚本中给成果项目创建 `.gitignore` 文件
@@ -215,10 +215,7 @@ async function initGit(dirPath) {
   const spawnOptions = { stdio: "inherit", cwd: dirPath };
   spawn.sync("git init", spawnOptions);
   // 为了解决《npm 在 publish package 时，不会把 .gitignore 文件上传到 npm 仓库》，有两种方案：
-  await rename(
-    path.join(dirPath, "gitignore"),
-    path.join(dirPath, ".gitignore")
-  ); // 方案1：template中给.gitignore改名。这里再改回来
+  await rename(path.join(dirPath, "gitignore"), path.join(dirPath, ".gitignore")); // 方案1：template中给.gitignore改名。这里再改回来
   // await writeFile(path.join(dirPath, ".gitignore"), "node_modules"); // 方案2：直接用代码创建 .gitignore
   spawn.sync("git add .", spawnOptions);
   spawn.sync("git commit", ["-m", "init project"], spawnOptions);
@@ -232,7 +229,7 @@ async function initGit(dirPath) {
 
 ### 发布到 npm
 
-[npm publish](https://blog.csdn.net/tangran0526/article/details/139620788)
+[npm publish](post:712988a6-8046-4a13-acfb-23b33ceca90c)
 
 ### 执行命令
 

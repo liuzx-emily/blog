@@ -128,7 +128,7 @@ container1.addEventListener("paste", (e) => {
 输出：
 
 ![在这里插入图片描述](../post-assets/0d2bfc63-4b09-49fb-b233-fd1687fcadc7.png)
-windows 系统用 `clipboardData` 获取 html 数据时，会自动包一层 html>body 和 startFragment，这个”特性“造成了 prosemirror 项目的 bug —— [fix: prosemirror adds two extra spaces when paste](https://blog.csdn.net/tangran0526/article/details/133815110)。
+windows 系统用 `clipboardData` 获取 html 数据时，会自动包一层 html>body 和 startFragment，这个”特性“造成了 prosemirror 项目的 bug —— [prosemirror adds two extra spaces when paste](post:26c96d26-f7df-4250-8dcc-837bf763ac35)。
 
 下一篇文章会讲到用 `navigator.clipboard.read` 获取数据，用那个 API 拿到的 html 数据是纯净的，不会包 html>body 和 startFragment 标签。
 

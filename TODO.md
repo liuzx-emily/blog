@@ -1,9 +1,3 @@
-在 posts 中搜索 blog.csdn.net/tangran0526，替换链接地址
-
-在 posts 中搜索 mermaid，去掉流程图
-
----
-
 博客别放在 liuzx-emily repo 中了，readme 直接显示在个人主页，有点尴尬。换个仓库。
 
 ---
