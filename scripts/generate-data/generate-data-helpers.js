@@ -1,5 +1,6 @@
 import { JSDOM } from "jsdom";
 import { cp, writeFile } from "node:fs/promises";
+import { baseUrl } from "../../config.js";
 import { categories } from "../../src/categories.js";
 import { readMarkdownPosts } from "../helpers.js";
 import { _getPath, createConverter, walkThroughTree } from "../utils.js";
@@ -32,7 +33,7 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
     doc.querySelectorAll("img").forEach((img) => {
       const src = img.getAttribute("src"); // "../post-assets/d8254493-7b2e-410e-bd40-236711f2b884.png"
       const [imageName] = src.match(/[^/]+$/);
-      const newSrc = `/liuzx-emily/post-assets/${imageName}`;
+      const newSrc = `${baseUrl}/post-assets/${imageName}`;
       img.setAttribute("src", newSrc);
     });
     // change link which is linked to another post
@@ -41,7 +42,7 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
       const prefix = "post:";
       if (href.startsWith(prefix)) {
         const linkedPostId = href.slice(prefix.length);
-        const newHref = `/liuzx-emily/#/post/${linkedPostId}`;
+        const newHref = `${baseUrl}/#/post/${linkedPostId}`;
         el.setAttribute("href", newHref);
         el.setAttribute("target", "_blank");
       }
