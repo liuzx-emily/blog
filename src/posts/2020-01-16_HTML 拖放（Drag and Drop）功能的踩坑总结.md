@@ -4,7 +4,7 @@ title: HTML 拖放（Drag and Drop）功能的踩坑总结
 createTime: 2020-01-16
 updateTime:
 categories: js
-tags:
+tags: drag
 description:
 ---
 
