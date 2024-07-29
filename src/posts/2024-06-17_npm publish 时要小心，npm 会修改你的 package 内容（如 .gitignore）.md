@@ -11,7 +11,7 @@ description: 在 npm 上发布包时，使用 files 字段和 .npmignore 指示�
 在 npm 发布 package 时，可以使用 **packge.json 的 files 字段(白名单)** 和 **.npmignore 文件(黑名单)** 告诉 npm 你想包含哪些文件。但是你的决定权是**有限**的，有一部分内容是 npm 强制包含或排除的，无论你怎么设置都无法改变。
 
 如果说上述行为算是可以理解的，那么下面的操作就让人难以接受了：在别人使用 npm install 安装你发布的包时，npm 会修改你包中的文件！——说的就是 `.gitignore` ，npm 会把它自动重命名为 `.npmignore`。
-这对普通项目可能影响不大，但是对于 generator 就影响很大了（比如我的[脚手架](https://blog.csdn.net/tangran0526/article/details/139417312)）。而且这一自动重命名的行为是强制的，你无法通过任何设置取消。
+这对普通项目可能影响不大，但是对于 generator 就影响很大了（比如我的[脚手架](post:1ac6fb5e-1737-44a7-881e-31a35ba69e33)）。而且这一自动重命名的行为是强制的，你无法通过任何设置取消。
 generator 中 .gitignore 问题的解决方案：generator/template 中的 .gitignore 改名为 gitignore，在构建时自动改回来
 
 ---

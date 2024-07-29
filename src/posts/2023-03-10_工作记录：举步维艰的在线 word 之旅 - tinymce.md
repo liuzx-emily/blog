@@ -10,7 +10,7 @@ description: 使用 tinymce 实现 “在线编辑 word 模板” 功能
 
 项目中需要实现 “在线编辑 word 模板” 的功能，我打算使用富文本组件 tinymce ，因为业务需求比较特殊，研究一下 tinymce 是否能实现。
 
-如何在 vue 项目中引用 tinymce，可以看另一篇文章 [《在 vue 项目中使用 tinymce》](https://blog.csdn.net/tangran0526/article/details/127224182)
+如何在 vue 项目中引用 tinymce，可以看另一篇文章 [《在 vue 项目中使用 tinymce》](post:bf59642c-25e2-436e-9c89-820cd7bdd2e8)
 
 （最后这个功能没有用 tinymce 实现，换了别的富文本库。但还是把这次的研究过程记录下来，给自己做一个总结回顾）
 
