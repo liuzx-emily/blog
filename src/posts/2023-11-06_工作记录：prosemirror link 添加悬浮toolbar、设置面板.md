@@ -2,39 +2,37 @@
 id: 0aa5eea4-c94d-4241-9f5d-9531e8bd733a
 title: 工作记录：prosemirror link 添加悬浮toolbar、设置面板
 createTime: 2023-11-06
-updateTime:
+updateTime: 2023-12-29
 categories: 工作记录, prosemirror
 tags:
 description: 使用 prosemirror，实现添加、编辑 link 的功能。
 ---
 
+[在线预览](https://liuzx-emily.github.io/study-prosemirror/)，[源码](https://github.com/liuzx-emily/study-prosemirror)
+
+---
+
 为了描述清晰，先区分两个概念：光标 vs 鼠标
 
 ![在这里插入图片描述](../post-assets/cdd2093c-0627-4871-a8da-d18cb28e433e.png)
+
 上图中，光标位置不变，一直在句号的后面。鼠标位置一直在变
 
 ## 需求
 
-editor 需要实现这样的效果：
+editor 需要实现这样的效果
 
-1. 添加超链接：
-   点击“插入超链接”按钮后，在 editor 中光标附近出现一个设置面板。填写文本、链接后点击确定，在光标位置插入超链接
+### 添加超链接
 
-   ![在这里插入图片描述](../post-assets/1f27c68a-f0d3-438b-aea4-12826974052c.png)
+点击“插入超链接”按钮后，在 editor 中光标附近出现一个设置面板。填写文本、链接后点击确定，在光标位置插入超链接
 
-2. 编辑超链接：
+### 编辑超链接
 
-   鼠标移动到 link 上时，显示 toolbar。光标移开时，toolbar 消失。
+鼠标移动到 link 上时，显示 toolbar。光标移开时，toolbar 消失。
 
-   ![在这里插入图片描述](../post-assets/3568ba3c-9252-42b0-8a94-810f73789f17.png)
+点击 toolbar 中的“编辑链接”，弹出设置面板。这个设置面板和添加链接时的一样，不会随着光标移出而消失。
 
-   点击 toolbar 中的“编辑链接”，弹出设置面板。这个设置面板和添加链接时的一样，不会随着光标移出而消失：
-
-   ![在这里插入图片描述](../post-assets/967dc9fe-f9c6-4e4a-aaf2-4638acd8ca4d.png)
-
-   点击 toolbar 中的“移除链接”：
-
-   ![在这里插入图片描述](../post-assets/08c53cfc-8127-4204-b151-46c05736f095.png)
+点击 toolbar 中的“移除链接”，链接变为普通文本。
 
 ## 遇到问题
 
@@ -151,6 +149,7 @@ if (node1 !== node2) {
   ![在这里插入图片描述](../post-assets/81f86c3e-ee49-4876-b68e-b8ac8b32838a.png)
 
   结果：
+
   ![在这里插入图片描述](../post-assets/5165ad2e-b34f-4a02-acf1-55f3787af3f8.png)
 
   `posAtCoords`：找到的 pmNode 是 `TextNode<香蕉>`
@@ -273,18 +272,12 @@ if (!linkMark) {
 
   function show({ left, top, text, link }) {
     visible.value = true;
-    const { top: parentTop, left: parentLeft } =
-      window.view.dom.getBoundingClientRect();
+    const { top: parentTop, left: parentLeft } = window.view.dom.getBoundingClientRect();
     // 参数 left top 都是相对于浏览器的位置，要减去父容器自身偏移量
     containerStyle.left = left - parentLeft + "px";
     // 计算 top 时最后要 +1，不然会有空隙。
     containerStyle.top =
-      top -
-      parentTop -
-      toolbarHeight.value -
-      parseInt(containerStyle.paddingBottom) +
-      1 +
-      "px";
+      top - parentTop - toolbarHeight.value - parseInt(containerStyle.paddingBottom) + 1 + "px";
   }
 </script>
 ```
@@ -368,12 +361,7 @@ function hoverToolbarCallEditLink({ left, top, text, link, from, to }) {
 function updateLink_trigger_by_hover_toolbar() {
   const from = linkData.pmNodePos;
   const to = from + linkData.pmNode.nodeSize;
-  return setLink(
-    from,
-    to,
-    linkData.link,
-    linkData.text
-  )(window.view.state, window.view.dispatch);
+  return setLink(from, to, linkData.link, linkData.text)(window.view.state, window.view.dispatch);
 }
 ```
 
