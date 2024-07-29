@@ -1,16 +1,3 @@
-把上传文件的功能做一个 demo 放到 github repo 里，然后开启 GitHub pages。
-
-这样文章里就不用贴大段源码，也不用放 gif 效果图了。
-
-相关文章：
-
-- 《上传三合一：拖拽上传、上传文件、上传文件夹，一次搞定！》
-- 《拖拽本地文件夹到浏览器中，展示所有文件结构》
-- 《计算文件 MD5》
-- 《工作记录：文件秒传、分块上传、断点续传的原理》
-
----
-
 在 posts 中搜索 blog.csdn.net/tangran0526，替换链接地址
 
 在 posts 中搜索 mermaid，去掉流程图
@@ -44,3 +31,19 @@ repo blog-crawler 重命名。README 写详细一些，
 ---
 
 repo create-lily-cli，描述和 README 都写详细一些
+
+---
+
+添加系列？
+
+---
+
+vue3：
+
+```js
+const list = ref([]);
+const task = { id: 1, name: "foo" };
+list.value.push(task);
+
+task.name = "bar"; // 视图不响应
+```
