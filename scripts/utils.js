@@ -32,6 +32,7 @@ export function createConverter() {
     strikethrough: true,
     tables: true,
     disableForced4SpacesIndentedSublists: true,
+    literalMidWordUnderscores: true, // Turning this on will stop showdown from interpreting underscores in the middle of words as <em> and <strong> and instead treat them as literal underscores.
     extensions: [
       ShowdownHighlight({
         pre: true, // Whether to add the classes to the <pre> tag, default is false
