@@ -8,6 +8,8 @@ tags: npm init, npm publish
 description: 自己搭建一个项目初始化的脚手架。只需要执行 npm init lily-cli 就可以自动创建 vite+vue2+eslint 项目。
 ---
 
+[源码](https://github.com/liuzx-emily/create-lily-cli)
+
 ## 前言
 
 为了写 demo 或者研究某些问题，我经常需要新建空项目。每次搭建项目都要从头配置，很麻烦。所以我决定自己搭建一个项目初始化的脚手架（取名为 **lily-cli**）。
@@ -179,48 +181,7 @@ npm init 有两种用法：
 1. 给 `template/.gitignore` 文件改名（比如改成 `template/gitignore`，去掉最前面的`.`)，这时就可以成功 publish 到 npm 仓库了。在脚本中写代码，对成果项目进行 git 操作前，先把 gitignore 文件的名字改回来
 2. 干脆把 `template/.gitignore` 文件去掉。在脚本中给成果项目创建 `.gitignore` 文件
 
-index.js：
-
-```js
-#!/usr/bin/env node
-import process from "process";
-import path from "path";
-import { cp, writeFile, rename, rm } from "fs/promises";
-import spawn from "cross-spawn"; // 用法同 nodejs 内置的 child_process 模块，但解决了跨平台的兼容性问题
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename); // __dirname 当前文件所在目录；process.cwd() 执行命令的目录
-
-async function run() {
-  const target_path = path.join(process.cwd(), "lily-template-project");
-  await generateFiles(target_path); // 根据模板生成文件
-  installDeps(target_path); // 安装依赖
-  await initGit(target_path); // 初始化 git
-}
-
-run();
-
-async function generateFiles(target_path) {
-  const src_path = path.join(__dirname, "template");
-  await cp(src_path, target_path, { recursive: true }); // 将模板中的所有文件递归复制到目标路径
-}
-
-function installDeps(dirPath) {
-  spawn.sync("pnpm i", { stdio: "inherit", cwd: dirPath });
-}
-
-async function initGit(dirPath) {
-  const spawnOptions = { stdio: "inherit", cwd: dirPath };
-  spawn.sync("git init", spawnOptions);
-  // 为了解决《npm 在 publish package 时，不会把 .gitignore 文件上传到 npm 仓库》，有两种方案：
-  await rename(path.join(dirPath, "gitignore"), path.join(dirPath, ".gitignore")); // 方案1：template中给.gitignore改名。这里再改回来
-  // await writeFile(path.join(dirPath, ".gitignore"), "node_modules"); // 方案2：直接用代码创建 .gitignore
-  spawn.sync("git add .", spawnOptions);
-  spawn.sync("git commit", ["-m", "init project"], spawnOptions);
-}
-```
+[具体代码看这里](https://github.com/liuzx-emily/create-lily-cli/blob/master/index.js)
 
 插播：**别用 npm link！别用 npm link！别用 npm link**
 在开发阶段我用 `npm link` + `npx create-lily-cli` 进行本地调试。调试完成准备发布，我需要解除本地 link。
