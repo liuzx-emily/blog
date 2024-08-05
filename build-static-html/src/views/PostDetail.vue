@@ -177,6 +177,7 @@ function clickToc(index) {
     padding: 1px 4px;
     background: #f9f2f4;
     color: #c7254e;
+    word-break: break-all;
   }
   pre {
     background-color: #f5f7ff;

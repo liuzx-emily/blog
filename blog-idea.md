@@ -102,3 +102,13 @@ arr.value = _temp;
 GitHub workflow
 
 ---
+
+vue3：
+
+```js
+const list = ref([]);
+const task = { id: 1, name: "foo" };
+list.value.push(task);
+
+task.name = "bar"; // 视图不响应
+```
