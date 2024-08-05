@@ -8,7 +8,7 @@ tags: crawler
 description: 爬取 csdn 上指定用户的所有文章（标题、摘要、分类、标签、html 格式的正文、发布更新日期），并将结果输出到文件。获取文章列表的接口会遇到网站的安全验证，爬虫无法自行处理，需要人工获取 cookie 辅助。
 ---
 
-[爬虫源码](https://github.com/liuzx-emily/blog-crawler)
+[爬虫源码](https://github.com/liuzx-emily/csdn-crawler)
 
 ## 起因
 
