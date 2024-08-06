@@ -39,14 +39,10 @@ markdown 中不允许出现 h1；允许出现 h5 h6，但不显示在文章详�
 ## 目录结构：
 
 - build-static-html 用来生成静态页面的子项目
-  - `data/`: 数据来源，包含 posts 和 categories，执行 `npm run generate-data` 自动生成（gitignore）
-  - `public/post-assets`: posts 中引用的图片，也是执行 `npm run generate-data` 自动生成的（gitignore）
-- commands 所有命令
-  - `batch-modify-md`: 批量修改 md 文件，不修改源文件，将修改后的内容输出到另一文件夹。
-  - `batch-scan-md`: 批量扫描 md 文件
-  - `generate-data`: 根据 src 自动生成数据文件，给 build-static-html 使用
-  - `test-parallel-run`: 尝试结合 `generate-data` 和 `dev`，还未成功.
+  - `data/`: 数据来源，包含 posts 和 categories，通过脚本自动生成（gitignore）
+  - `public/post-assets`: posts 中引用的图片，通过脚本自动生成（gitignore）
+- scripts 所有脚本。具体说明见 package.json 中的 scriptsComments
 - src 源文件
   - `post-assets/`: post 中引用的资源（图片）
   - `posts/`: markdown post
-  - `categories.js`: 分类数据。因为分类存在父子关系，所以需要显示设置
+  - `categories.js`: 分类数据。因为分类存在父子关系，所以需要显式设置

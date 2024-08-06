@@ -24,7 +24,6 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
     // 在非dev模式中，不显示草稿文章
     posts = posts.filter(({ metadata }) => metadata.draft !== "1");
   }
-  // TODO 检测重复id
   posts = posts.map(({ metadata, content }) => {
     let htmlContent = converter.makeHtml(content);
     // change image src
