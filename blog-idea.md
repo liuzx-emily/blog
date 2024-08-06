@@ -1,19 +1,3 @@
-you cannot change svg color in html using css. but you can use filter
-
-[see link](https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element)
-
----
-
-在 npm script 中使用 & 并行执行多个命令：`npm run foo & npm run bar`
-
-但是我使用后发现并非如此：foo 如果不会自动终止进程（比如说代码中有 watch），那么后面的 bar 永远不会执行，这显然不是并行的效果。可能是因为 windows 不认 `&`，仍然当作串行执行。
-
-这种情况就要 child_process 了。
-
-nodejs 的兼容性问题还是蛮多的，再举一个例子：https://nodejs.cn/api-v16/cli/watch_path.html
-
----
-
 "dev": "cd build-static-html && pnpm install && npx vite serve" 最后一个命令如果不用 npx 会报错，因为 vite 是装在子目录下的，不是根目录下的。
 
 ---
