@@ -1,11 +1,3 @@
-git 443 error, git set vpn proxy
-
-`git config --global http.proxy http://127.0.0.1:7890`
-
-`git config --global https.proxy http://127.0.0.1:7890`
-
----
-
 you cannot change svg color in html using css. but you can use filter
 
 [see link](https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element)
