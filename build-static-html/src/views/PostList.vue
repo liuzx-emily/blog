@@ -35,7 +35,13 @@ let filteredPosts = computed(() => {
     res = res.filter((post) => post.tags.includes(tag.value));
   }
   res.sort((a, b) => {
-    return +new Date(b.createTime) - +new Date(a.createTime);
+    const flag = +new Date(b.createTime) - +new Date(a.createTime);
+    if (flag === 0) {
+      // 同一天发布的文章按名称排序
+      return b.title.localeCompare(a.title);
+    } else {
+      return flag;
+    }
   });
   return res;
 });
