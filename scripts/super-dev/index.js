@@ -24,18 +24,18 @@ async function run() {
   const postsChangeHandler = debounce(async () => {
     await generateDataPosts({ includeDrafts: true });
     triggerReload(server, false, "build-static-html/data/posts.js");
-  }, 1000);
+  }, 100);
 
   const categoriesChangeHandler = debounce(async () => {
     await generateDataCategories();
     triggerReload(server, false, "build-static-html/data/categories.js");
-  }, 1000);
+  }, 100);
 
   const assetsChangeHandler = debounce(async () => {
     await gererateAssets();
     // assets 放在 public 中，需要 full-reload
     triggerReload(server, true);
-  }, 1000);
+  }, 100);
 
   console.log("---开始监听---");
 
