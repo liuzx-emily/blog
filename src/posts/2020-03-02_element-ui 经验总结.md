@@ -1,6 +1,6 @@
 ---
 id: 1282594d-7241-47f2-bcf5-52929c35a5bc
-title: element-ui 踩坑总结
+title: element-ui 经验总结
 createTime: 2020-03-02
 updateTime:
 categories: element-ui
