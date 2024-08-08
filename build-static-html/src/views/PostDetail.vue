@@ -42,22 +42,30 @@ function clickToc(index) {
   const el = document.querySelectorAll("#content h2,h3,h4")[index];
   el.scrollIntoView({ behavior: "smooth" });
 }
+
+const activeLeftPanel = ref(["toc"]);
 </script>
 
 <template>
-  <div class="wrapper">
-    <div class="post-toc-container" v-if="toc.length > 0">
-      <div
-        class="post-toc"
-        v-for="(o, index) in toc"
-        :key="index"
-        :data-level="o.level"
-        :title="o.text"
-        @click="clickToc(index)"
-      >
-        {{ o.text }}
-      </div>
-    </div>
+  <div class="post-detail-side-column pretty-scroll">
+    <a-collapse v-model:activeKey="activeLeftPanel" expand-icon-position="end" ghost2>
+      <a-collapse-panel key="toc" header="目录" v-if="toc.length > 0">
+        <div class="post-toc-container">
+          <div
+            class="post-toc"
+            v-for="(o, index) in toc"
+            :key="index"
+            :data-level="o.level"
+            :title="o.text"
+            @click="clickToc(index)"
+          >
+            {{ o.text }}
+          </div>
+        </div>
+      </a-collapse-panel>
+    </a-collapse>
+  </div>
+  <div class="post-detail-container">
     <router-link to="/" class="back-to-homepage">返回主页</router-link>
     <div id="title">
       <span v-if="post.draft" style="color: #ef6c00">[草稿]</span>
@@ -85,167 +93,176 @@ function clickToc(index) {
 </template>
 
 <style scoped lang="scss">
-.wrapper {
-  width: 800px;
-  margin: 0 auto;
-  min-height: 100vh;
-  box-sizing: border-box;
+$side-column-width: 250px;
+$post-detail-container-width: 800px;
+$app-gap-width: 20px;
+
+.post-detail-side-column {
+  $top: 20px;
+  position: fixed;
+  width: $side-column-width;
+  left: calc(
+    (100% - #{$post-detail-container-width}) / 2 - #{$side-column-width} - #{$app-gap-width}
+  );
+  top: $top;
+  max-height: calc(100vh - #{$top}* 2);
+  overflow: auto;
+  margin-right: $app-gap-width;
   background: white;
-  padding: 20px;
+  border-radius: 4px;
+  .post-toc-container {
+    .post-toc {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      color: #333;
+      &:hover {
+        background-color: #eff4f5;
+      }
+    }
+    .post-toc[data-level="2"] {
+      padding-left: 2px;
+      font-size: 14px;
+      line-height: 34px;
+    }
+    .post-toc[data-level="3"] {
+      padding-left: 22px;
+      font-size: 14px;
+      line-height: 34px;
+    }
+    .post-toc[data-level="4"] {
+      padding-left: 46px;
+      font-size: 13px;
+      line-height: 32px;
+    }
+  }
+}
+.post-detail-container {
+  margin: 0 auto;
   box-sizing: border-box;
-}
-.back-to-homepage {
-  color: #34538b;
-  font-size: 13px;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-#title {
-  font-size: 26px;
-  word-wrap: break-word;
-  color: #222;
-  font-weight: 600;
-  word-break: break-all;
-}
-
-#content:deep() {
-  font-size: 14px;
-  color: #333;
-  margin-top: 20px;
-  border-top: 1px solid #ddd;
-  padding-top: 20px;
-  h2 {
-    background: #eff4f5;
-    padding: 10px 0 10px 12px;
-    margin: 0 0;
+  width: $post-detail-container-width;
+  padding: 20px;
+  min-height: 100vh;
+  background: white;
+  .back-to-homepage {
+    color: #34538b;
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 10px;
   }
-  h5 {
-    font-size: 14px;
-    margin: 16px 0;
-  }
-  h6 {
-    font-size: 14px;
-    margin: 10px 0;
-  }
-  p {
-    line-height: 22px;
-    margin: 10px 0;
-  }
-  img {
-    max-width: 100%;
-  }
-
-  hr {
-    margin: 35px 0;
-    border: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  blockquote {
-    background: #f5f5f5;
-    margin: 0;
-    padding: 1px 20px;
-  }
-
-  a {
-    color: #2196f3;
-  }
-  ul,
-  ol {
-    padding-left: 20px;
-  }
-  ul > li {
-    list-style: circle;
-  }
-  li {
-    line-height: 22px;
-    margin: 2px 0;
-  }
-  table {
-    border-collapse: collapse;
-    th {
-      background-color: #eff3f5;
-    }
-    th,
-    td {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-  }
-  p > code,
-  li > code {
-    padding: 1px 4px;
-    background: #f9f2f4;
-    color: #c7254e;
+  #title {
+    font-size: 26px;
+    word-wrap: break-word;
+    color: #222;
+    font-weight: 600;
     word-break: break-all;
   }
-  pre {
-    background-color: #f5f7ff;
-    padding: 8px;
-    color: #555;
-    font-family: Source Code Pro;
-    overflow-x: auto;
-    .hljs-comment {
-      font-size: 13px;
-      color: #9e9e9e;
-    }
-    .hljs-keyword {
-      color: #6679cc;
-    }
-    .function_ {
-      color: #3d8fd1;
-    }
-    .hljs-string {
-      color: #ac9739;
-    }
-    .hljs-number,
-    .hljs-attr,
-    .hljs-regexp {
-      color: #ac9739;
-    }
-    .hljs-subst {
-      color: #ac3939;
-    }
-  }
-  pre.language-html {
-    .hljs-tag > .hljs-name {
-      color: #c94922;
-    }
-  }
-}
-.post-toc-container {
-  position: fixed;
-  top: 20px;
-  right: calc(50% + 800px / 2 + 20px);
-  background: white;
-  box-sizing: border-box;
-  width: 250px;
-  padding: 10px 0;
-  border-radius: 2px;
-  .post-toc {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-    color: #333;
-    &:hover {
-      background-color: #eff4f5;
-    }
-  }
-  .post-toc[data-level="2"] {
-    padding-left: 16px;
+
+  #content:deep() {
     font-size: 14px;
-    line-height: 36px;
-  }
-  .post-toc[data-level="3"] {
-    padding-left: 36px;
-    font-size: 13px;
-    line-height: 32px;
-  }
-  .post-toc[data-level="4"] {
-    padding-left: 56px;
-    font-size: 13px;
-    line-height: 30px;
+    color: #333;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    h2 {
+      background: #eff4f5;
+      padding: 10px 0 10px 12px;
+      margin: 0 0;
+    }
+    h5 {
+      font-size: 14px;
+      margin: 16px 0;
+    }
+    h6 {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    p {
+      line-height: 22px;
+      margin: 10px 0;
+    }
+    img {
+      max-width: 100%;
+    }
+
+    hr {
+      margin: 35px 0;
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    blockquote {
+      background: #f5f5f5;
+      margin: 0;
+      padding: 1px 20px;
+    }
+
+    a {
+      color: #2196f3;
+    }
+    ul,
+    ol {
+      padding-left: 20px;
+    }
+    ul > li {
+      list-style: circle;
+    }
+    li {
+      line-height: 22px;
+      margin: 2px 0;
+    }
+    table {
+      border-collapse: collapse;
+      th {
+        background-color: #eff3f5;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+    }
+    p > code,
+    li > code {
+      padding: 1px 4px;
+      background: #f9f2f4;
+      color: #c7254e;
+      word-break: break-all;
+    }
+    pre {
+      background-color: #f5f7ff;
+      padding: 8px;
+      color: #555;
+      font-family: Source Code Pro;
+      overflow-x: auto;
+      .hljs-comment {
+        font-size: 13px;
+        color: #9e9e9e;
+      }
+      .hljs-keyword {
+        color: #6679cc;
+      }
+      .function_ {
+        color: #3d8fd1;
+      }
+      .hljs-string {
+        color: #ac9739;
+      }
+      .hljs-number,
+      .hljs-attr,
+      .hljs-regexp {
+        color: #ac9739;
+      }
+      .hljs-subst {
+        color: #ac3939;
+      }
+    }
+    pre.language-html {
+      .hljs-tag > .hljs-name {
+        color: #c94922;
+      }
+    }
   }
 }
 </style>

@@ -1,27 +1,53 @@
-.post-description,
-.post-info-container {
+.post-description {
+  margin-top: 10px;
   color: #888;
   line-height: 19px;
   font-size: 13px;
 }
 
-.post-description {
-  margin-top: 10px;
-}
-
 .post-info-container {
   display: flex;
   margin-top: 6px;
+  color: #888;
+  line-height: 19px;
+  font-size: 13px;
   & > * {
     padding: 0 10px;
     border-right: 1px solid #ddd;
   }
-
   & > *:first-child {
     padding-left: 0;
   }
-
   & > *:last-child {
     border-right: none;
+  }
+}
+
+.ant-collapse {
+  border-radius: 0;
+  .ant-collapse-item {
+    border-radius: 0;
+    .ant-collapse-header {
+      padding: 8px 16px;
+    }
+    .ant-collapse-content-box {
+      padding: 10px 12px;
+    }
+  }
+}
+
+.pretty-scroll {
+  /** 滚动条的宽度 */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  /** 滚动条的滑块 */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #aaa;
+  }
+  /** 垂直滚动条背景 */
+  &::-webkit-scrollbar-track {
+    background: none;
   }
 }
