@@ -8,8 +8,8 @@ defineProps({
 </script>
 
 <template>
-  <span class="post-tag" @click="clickTag">
-    <slot>{{ tag }} </slot>
+  <span class="post-tag">
+    <slot>{{ tag }}</slot>
   </span>
 </template>
 
