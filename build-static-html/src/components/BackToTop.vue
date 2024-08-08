@@ -2,7 +2,7 @@
 import { VerticalAlignTopOutlined } from "@ant-design/icons-vue";
 
 function backToTop() {
-  document.querySelector("#app .wrapper").scrollIntoView({ behavior: "smooth", block: "start" });
+  document.querySelector("body").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 </script>
 

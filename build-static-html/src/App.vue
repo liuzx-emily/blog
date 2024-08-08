@@ -16,12 +16,7 @@ provide("posts", posts);
 
 <style>
 body {
-  background: #213544 url(./assets/svg/bg.svg);
-  height: 100vh;
+  background: #213544 url(./assets/svg/bg.svg) fixed;
   margin: 0;
-}
-#app {
-  height: 100%;
-  overflow: auto;
 }
 </style>
