@@ -4,8 +4,10 @@ import { computed, inject, ref } from "vue";
 import { useRoute } from "vue-router";
 import PostCategory from "../components/PostCategory.vue";
 import PostDate from "../components/PostDate.vue";
+import PostSeries from "../components/PostSeries.vue";
 import PostTag from "../components/PostTag.vue";
 import { useCategories } from "../composable/useCategories";
+import { useSeries } from "../composable/useSeries";
 import { useTags } from "../composable/useTags";
 import { cloneDeep } from "../utils.js";
 
@@ -13,12 +15,15 @@ const route = useRoute();
 
 const posts = inject("posts");
 const { categories } = useCategories(posts);
+const { seriesList } = useSeries(posts);
 const { tagsList } = useTags(posts);
 
 const category = ref();
+const series = ref();
 const tag = ref();
 
 category.value = route.query.category;
+series.value = route.query.series;
 tag.value = route.query.tag;
 
 let filteredPosts = computed(() => {
@@ -29,6 +34,9 @@ let filteredPosts = computed(() => {
     } else {
       res = res.filter((post) => post.categories.includes(category.value));
     }
+  }
+  if (series.value) {
+    res = res.filter((post) => series.value === post.series);
   }
   if (tag.value) {
     res = res.filter((post) => post.tags.includes(tag.value));
@@ -50,6 +58,9 @@ function clickTag(val) {
 }
 function clickCategory(val) {
   category.value = val;
+}
+function clickSeries(val) {
+  series.value = val;
 }
 
 function selectTreeNode(selected) {
@@ -78,6 +89,14 @@ document.title = "博客";
           <template #title="{ name, count }">{{ name }} ({{ count }})</template>
         </a-tree>
       </a-collapse-panel>
+      <a-collapse-panel key="series" header="系列">
+        <div class="seriesList">
+          <div v-for="series in seriesList" :key="series" class="series">
+            <span class="series-name" @click="clickSeries(series.name)">{{ series.name }}</span>
+            <span class="series-count"> ({{ series.posts.length }}) </span>
+          </div>
+        </div>
+      </a-collapse-panel>
       <a-collapse-panel key="tags" header="标签">
         <div class="tags">
           <PostTag
@@ -94,10 +113,14 @@ document.title = "博客";
     </a-collapse>
   </div>
   <div class="app-right">
-    <div v-if="category || tag" class="sticky-filters">
+    <div v-if="category || series || tag" class="sticky-filters">
       <span v-if="category" style="margin-right: 18px">
         分类：{{ category }}
         <CloseSquareOutlined style="cursor: pointer" @click="category = ''" />
+      </span>
+      <span v-if="series" style="margin-right: 18px">
+        系列：{{ series }}
+        <CloseSquareOutlined style="cursor: pointer" @click="series = ''" />
       </span>
       <span v-if="tag">
         标签：{{ tag }}
@@ -124,6 +147,10 @@ document.title = "博客";
               @click="clickCategory(category)"
               :category="category"
             />
+          </div>
+          <div class="post-series-box" v-if="post.series">
+            <span class="label">系列：</span>
+            <PostSeries @click="clickSeries(post.series)" :series="post.series" />
           </div>
           <div class="post-tags-box" v-if="post.tags.length > 0">
             <span class="label">标签：</span>
@@ -157,6 +184,18 @@ $app-gap-width: 20px;
     cursor: pointer;
     font-size: 13px;
     line-height: 23px;
+  }
+  .seriesList {
+    .series {
+      line-height: 26px;
+      .series-name {
+        color: #333;
+        cursor: pointer;
+      }
+      .series-count {
+        color: #b77309;
+      }
+    }
   }
   .tags {
     display: flex;

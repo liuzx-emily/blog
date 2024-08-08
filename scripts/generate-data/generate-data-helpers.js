@@ -60,6 +60,7 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
       updateTime: metadata.updateTime,
       categories,
       tags: metadata.tags === "" ? [] : metadata.tags.split(", "),
+      series: metadata.series,
       description: metadata.description,
       content: htmlContent,
     };
