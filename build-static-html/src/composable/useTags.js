@@ -2,7 +2,6 @@ export function useTags(posts) {
   const tagsMap = posts.reduce((acc, cur) => {
     cur.tags.forEach((tag) => {
       const count = acc.get(tag) ?? 0;
-      acc.set(tag);
       acc.set(tag, count + 1);
     });
     return acc;

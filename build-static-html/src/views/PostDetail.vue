@@ -4,14 +4,20 @@ import { useRoute, useRouter } from "vue-router";
 import PostCategory from "../components/PostCategory.vue";
 import PostDate from "../components/PostDate.vue";
 import PostTag from "../components/PostTag.vue";
+import { useSeries } from "../composable/useSeries";
 
 const router = useRouter();
 const route = useRoute();
 
 const posts = inject("posts");
-
+const { seriesMap } = useSeries(posts);
 const postId = route.params.id;
 const post = posts.find((post) => post.id === postId);
+let postsInTheSameSeries;
+if (post.series) {
+  postsInTheSameSeries = seriesMap.get(post.series);
+}
+
 document.title = post.title;
 
 function clickCategory(category) {
@@ -24,6 +30,12 @@ function clickTag(tag) {
   router.push({
     name: "index",
     query: { tag },
+  });
+}
+function clickSeries(series) {
+  router.push({
+    name: "index",
+    query: { series },
   });
 }
 
@@ -43,12 +55,30 @@ function clickToc(index) {
   el.scrollIntoView({ behavior: "smooth" });
 }
 
-const activeLeftPanel = ref(["toc"]);
+const activeLeftPanel = ref(["series", "toc"]);
 </script>
 
 <template>
   <div class="post-detail-side-column pretty-scroll">
     <a-collapse v-model:activeKey="activeLeftPanel" expand-icon-position="end" ghost2>
+      <a-collapse-panel key="series" :header="'系列：' + post.series" v-if="post.series">
+        <div class="post-series-container">
+          <div v-for="seriesPost in postsInTheSameSeries" :key="seriesPost.id" class="series-post">
+            <router-link
+              v-if="seriesPost.id !== post.id"
+              :to="'/post/' + seriesPost.id"
+              target="_blank"
+              class="another-post"
+            >
+              <span v-if="seriesPost.draft" style="color: #ef6c00">[草稿]</span
+              >{{ seriesPost.title }}
+            </router-link>
+            <div v-else class="current-post">
+              <span v-if="seriesPost.draft" style="color: #ef6c00">[草稿]</span>{{ post.title }}
+            </div>
+          </div>
+        </div>
+      </a-collapse-panel>
       <a-collapse-panel key="toc" header="目录" v-if="toc.length > 0">
         <div class="post-toc-container">
           <div
@@ -82,6 +112,10 @@ const activeLeftPanel = ref(["toc"]);
           :category="category"
         />
       </div>
+      <div class="post-series-box" v-if="post.series">
+        <span class="label">系列：</span>
+        <PostSeries @click="clickSeries(post.series)" :series="post.series" />
+      </div>
       <div class="post-tags-box" v-if="post.tags.length > 0">
         <span class="label">标签：</span>
         <PostTag v-for="tag in post.tags" :key="tag" :tag="tag" @click="clickTag(tag)"></PostTag>
@@ -110,6 +144,36 @@ $app-gap-width: 20px;
   margin-right: $app-gap-width;
   background: white;
   border-radius: 4px;
+  .post-series-container {
+    .series-post {
+      font-size: 14px;
+      line-height: 20px;
+      margin: 8px 0;
+      .another-post,
+      .current-post {
+        color: #333;
+        &::before {
+          content: "●";
+          margin-right: 6px;
+        }
+      }
+      .another-post {
+        &::before {
+          color: #2196f3;
+        }
+      }
+      .current-post {
+        &::before {
+          color: #ccc;
+        }
+      }
+      .another-post:hover {
+        transition: color 0s;
+        color: #2196f3;
+        text-decoration: underline;
+      }
+    }
+  }
   .post-toc-container {
     .post-toc {
       white-space: nowrap;
@@ -122,17 +186,17 @@ $app-gap-width: 20px;
       }
     }
     .post-toc[data-level="2"] {
-      padding-left: 2px;
+      padding-left: 10px;
       font-size: 14px;
       line-height: 34px;
     }
     .post-toc[data-level="3"] {
-      padding-left: 22px;
+      padding-left: 30px;
       font-size: 14px;
       line-height: 34px;
     }
     .post-toc[data-level="4"] {
-      padding-left: 46px;
+      padding-left: 54px;
       font-size: 13px;
       line-height: 32px;
     }
