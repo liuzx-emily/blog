@@ -1,4 +1,4 @@
-import { categories } from "../../../src/categories";
+import { categories } from "../../data/categories";
 import { cloneDeep } from "../utils";
 
 export function useCategories(posts) {
