@@ -1,10 +1,10 @@
 ---
 id: 712988a6-8046-4a13-acfb-23b33ceca90c
-title: npm 02: 发布 package
-createTime: 2024-08-07
+title: 发布 npm package
+createTime: 2024-08-09
 updateTime:
 categories: npm commands
-tags: npm publish
+tags: npm publish, npm version, npm pack
 series: npm 学习
 description: 在 npm 上发布包时，使用 files 字段和 .npmignore 指示你想要包含哪些文件。但是有部分内容是 npm 强制包含或排除的，你无法改变。并且在别人安装你的包时，npm还会把 .gitignore 文件强制改名为 .npmignore，这给很多 generator 项目带来麻烦。
 ---
@@ -20,10 +20,11 @@ const str = "hello";
 module.exports = { str };
 ```
 
-发布时 package 的名称是由 package.json 中的 `name` 字段规定的。加个前缀防止重名：
+发布 package 时，package.json 中的 name 和 version 字段是必需的。name 是包的名称，version 是当前发布的版本。name 和 version 一起形成一个唯一的 identifier。
 
 ```js
-  "name": "lilytest-lib-a",
+  name: "lilytest-lib-a",
+  version: "1.0.0",
 ```
 
 发布
@@ -32,13 +33,27 @@ module.exports = { str };
 npm publish
 ```
 
+对 package 的任何改动都应该伴随着对 version 的改动。推荐使用 `npm version` 命令，它会修改 package.json 、 package-lock.json 和 npm-shrinkwrap.json 中的版本。
+
+```bash
+# 指定版本
+npm version <newversion>
+# 升级 patch：v1.0.0 -> v1.0.1 -> v1.0.2
+npm version patch
+# 升级 minor（patch 重置为 0）：v1.0.2 -> v1.1.0 -> v1.2.0
+npm version minor
+# 升级 major（minor 和 patch 重置为 0）：v1.2.0 -> v2.0.0 -> v3.0.0
+npm version major
+
+```
+
 ## 小心！发布时不是原样上传！
 
 在 npm 发布 package 时，可以使用 **packge.json 的 files 字段(白名单)** 和 **.npmignore 文件(黑名单)** 告诉 npm 你想包含哪些文件。但是你的决定权是**有限**的，有一部分内容是 npm 强制包含或排除的，无论你怎么设置都无法改变。
 
 如果说上述行为算是可以理解的，那么下面的操作就让人难以接受了：在别人使用 npm install 安装你发布的包时，npm 会修改你包中的文件！——说的就是 `.gitignore` ，npm 会把它自动重命名为 `.npmignore`。
 
-这对普通项目可能影响不大，但是对于 generator 就影响很大了（比如我写的 [lily-cli 脚手架](post:1ac6fb5e-1737-44a7-881e-31a35ba69e33)）。而且这一自动重命名的行为是强制的，你无法通过任何设置取消。
+这对普通项目可能影响不大，但是对于 generator 就影响很大了（比如我写的 [lily-cli 脚手架](post:1ac6fb5e-1737-44a7-881e-31a35ba69e33)）。这一自动重命名的行为是强制的，你无法通过任何设置取消。
 
 generator 中 .gitignore 问题的解决方案：generator/template 中的 .gitignore 改名为 gitignore，在构建时自动改回来
 
@@ -59,9 +74,7 @@ generator 中 .gitignore 问题的解决方案：generator/template 中的 .giti
 - .git
 - .npmrc
 - node_modules
-- package-lock.json
-- pnpm-lock.yaml
-- yarn.lock
+- lock 文件：package-lock.json、pnpm-lock.yaml、yarn.lock
 
 #### 安装时强制改名
 
@@ -108,11 +121,7 @@ generator 中 .gitignore 问题的解决方案：generator/template 中的 .giti
 
 ![在这里插入图片描述](../post-assets/9bd0af8c-0c11-4305-871a-bceb867b7f6a.png)
 
-对比图：
-
-![在这里插入图片描述](../post-assets/ab0d316c-d151-4c62-b339-2b28f1e05f28.png)
-
-发布的内容中不包含 `node_modules`、`.gitignore` 和 `package-lock.json`
+发布后的内容中不包含 `node_modules`、`.gitignore` 和 `package-lock.json`
 
 #### 测试 2：设置 `files: ["*"]`
 
@@ -124,7 +133,7 @@ generator 中 .gitignore 问题的解决方案：generator/template 中的 .giti
 
 这说明不设置 files 字段与设置 ` "files": ["*"]` 的行为并不是完全一致的。（.gitignore 文件的不同效果是我无意中测试出来的，至于其他还有哪些文件受影响我也不知道，没有在官方文档中找到相关说明）
 
-使用 `npm install` 安装这个包，可以看到 .gitignore 被自动改名为 .npmignore 了：
+在其他项目中使用 `npm install` 安装这个包，可以看到安装后 .gitignore 被自动改名为 .npmignore 了：
 
 ![在这里插入图片描述](../post-assets/c2c05f33-504d-4403-a3bf-0a9c5e5e2af4.png)
 
@@ -147,22 +156,25 @@ generator 中 .gitignore 问题的解决方案：generator/template 中的 .giti
 
 只留下了三个文件！
 
-因为在未设置 files 时，默认包含所有文件。一旦你设置了 files 字段，那么将只包含你设置的内容了！更明确一点，是 **npm 强制包含的内容** + **在 files 字段设置了且不是被 npm 强制排除的内容**。具体在这个例子中：
+因为在未设置 files 时默认包含所有文件。一旦设置了 files 字段，那么将只包含你设置的内容了！更明确一点，是 **npm 强制包含的内容** + **在 files 字段设置了且不是被 npm 强制排除的内容**。具体在这个例子中：
 
-- 《npm 强制包含的内容》：`package.json` `index.js`（因为我在 package.json 中设置了`"bin": "./index.js"`）
-- 《在 files 字段设置了且不是被 npm 强制排除的内容》：`.gitignore`
+- npm 强制包含的内容
+  - package.json
+  - index.js（因为我在 package.json 中设置了`"main": "./index.js"`，如果没有设置那么 index.js 也留不下来）
+- 在 files 字段设置了且不是被 npm 强制排除的内容
+  - .gitignore
 
 files 字段中设置的 `node_modules` 和 `package-lock.json` 都是被 npm 强制排除的，所以设置也无效。
 
-别人安装这个包得到的内容：.gitignore 依然被重命名为 .npmignore 了
+在其他项目中安装这个包：.gitignore 依然被重命名为 .npmignore 了
 
 ![在这里插入图片描述](../post-assets/fd6c3f8a-0d14-44c7-ad21-5b723f264ff2.png)
 
 ### 利用 npm pack 测试
 
-研究这个问题还是挺麻烦的。需要一遍遍的修改本地文件，发布，再去 npm registry 上查看。
+研究这个问题还是挺麻烦的。需要一遍遍的修改本地文件，发布，再去 npm registry 上查看，再去另一个项目中安装。
 
-幸好我在查资料的时候，发现 `npm publish` 和 `npm pack` 在这个问题上总是被一起讨论。`npm pack` 是打压缩包，看了下源码发现 publish 和 pack 都是调用相同的内部方法。所以可以用 pack 替代 publish 进行测试！这就方便许多了。
+幸好我在查资料的时候发现 `npm publish` 和 `npm pack` 在这个问题上总是被一起讨论。`npm pack` 是打压缩包，看了下源码发现 publish 和 pack 都是调用相同的内部方法。所以可以用 pack 替代 publish 进行测试！这就方便许多了。
 
 执行 `npm pack`，得到一个 .tgz 压缩包，解压后就可以看到所有内容了：
 
