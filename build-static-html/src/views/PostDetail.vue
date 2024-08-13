@@ -149,23 +149,20 @@ $app-gap-width: 20px;
       font-size: 14px;
       line-height: 20px;
       margin: 8px 0;
+      display: flex;
       .another-post,
       .current-post {
         color: #333;
-        &::before {
-          content: "●";
-          margin-right: 6px;
-        }
       }
-      .another-post {
-        &::before {
-          color: #2196f3;
-        }
+      .another-post::before {
+        content: "✧";
+        color: #03a9f4;
+        margin-right: 6px;
       }
-      .current-post {
-        &::before {
-          color: #ccc;
-        }
+      .current-post::before {
+        content: "✦";
+        color: orange;
+        margin-right: 6px;
       }
       .another-post:hover {
         transition: color 0s;
@@ -230,17 +227,36 @@ $app-gap-width: 20px;
     border-top: 1px solid #ddd;
     padding-top: 20px;
     h2 {
+      font-size: 21px;
       background: #eff4f5;
       padding: 10px 0 10px 12px;
-      margin: 0 0;
+      margin: 8px 0;
+    }
+    h3 {
+      font-size: 16px;
+      border: 1px dashed #999;
+      padding: 6px 0 6px 8px;
+      margin: 4px 0;
+      border-radius: 4px;
+    }
+    h4 {
+      font-size: 15px;
+      margin: 10px 0;
     }
     h5 {
       font-size: 14px;
-      margin: 16px 0;
+      margin: 8px 0;
     }
     h6 {
       font-size: 14px;
-      margin: 10px 0;
+      margin: 6px 0;
+      color: black;
+      &::before {
+        font-size: 12px;
+        content: "✧✧✧✧✧✧";
+        font-weight: normal;
+        margin-right: 4px;
+      }
     }
     p {
       line-height: 22px;
