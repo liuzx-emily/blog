@@ -29,7 +29,7 @@ description: 删除 npm 包必须要满足特定条件（比如说如果有其�
   - **上周**下载量<300
   - 只有一个 owner/maintainer
 
-如果不满足删除的条件，可以考虑 [deprecate](https://docs.npmjs.com/cli/deprecate/)。
+如果不满足删除的条件，可以考虑 [deprecate](post:a0998f6a-7915-4b22-97be-3e7c4f8c2dfc)。
 
 ## 删除整个包
 
