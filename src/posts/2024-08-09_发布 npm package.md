@@ -2,7 +2,7 @@
 id: 712988a6-8046-4a13-acfb-23b33ceca90c
 title: 发布 npm package
 createTime: 2024-08-09
-updateTime:
+updateTime: 2024-08-15
 categories: npm commands
 tags: npm publish, npm version, npm pack
 series: npm 学习
@@ -33,19 +33,44 @@ module.exports = { str };
 npm publish
 ```
 
-对 package 的任何改动都应该伴随着对 version 的改动。推荐使用 `npm version` 命令，它会修改 package.json 、 package-lock.json 和 npm-shrinkwrap.json 中的版本。
+### version
+
+对 package 的任何改动都应该伴随着对 version 的改动。推荐使用 `npm version` 修改 version，它会同时修改 package.json、package-lock.json 和 npm-shrinkwrap.json 中的版本。
 
 ```bash
-# 指定版本
-npm version <newversion>
-# 升级 patch：v1.0.0 -> v1.0.1 -> v1.0.2
-npm version patch
-# 升级 minor（patch 重置为 0）：v1.0.2 -> v1.1.0 -> v1.2.0
-npm version minor
-# 升级 major（minor 和 patch 重置为 0）：v1.2.0 -> v2.0.0 -> v3.0.0
-npm version major
-
+npm version [<newversion> | major | minor | patch]
 ```
+
+初版本是 1.0.0，之后按照如下规则修改版本：
+
+| Stage         |                                  | Rule           |
+| ------------- | -------------------------------- | -------------- |
+| Patch release | Backward compatible bug fixes    | 1.0.0 -> 1.0.1 |
+| Minor release | Backward compatible new features | 1.0.1 -> 1.1.0 |
+| Major release | Breaking changes                 | 1.2.0 -> 2.0.0 |
+
+### dist-tag
+
+```bash
+npm dist-tag add <package-spec (with version)> [<tag>]
+npm dist-tag rm <package-spec> <tag>
+npm dist-tag ls [<package-spec>]
+```
+
+```bash
+# 发布时指定标签
+npm publish --tag <tag>
+# 如果发布时未指定标签，则 npm 使用 latest 作为此版本的标签（此行为是强制的）
+npm publish
+```
+
+latest 标签是 npm 中唯一有特殊语义的标签：安装 package 的时候，如果没有指定 version 和 tag，那么会安装 latest 对应的版本。
+
+- [Adding dist-tags to packages](https://docs.npmjs.com/adding-dist-tags-to-packages)
+- [npm dist-tag](https://docs.npmjs.com/cli/v10/commands/npm-dist-tag)
+- [npm publish --no-tag publishes with "false" dist-tag](https://github.com/npm/npm/issues/10625)
+
+<span style="color:darkorange;">我测试 dist-tag 时遇到 bug：已移除的 tag 在下一次发布新版本之后会重新出现。此 bug 可稳定复现，我用的 npm 版本是 10.8.1（node@22.3.0），win10 系统。</span>
 
 ## 小心！发布时不是原样上传！
 
