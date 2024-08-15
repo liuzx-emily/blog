@@ -1,6 +1,6 @@
 ---
 id: 712988a6-8046-4a13-acfb-23b33ceca90c
-title: 发布 npm package
+title: publish npm package
 createTime: 2024-08-09
 updateTime: 2024-08-15
 categories: npm commands

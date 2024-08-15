@@ -1,6 +1,6 @@
 ---
 id: 2b9da1e4-0c77-499e-9aaf-5abaaecd436d
-title: 取消发布 npm package
+title: unpublish npm package
 createTime: 2024-08-09
 updateTime:
 categories: npm commands
