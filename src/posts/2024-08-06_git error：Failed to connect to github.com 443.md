@@ -4,7 +4,7 @@ title: git error: Failed to connect to github.com 443
 createTime: 2024-08-06
 updateTime:
 categories:
-tags: git
+tags: git, vpn
 description: 国内访问 github 不稳定，经常被墙，导致 git clone 报错 Failed to connect to 443。需要给 git 设置使用 vpn
 ---
 
