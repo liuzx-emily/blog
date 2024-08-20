@@ -109,9 +109,3 @@ maybe 移动端？maybe，just maybe
 npm workspace
 
 https://docs.npmjs.com/cli/v10/using-npm/workspaces
-
----
-
-showdown。js 给标题设置 id
-
-https://github.com/showdownjs/showdown/issues/458

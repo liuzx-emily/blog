@@ -35,13 +35,23 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
       const newSrc = `${baseUrl}/post-assets/${imageName}`;
       img.setAttribute("src", newSrc);
     });
-    // change link which is linked to another post
     doc.querySelectorAll("a").forEach((el) => {
       const href = el.getAttribute("href");
-      const prefix = "post:";
-      if (href.startsWith(prefix)) {
-        const linkedPostId = href.slice(prefix.length);
-        const newHref = `${baseUrl}/#/post/${linkedPostId}`;
+      /* 修改链接到另一篇文章的链接。有两种格式：
+        - 普通："post:[postId]"，直接跳转到另一篇文章
+        - 额外携带 headerId："post:[postId]#[headerId]"，跳转过去后 scroll 到指定 header
+      */
+      const re = /^post:([^#]+)(#([^#]+))?$/;
+      const found = href.match(re);
+      // href="post:foo" 时，found 为 ["post:foo", "foo", null, null]
+      // href="post:foo#bar" 时，found 为 ["post:foo#bar", "foo", "#bar", "bar"]
+      if (found) {
+        const linkedPostId = found[1];
+        let newHref = `${baseUrl}/#/post/${linkedPostId}`;
+        const headerId = found[3];
+        if (headerId) {
+          newHref += `?headerId=${headerId} `;
+        }
         el.setAttribute("href", newHref);
         el.setAttribute("target", "_blank");
       }

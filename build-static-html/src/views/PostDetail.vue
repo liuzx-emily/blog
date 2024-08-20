@@ -56,6 +56,16 @@ function clickToc(index) {
 }
 
 const activeLeftPanel = ref(["series", "toc"]);
+
+onMounted(() => {
+  // 注意：我并不确定在哪个 hook 里能确保 v-html 中的内容渲染完毕，先放在 mounted 里吧。
+  if (route.query.headerId) {
+    const scrollTarget = document.querySelector("#" + route.query.headerId);
+    if (scrollTarget) {
+      scrollTarget.scrollIntoView({ behavior: "instant" });
+    }
+  }
+});
 </script>
 
 <template>
