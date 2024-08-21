@@ -15,7 +15,10 @@ defineProps({
   </div>
 </template>
 <style lang="scss" scoped>
-.anticon {
-  color: #777;
+.post-date {
+  color: #888;
+  .anticon {
+    color: #777;
+  }
 }
 </style>

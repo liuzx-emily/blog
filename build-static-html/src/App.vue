@@ -1,12 +1,9 @@
 <script setup>
-import { provide } from "vue";
 import { useRoute } from "vue-router";
 import "./assets/css/common.scss";
 import BackToTop from "./components/BackToTop.vue";
-import { posts } from "../data/posts.js";
 
 const route = useRoute();
-provide("posts", posts);
 </script>
 
 <template>

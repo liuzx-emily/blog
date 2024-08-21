@@ -102,10 +102,6 @@ super-dev 中检查文章分类是否有效。
 
 ---
 
-maybe 移动端？maybe，just maybe
-
----
-
 npm workspace
 
 https://docs.npmjs.com/cli/v10/using-npm/workspaces

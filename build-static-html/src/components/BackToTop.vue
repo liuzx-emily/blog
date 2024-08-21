@@ -1,5 +1,6 @@
 <script setup>
 import { VerticalAlignTopOutlined } from "@ant-design/icons-vue";
+import { isMobile } from "../store";
 
 function backToTop() {
   document.querySelector("body").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -7,7 +8,9 @@ function backToTop() {
 </script>
 
 <template>
-  <span class="back-to-top-button" @click="backToTop"><VerticalAlignTopOutlined /></span>
+  <span class="back-to-top-button" :class="{ isMobile: isMobile }" @click="backToTop"
+    ><VerticalAlignTopOutlined
+  /></span>
 </template>
 <style lang="scss" scoped>
 .back-to-top-button {
@@ -26,5 +29,11 @@ function backToTop() {
   &:hover {
     background: #eff4f5;
   }
+}
+.back-to-top-button.isMobile {
+  background-color: #213544;
+  color: white;
+  right: 30px;
+  bottom: 50px;
 }
 </style>

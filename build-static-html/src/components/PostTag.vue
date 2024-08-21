@@ -15,13 +15,11 @@ defineProps({
 
 <style lang="scss" scoped>
 .post-tag {
-  font-size: 13px;
   padding: 0 4px;
-  background: #e9f0f3;
-  margin-right: 8px;
-  border-radius: 2px;
   color: #1e4658;
+  background: #e9f0f3;
   outline: 1px solid #c1d7e1;
+  border-radius: 2px;
   cursor: pointer;
 }
 </style>

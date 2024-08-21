@@ -48,3 +48,13 @@ export function dateFormat(date, fmt) {
 export function cloneDeep(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
+
+export function walkThroughTree(treeArr, cb) {
+  for (let i = 0; i < treeArr.length; i++) {
+    const element = treeArr[i];
+    cb(element);
+    if (element?.children?.length > 0) {
+      walkThroughTree(element.children, cb);
+    }
+  }
+}

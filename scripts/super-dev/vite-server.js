@@ -5,7 +5,10 @@ export async function createViteServer() {
   const server = await createServer({
     root: _getPath("build-static-html"),
     configFile: _getPath("build-static-html/vite.config.js"),
-    server: { port: 2570 },
+    server: {
+      port: 2570,
+      // host: true, // expose
+    },
   });
 
   await server.listen();
