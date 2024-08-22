@@ -116,9 +116,9 @@ new Vue({
 
 ### eslint
 
-配置 eslint `npm init @eslint/config@latest`
+初始化 eslint `npm init @eslint/config@latest`
 
-如有问题可参考 [《vscode 中 eslint 无效》](post:2d32697a-e76c-4b96-a064-e96ae538af58)
+参考文章 [《项目中初始化 eslint》](post:6963ff0a-144f-4ee7-ada0-22d30beef6a1)
 
 ## Step 2：搭建脚手架，让一切自动化
 
