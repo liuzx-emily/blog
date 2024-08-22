@@ -1,7 +1,3 @@
-不要用相对路径，要用 `process.cwd()` 或 `__dirname`。不然的话，在不同目录下执行命令会有不同的结果。
-
----
-
 vue 中 ref 和 shallowRef（处理大数据）
 
 当数据量过大时，即使用 shallowRef 也可能卡顿。
