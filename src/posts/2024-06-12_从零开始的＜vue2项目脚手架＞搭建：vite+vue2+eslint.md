@@ -3,7 +3,7 @@ id: 1ac6fb5e-1737-44a7-881e-31a35ba69e33
 title: 从零开始的＜vue2项目脚手架＞搭建：vite+vue2+eslint
 createTime: 2024-06-12
 updateTime:
-categories: vue, npm commands
+categories: vue, npm commands, nodejs
 tags: npm init, npm publish
 description: 自己搭建一个项目初始化的脚手架。只需要执行 npm init lily-cli 就可以自动创建 vite+vue2+eslint 项目。
 ---
@@ -26,13 +26,12 @@ description: 自己搭建一个项目初始化的脚手架。只需要执行 npm
 1. 手动创建一个 vite+vue2+eslint 的项目
 2. 以上一步的项目作为模板，写一个脚本自动创建新项目
 
----
-
 ## Step 1：手动创建项目 vite+vue2+eslint
 
 ### 初始化
 
-新建文件夹 _template_vite_vue2_eslint_
+新建文件夹 template_vite_vue2_eslint
+
 `npm init -y`
 
 ### vite + vue2
@@ -119,33 +118,15 @@ new Vue({
 
 配置 eslint `npm init @eslint/config@latest`
 
-如有问题可参考 [《vscode 中 eslint 无效？npm init 是什么？》](post:2d32697a-e76c-4b96-a064-e96ae538af58)
-
----
+如有问题可参考 [《vscode 中 eslint 无效》](post:2d32697a-e76c-4b96-a064-e96ae538af58)
 
 ## Step 2：搭建脚手架，让一切自动化
 
 ### npm init、bin
 
-在前言中说了，我的目标是 “执行 `npm init lily-cli`，就会自动创建项目”。所以有必要了解一下 `npm init` 这个命令
+在前言中说了，我的目标是：**执行 `npm init lily-cli` 就会自动创建项目**。
 
-[点这里查看 npm init 官方文档](https://docs.npmjs.com/cli/v10/commands/npm-init)
-
-npm init 有两种用法：
-
-- `npm init` 在一连串问题后，根据你的回答自动创建 package.json 文件。`-y` 可以跳过问题
-- `npm init <initializer>`：根据指定的 initializer 初始化项目。通过 npx 安装 `create-<initializer>` 包并执行它的 bin。
-
-![在这里插入图片描述](../post-assets/29392aa3-6c9f-43b7-8e3f-0b74be25bb17.png)
-
-我的脚手架名称是 lily-cli，所以 npm package 名字应该是 `create-lily-cli`。并且要设置 bin 字段。
-
-简单了解一下 bin 字段，[点这里查看官方文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bin)：
-
-![在这里插入图片描述](../post-assets/8548980f-88af-427a-bd83-8ea265506ca8.png)
-注意：bin 的入口文件必须以 `#!/usr/bin/env node` 开头，告诉操作系统要用 nodejs 运行此脚本。不然的话，在 npm exec 时会报错 800A03EA：
-
-![在这里插入图片描述](../post-assets/793ccb2e-3f02-43fd-a366-5ec67fd5a411.png)
+需要先了解一下 `npm init` 这个命令，看[这篇文章](post:6ebbba5f-9e24-4ead-a848-fe18bf8420c5)。我的脚手架名称是 lily-cli，所以包的名称是 `create-lily-cli`，并且 package.json 中要设置 bin 字段（注意 bin 的入口文件必须以 `#!/usr/bin/env node` 开头）。
 
 ### 初始化项目
 
