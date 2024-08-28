@@ -94,7 +94,7 @@ defineProps({
   }
   p > code,
   li > code {
-    padding: 1px 4px;
+    padding: 1px 2px;
     background: #f9f2f4;
     color: #c7254e;
     word-break: break-all;

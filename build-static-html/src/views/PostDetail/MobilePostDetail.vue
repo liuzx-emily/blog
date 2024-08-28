@@ -33,7 +33,11 @@ const activeDrawerPanel = ref(["series", "toc"]);
   </a-drawer>
   <div class="sticky-header">
     <router-link to="/" class="back-to-homepage"> <HomeOutlined />返回主页 </router-link>
-    <a-button @click="drawerVisible = true" :icon="h(ApartmentOutlined)">
+    <a-button
+      @click="drawerVisible = true"
+      :icon="h(ApartmentOutlined)"
+      v-if="post.series || toc.length > 0"
+    >
       查看同系列文章、本文目录
     </a-button>
   </div>

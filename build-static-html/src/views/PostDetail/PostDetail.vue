@@ -13,7 +13,7 @@ const activeLeftPanel = ref(["series", "toc"]);
 </script>
 
 <template>
-  <div class="post-detail-side-column pretty-scroll">
+  <div class="post-detail-side-column pretty-scroll" v-if="post.series || toc.length > 0">
     <a-collapse v-model:activeKey="activeLeftPanel" expand-icon-position="end">
       <a-collapse-panel key="series" :header="'系列：' + post.series" v-if="post.series">
         <PostsInTheSameSeries :postsInTheSameSeries="postsInTheSameSeries" />
