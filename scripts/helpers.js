@@ -56,3 +56,15 @@ function analyzeMetadata(metadataStr) {
   }
   return { key, value };
 }
+
+const postAssetReg = /^\.\.\/post-assets\/([^/]+)$/;
+
+// 判断路径是否为本地资源路径，是则返回资源名称；不是返回false
+export function checkAndGetLocalAssetName(path) {
+  // ../post-assets/[asset-name]
+  const match = path.match(postAssetReg);
+  if (!match) {
+    return false;
+  }
+  return match[1]; // match[1] 为 [asset-name]
+}

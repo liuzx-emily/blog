@@ -40,7 +40,7 @@ markdown 中不允许出现 h1；允许出现 h5 h6，但不显示在文章详�
 
 - build-static-html 用来生成静态页面的子项目
   - `data/`: 数据来源，包含 posts 和 categories，通过脚本自动生成（gitignore）
-  - `public/post-assets`: posts 中引用的图片，通过脚本自动生成（gitignore）
+  - `public/post-assets`: posts 中引用的资源，通过脚本自动生成（gitignore）
 - scripts 所有脚本。具体说明见 package.json 中的 scriptsComments
 - src 源文件
   - `post-assets/`: post 中引用的资源（图片）

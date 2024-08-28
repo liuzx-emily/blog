@@ -2,7 +2,7 @@ import { JSDOM } from "jsdom";
 import { cp, writeFile } from "node:fs/promises";
 import { baseUrl } from "../../config.js";
 import { categories } from "../../src/categories.js";
-import { readMarkdownPosts } from "../helpers.js";
+import { readMarkdownPosts, checkAndGetLocalAssetName } from "../helpers.js";
 import { _getPath, createConverter, walkThroughTree } from "../utils.js";
 
 const flattenedCategories = [];
@@ -30,29 +30,17 @@ export async function generateDataPosts({ includeDrafts = false } = {}) {
     const dom = new JSDOM(htmlContent);
     const doc = dom.window.document;
     doc.querySelectorAll("img").forEach((img) => {
-      const src = img.getAttribute("src"); // "../post-assets/d8254493-7b2e-410e-bd40-236711f2b884.png"
-      const [imageName] = src.match(/[^/]+$/);
-      const newSrc = `${baseUrl}/post-assets/${imageName}`;
-      img.setAttribute("src", newSrc);
+      const src = img.getAttribute("src");
+      const correctedPath = correctPostAssetPath(src);
+      if (correctedPath) {
+        img.setAttribute("src", correctedPath);
+      }
     });
     doc.querySelectorAll("a").forEach((el) => {
       const href = el.getAttribute("href");
-      /* 修改链接到另一篇文章的链接。有两种格式：
-        - 普通："post:[postId]"，直接跳转到另一篇文章
-        - 额外携带 headerId："post:[postId]#[headerId]"，跳转过去后 scroll 到指定 header
-      */
-      const re = /^post:([^#]+)(#([^#]+))?$/;
-      const found = href.match(re);
-      // href="post:foo" 时，found 为 ["post:foo", "foo", null, null]
-      // href="post:foo#bar" 时，found 为 ["post:foo#bar", "foo", "#bar", "bar"]
-      if (found) {
-        const linkedPostId = found[1];
-        let newHref = `${baseUrl}/#/post/${linkedPostId}`;
-        const headerId = found[3];
-        if (headerId) {
-          newHref += `?headerId=${headerId} `;
-        }
-        el.setAttribute("href", newHref);
+      const correctedPath = correctLinkToAnotherPost(href) || correctPostAssetPath(href);
+      if (correctedPath) {
+        el.setAttribute("href", correctedPath);
         el.setAttribute("target", "_blank");
       }
     });
@@ -93,4 +81,35 @@ export async function gererateAssets() {
     force: true,
   });
   console.log("已复制 post-assets");
+}
+
+// 将资源路径 "../post-assets/[asset-name]" 转换为 "[baseUrl]/post-assets/[asset-name]"
+function correctPostAssetPath(path) {
+  const assetName = checkAndGetLocalAssetName(path);
+  if (!assetName) {
+    return;
+  }
+  const newPath = `${baseUrl}/post-assets/${assetName}`;
+  return newPath;
+}
+
+/* 修改链接到另一篇文章的链接（这是我自定义的语法）
+  将地址 "post:[postId]" 转换为 "[baseUrl]/#/post/[postId]"
+  将地址 "post:[postId]#[headerId]" 转换为 "[baseUrl]/#/post/[postId]?headerId=[headerId]"
+*/
+function correctLinkToAnotherPost(path) {
+  const re = /^post:([^#]+)(#([^#]+))?$/;
+  const match = path.match(re);
+  if (!match) {
+    return;
+  }
+  // path 为 "post:foo" 时，match 为 ["post:foo", "foo", null, null]
+  // path 为 "post:foo#bar" 时，match 为 ["post:foo#bar", "foo", "#bar", "bar"]
+  const linkedPostId = match[1];
+  let newPath = `${baseUrl}/#/post/${linkedPostId}`;
+  const headerId = match[3];
+  if (headerId) {
+    newPath += `?headerId=${headerId} `;
+  }
+  return newPath;
 }

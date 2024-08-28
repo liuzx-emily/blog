@@ -18,7 +18,7 @@
   },
   "scriptsComments": {
     "create-post": "新建文章",
-    "clear-useless-assets": "寻找在 markdown 中引用但不存在的图片并提出警告；寻找未使用的图片并自动删除",
+    "clear-useless-assets": "寻找在 markdown 中引用但不存在的本地资源并提出警告；寻找未使用的本地资源并自动删除",
     "batch-modify-md": "[调试用]批量修改 md 的内容，把修改后的内容输出到另一文件夹中",
     "batch-scan-md": "[调试用]批量搜索 md 的内容",
     "init": "初始化安装依赖，包括根目录、build-static-html 子项目",
