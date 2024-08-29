@@ -2,7 +2,7 @@
 id: 1ac6fb5e-1737-44a7-881e-31a35ba69e33
 title: 从零开始的＜vue2项目脚手架＞搭建：vite+vue2+eslint
 createTime: 2024-06-12
-updateTime:
+updateTime: 2024-08-29
 categories: vue, npm commands, nodejs
 tags: npm init, npm publish
 description: 自己搭建一个项目初始化的脚手架。只需要执行 npm init lily-cli 就可以自动创建 vite+vue2+eslint 项目。
@@ -116,9 +116,7 @@ new Vue({
 
 ### eslint
 
-初始化 eslint `npm init @eslint/config@latest`
-
-参考文章 [《项目中初始化 eslint》](post:6963ff0a-144f-4ee7-ada0-22d30beef6a1)
+初始化 eslint `npm init @eslint/config@latest`。注意：在配置时选择使用 vue，eslint 默认配置的是 vue3 的规则。我要创建 vue2 项目，所以需要自行修改 eslint 的配置文件，具体看[《项目中初始化 eslint》](post:6963ff0a-144f-4ee7-ada0-22d30beef6a1)
 
 ## Step 2：搭建脚手架，让一切自动化
 
@@ -172,6 +170,8 @@ new Vue({
 ### 发布到 npm
 
 [npm publish](post:712988a6-8046-4a13-acfb-23b33ceca90c)
+
+2024.08.29 添加了 github workflow：push 的时候自动 publish with provenance。具体看：[《github workflow：publish npm package with provenance》](post:13b80421-c3ec-4c43-89d8-6dee8fb2b71a)
 
 ### 执行命令
 
