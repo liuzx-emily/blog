@@ -2,7 +2,7 @@
 id: ed55a9c8-ae07-406e-a88b-25c494d37502
 title: 自动化工具中使用 npm access token 获取权限
 createTime: 2024-08-15
-updateTime:
+updateTime: 2024-08-29
 categories: npm commands
 tags:
 series: npm 学习
@@ -15,6 +15,10 @@ npm access tokens 主要用来在自动化工具中“登录”，获取操作�
 - Granular access tokens
 
 可以在 npm 网站中或使用命令管理 tokens，个人觉得在网站中操作比较方便。
+
+出于安全性考虑，token 在创建完成后是不允许修改设置的。而且 token 值只在创建成功后展示一次，后面无法查看此值。
+
+![alt text](../post-assets/a2820311-5a38-4230-b860-9a1eed08d71f.png)
 
 ## Legacy tokens
 
