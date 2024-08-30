@@ -2,7 +2,7 @@
 id: 712988a6-8046-4a13-acfb-23b33ceca90c
 title: publish npm package
 createTime: 2024-08-09
-updateTime: 2024-08-15
+updateTime: 2024-08-30
 categories: npm commands
 tags: npm publish, npm version, npm pack
 series: npm 学习
@@ -35,7 +35,7 @@ npm publish
 
 ### version
 
-对 package 的任何改动都应该伴随着对 version 的改动。推荐使用 `npm version` 修改 version，它会同时修改 package.json、package-lock.json 和 npm-shrinkwrap.json 中的版本。
+对 package 的任何改动都应该伴随着对 version 的改动。推荐使用 [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) 修改 version，它会同时修改 package.json、package-lock.json 和 npm-shrinkwrap.json 中的版本。
 
 ```bash
 npm version [<newversion> | major | minor | patch]
@@ -48,6 +48,13 @@ npm version [<newversion> | major | minor | patch]
 | Patch release | Backward compatible bug fixes    | 1.0.0 -> 1.0.1 |
 | Minor release | Backward compatible new features | 1.0.1 -> 1.1.0 |
 | Major release | Breaking changes                 | 1.2.0 -> 2.0.0 |
+
+注意：在含有 git 的项目中执行 `npm version patch` 时，会自动创建一个 git commit 和 tag。此行为可以使用 `--no-git-tag-version` 禁止：
+
+```bash
+# 不会创建 git commit 和 tag 了
+npm version patch --no-git-tag-version
+```
 
 ### dist-tag
 
