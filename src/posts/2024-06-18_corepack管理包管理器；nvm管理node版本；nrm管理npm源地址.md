@@ -2,7 +2,7 @@
 id: d2d5aace-5216-44c5-871d-7b16fe03df92
 title: corepack管理包管理器；nvm管理node版本；nrm管理npm源地址
 createTime: 2024-06-18
-updateTime: 2024-08-30
+updateTime: 2024-09-02
 categories: package managers
 tags: corepack, nvm, nrm
 description: corepack 管理 yarn 和 pnpm。项目内使用 corepack 可以锁定 pnpm 版本，这在多人开发项目时很有必要。nvm管理node版本。nrm管理npm源地址
@@ -63,9 +63,7 @@ corepack 被禁用后重新启用，并不看作前面所说的”初次使用�
 
 使用 corepack 安装 pnpm 时可能因为被墙而失败。
 
-corepack 安装包的时候并不使用 npm 的 registry，想要修改 corepack 使用的 registry 需要单独设置（参考[corepack 文档](https://github.com/nodejs/corepack?tab=readme-ov-file#environment-variables)）：在操作系统的环境变量中创建 `COREPACK_NPM_REGISTRY`，值为 `https://registry.npmmirror.com`
-
-![alt text](../post-assets/325b32ef-71be-4acb-b8d8-225286ac6a47.png)
+corepack 安装包的时候并不使用 npm 设置的 registry，想要修改 corepack 使用的 registry 需要单独设置，设置方法见 [《npm/git/corepack/nvm 被墙可以通过设置 mirror 或 proxy 解决》](post:bb085790-9987-4479-9188-6bdbff059cd4#corepack)
 
 ## 使用 corepack 规定项目使用 pnpm 并锁定版本
 
@@ -97,7 +95,7 @@ package.json 会自动添加 packageManager 项：
 
 ### nvm 被墙
 
-执行某些命令可能会出错：比如执行 `nvm list available` 或 `nvm install <version>`时失败，报错信息为：
+执行 `nvm list available` 或 `nvm install <version>` 等命令时可能会出错：
 
 ```bash
 Could not retrieve https://nodejs.org/dist/index.json.
@@ -105,19 +103,7 @@ Could not retrieve https://nodejs.org/dist/index.json.
 Get "https://nodejs.org/dist/index.json": dial tcp 104.20.22.46:443: i/o timeout
 ```
 
-这是因为 nvm 需要访问 nodejs 网站，但是在国内这些网站被墙了。需要给 nvm 设置 node_mirror：
-
-```bash
-# nvm-windows 文档中就有提示，贴心：People in China can use `https://npmmirror.com/mirrors/node/`
-nvm node_mirror https://npmmirror.com/mirrors/node/
-```
-
-如果执行 nvm 命令时需要访问 npm 网站，那么也可能被墙出错，需要设置 npm_mirror（我暂时没遇到这种情况，想不出来什么情况下 nvm 需要访问 npm 网站，不过设置上总没有坏处）：
-
-```bash
-# People in China can use `https://npmmirror.com/mirrors/npm/`
-nvm npm_mirror_url https://npmmirror.com/mirrors/npm/
-```
+这是因为执行这些命令需要请求 nodejs 网站，但是被墙了。给 nvm 设置 mirror 可以解决此问题，设置方法见 [《npm/git/corepack/nvm 被墙可以通过设置 mirror 或 proxy 解决》](post:bb085790-9987-4479-9188-6bdbff059cd4#nvm)
 
 ### 同时使用 corepack 和 nvm
 

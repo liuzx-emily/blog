@@ -2,10 +2,10 @@
 id: c4676c26-beb7-4b95-8239-5d1c14b4ebbe
 title: git error: Failed to connect to github.com 443
 createTime: 2024-08-06
-updateTime:
+updateTime: 2024-09-02
 categories:
-tags: git, vpn
-description: 国内访问 github 不稳定，经常被墙，导致 git clone 报错 Failed to connect to 443。需要给 git 设置使用 vpn
+tags: git
+description: 国内访问 github 不稳定，经常被墙，导致 git clone 报错 Failed to connect to 443。需要给 git 设置 proxy
 ---
 
 有的时候从 github 上 clone 代码会失败，报错：`Failed to connect to github.com 443`。
@@ -50,3 +50,7 @@ fatal: unable to access 'xxxx': Failed to connect to 127.0.0.1 port 7890: Connec
 ## 取消 proxy
 
 `git config --global --unset http.proxy`
+
+---
+
+更多关于被墙的内容见 [《npm/git/corepack/nvm 被墙可以通过设置 mirror 或 proxy 解决》](post:bb085790-9987-4479-9188-6bdbff059cd4)
