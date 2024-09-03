@@ -2,7 +2,7 @@
 id: 712988a6-8046-4a13-acfb-23b33ceca90c
 title: publish npm package
 createTime: 2024-08-09
-updateTime: 2024-08-30
+updateTime: 2024-09-03
 categories: npm commands
 tags: npm publish, npm version, npm pack
 series: npm 学习
@@ -35,7 +35,9 @@ npm publish
 
 ### version
 
-对 package 的任何改动都应该伴随着对 version 的改动。推荐使用 [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) 修改 version，它会同时修改 package.json、package-lock.json 和 npm-shrinkwrap.json 中的版本。
+对 package 的任何改动都应该伴随着对 version 的改动。可以手动修改或者使用 [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version)。
+
+`npm version` 会修改 package.json、package-lock.json 和 npm-shrinkwrap.json 中的 version 值。
 
 ```bash
 npm version [<newversion> | major | minor | patch]
@@ -49,12 +51,21 @@ npm version [<newversion> | major | minor | patch]
 | Minor release | Backward compatible new features | 1.0.1 -> 1.1.0 |
 | Major release | Breaking changes                 | 1.2.0 -> 2.0.0 |
 
-注意：在含有 git 的项目中执行 `npm version patch` 时，会自动创建一个 git commit 和 tag。此行为可以使用 `--no-git-tag-version` 禁止：
+注意：在含有 git 的项目中执行 `npm version patch` 时，会自动创建一个 git commit 和 git tag。此行为可以使用 `--no-git-tag-version` 禁止：
 
 ```bash
 # 不会创建 git commit 和 tag 了
 npm version patch --no-git-tag-version
 ```
+
+###### lock 文件中的 version
+
+三个包管理器的 lock 文件中，只有 `package-lock.json` 中存了当前包的 version（不知道存这个有啥意义），`yarn.lock` 和 `pnpm-lock.yaml` 中都不存当前包的 version。
+
+如果升级版本时是通过手动修改的：
+
+- 使用 pnpm 或者 yarn 的项目都不需要再去 lock 文件中修改版本了
+- 使用 npm 的项目需要修改 lock 文件的版本：执行 `npm i` 重新生成 lock 文件，这会更新 lock 中的 version 版本
 
 ### dist-tag
 
