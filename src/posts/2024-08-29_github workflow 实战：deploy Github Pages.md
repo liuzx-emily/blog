@@ -2,7 +2,7 @@
 id: 6310ff5b-e4a3-4f5f-b685-b03f38613cc3
 title: github workflow 实战：deploy Github Pages
 createTime: 2024-08-29
-updateTime:
+updateTime: 2024-09-04
 categories:
 tags: github workflow
 series: github workflow 实战
@@ -343,7 +343,7 @@ concurrency:
 node-version: lts/*
 ```
 
-我一开始用 latest 版本，workflow 运行到安装 node 这一步时**偶尔**会重试很多次才能下载成功。网上说是因为 node 不是 LTS 版本，我不确定这种说法是否正确，不过姑且改成 LTS 版本了。改之后没有再出现这个问题，但也无法确定是真的解决了还是只是巧了。
+我一开始用 latest 版本，workflow 运行到安装 node 这一步时**偶尔**会重试很多次才能下载成功。~~网上说是因为 node 不是 LTS 版本，我不确定这种说法是否正确，不过姑且改成 LTS 版本了。改之后没有再出现这个问题，但也无法确定是真的解决了还是只是巧了。~~后面我专门研究了这一点，网上说的确实对。具体看 [《github workflow 教程：setup-node》](post:1ece696c-81e0-48fe-a189-29356d178e4c)
 
 ---
 
