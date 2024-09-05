@@ -2,10 +2,10 @@
 id: bb085790-9987-4479-9188-6bdbff059cd4
 title: npm/git/corepack/nvm 被墙可以通过设置 mirror 或 proxy 解决
 createTime: 2024-09-02
-updateTime:
+updateTime: 2024-09-05
 categories:
 tags:
-description: 编程时用到的一些工具访问外网时可能被墙，可通过设置 mirror 或者 proxy 解决。npm registry 被墙需要根据具体情况选择设置 mirror 或 proxy；github 被墙，给 git 设置 proxy；corepack 和 nvm 被墙，设置 mirror。
+description: 编程时用到的一些工具访问外网时可能被墙，可通过设置 mirror 或者 proxy 解决（mirror 应该与原网站同步，但并不一定做到）。npm registry 被墙需要根据具体情况选择设置 mirror 或 proxy；github 被墙，给 git 设置 proxy；corepack 和 nvm 被墙，设置 mirror。
 ---
 
 编程时经常需要访问外网（github、node、npm、stackoverflow 等），常常遇到请求被墙的情况。
@@ -20,9 +20,21 @@ description: 编程时用到的一些工具访问外网时可能被墙，可通�
 
 ### 设置 mirror
 
-设置为国内 ip 可以访问的镜像网站。镜像网站是原网站的**副本**，它（应该）与原网站内容完全一致，但存储在不同的服务器上。
+设置为国内 ip 可以访问的镜像网站。镜像网站是原网站的**副本**，它（应该）与原网站内容完全一致，但存储在不同的服务器上
 
 **适用场景有限**：请求是**只读**的，并且**不在乎请求是否是原网站，只在乎返回的内容正确**（比如安装 npm 包）
+
+###### mirror 不能保证同步
+
+镜像网站**应该**与原网站完全一致。但这只是理想目标，并不一定能保证：
+
+我发布了 [create-lily-cli](https://www.npmjs.com/package/create-lily-cli) 包的新版本 1.0.8。然后本地执行 `npm init lily-cli@latest` 测试效果，发现安装的是旧版 1.0.7。这太奇怪了，怎么设置 `@latest` 也不管用了？
+
+研究了一会儿发现原因：npm registry 我设置了使用淘宝镜像。当我切换回 npm 源后，`npm init lily-cli@latest` 就是 1.0.8 了。
+
+我去 [npm 淘宝镜像网站](https://npmmirror.com/package/create-lily-cli/home)看，果然包的版本并没有更新，显示最新的还是 1.0.7。我不知道 taobao 镜像的同步机制是什么，网上有说是实时同步的，但明显事实并非如此。
+
+所以如果使用了镜像网站，无论是安装依赖还是执行 npx，都无法保证能获取最新内容。
 
 ### 设置 proxy
 
