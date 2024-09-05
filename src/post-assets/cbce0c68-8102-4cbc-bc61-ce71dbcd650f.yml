@@ -1,0 +1,32 @@
+name: publish npm package with provenance
+
+on:
+  push:
+    tags:
+      - "v*" # 匹配以v开头的标签
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # publish with provenance 要求项目的 package.json 中必须设置 repository.url（普通 publish 无需设置）
+  publish-npm-package:
+    # publish with provenance 需要 id-token:write 权限，普通 publish 不需要此权限
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org" # publish 前必须设置 registry
+      - run: pnpm install --frozen-lockfile
+      - run: npm run build
+      - run: npm publish --provenance --access public # 首次发布必须设置 public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.lily_npm_token }} # 需要在 repo 中创建此 secret

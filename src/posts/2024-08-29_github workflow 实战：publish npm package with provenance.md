@@ -9,7 +9,7 @@ series: github workflow 实战
 description:
 ---
 
-记录使用 github workflow 实现自动 publish npm package with provenance 的过程。本文为**实况向**，记录研究全程，包含大量试错及踩坑过程。**教程向**看这篇[《TODO 名字》](post:a68feaba-5746-4def-b77e-95d89933cf1c)
+记录使用 github workflow 实现自动 publish npm package with provenance 的过程。本文为**实况向**，记录研究全程，包含大量试错及踩坑过程。**教程向**看[这篇](post:5968cde5-1851-40c0-9a9e-80647e8ce9c2)
 
 创建项目 lily-test-workflow-publish，步骤见 [《初始化项目步骤》](post:dac4f67a-a623-47bd-bb79-90df2fb5d046)。
 

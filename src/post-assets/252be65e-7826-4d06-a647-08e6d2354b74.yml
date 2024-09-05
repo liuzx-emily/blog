@@ -1,0 +1,41 @@
+name: deploy-pages
+
+on:
+  push:
+    tags:
+      - "v*" # 匹配以v开头的标签
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy-github-pages:
+    # 部署 Github Pages 需要 pages:write 和 id-token:write 权限
+    permissions:
+      pages: write
+      id-token: write
+    # 使用 environment。这个名为 github-pages 的 environment 是开启 Pages 功能时自动创建的，它默认不允许在 push tag 时触发操作，需要修改此设置：进入这个 environment 的设置界面，在 Deployment branches and tags 这一栏添加 tag 规则： `v*`。
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: npm run generate-pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "lily-pages"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
