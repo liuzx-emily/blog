@@ -2,11 +2,11 @@
 id: 1ece696c-81e0-48fe-a189-29356d178e4c
 title: github workflow 教程：setup-node
 createTime: 2024-09-04
-updateTime:
+updateTime: 2024-09-05
 categories:
 tags: github workflow
 series: github workflow 教程
-description: github workflow 中使用 actions/setup-node 安装 node，可以指定 node 版本（推荐 lts），可以设置 cache 缓存依赖项，发布 npm 包前必须设置 registry-url
+description: github workflow 中使用 actions/setup-node 安装 node，可以指定 node 版本（推荐 lts），可以设置 cache 缓存依赖项，发布 npm 包前必须设置 registry-url，working with lockfiles
 ---
 
 ## node-version
@@ -162,3 +162,13 @@ publish:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.lily_npm_token }}
 ```
+
+## working with lockfiles
+
+[官方文档](https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#working-with-lockfiles)
+
+提交 lock 文件。CI 或 CD 工具中安装依赖时命令有所不同：
+
+- `npm ci`
+- `yarn install --immutable`
+- `pnpm install --frozen-lockfile`
