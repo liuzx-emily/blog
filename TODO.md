@@ -24,12 +24,6 @@ arr.value = _temp;
 
 ---
 
-GitHub workflow
-
-可以用 pnpm ？！参考 vue https://github.com/vuejs/core/blob/main/.github/workflows/release.yml
-
----
-
 vue3：
 
 ```js
@@ -42,19 +36,20 @@ task.name = "bar"; // 视图不响应
 
 ---
 
+vue2 和 vue3 区别汇总：
+
+eslint 规则不同
+
+---
+
 css `background-attachment`
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment
 
 ---
 
-vue2 和 vue3 区别汇总
-
----
-
 npm 系列
 
-- [npm init](https://docs.npmjs.com/cli/v10/commands/npm-init)
 - scope
   https://docs.npmjs.com/about-scopes
   https://docs.npmjs.com/package-scope-access-level-and-visibility
@@ -76,21 +71,6 @@ csdn 中的草稿搬过来
 
 ---
 
-eslint-plugin-vue 默认是 vue3 的。如果项目使用 vue2，记得设置
-
-```js
-...pluginVue.configs['flat/recommended'],
-// ...pluginVue.configs['flat/vue2-recommended'], // Use this if you are using Vue.js 2.x.
-```
-
-不然会出错：比如这一条 https://eslint.vuejs.org/rules/no-deprecated-v-bind-sync.html
-
-我又在 vscode 里设置了“保存时自动 fix eslint 发现的 error”。所以保存时会把 `:visible.sync="dialogVisible"` 自动改成 `v-model:visible="dialogVisible"`。但后一种语法在 vue2 里不认。
-
-记得把 lily-cli 中的 eslint 也改一下。
-
----
-
 super-dev 中检查文章分类是否有效。
 但是如果在运行期间 categories.js 变化了，脚本中 import 的 categories 数据还是原先那份，所以检验失效了。
 
@@ -101,3 +81,36 @@ super-dev 中检查文章分类是否有效。
 npm workspace
 
 https://docs.npmjs.com/cli/v10/using-npm/workspaces
+
+---
+
+研究如何让 pre[collapsed]
+
+---
+
+asset 内容如果有中文，在网站上看会乱码。
+
+装了一个修改 http 请求头响应头的插件，一通测试发现给 response header 设置 content-type ：text/plain; charset=utf-8 就可以了。
+（之前没有 content-type）
+
+不知道为什么 需要继续研究
+
+---
+
+分类和 tag 需要重新组织一下？：建一个 CI 分类？
+
+---
+
+跳转到文章时自动滚动至指定标题的功能失效。
+
+```js
+window.addEventListener("scroll", function () {
+  debugger;
+  console.log("scroll");
+});
+```
+
+发现页面加载后触发了两次 scroll：
+
+- 第一次 scroll 是我触发的“自动滚动至指定标题”
+- 第二次 scroll 不知道是怎么处罚的，call stack 中没有显示。
