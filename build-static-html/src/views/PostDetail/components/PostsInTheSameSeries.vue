@@ -14,7 +14,7 @@ defineProps({
       target="_blank"
       :class="seriesPost.isCurrentPost ? 'current-post' : 'another-post'"
     >
-      <span v-if="seriesPost.draft" style="color: #ef6c00">[草稿]</span>{{ seriesPost.title }}
+      <span v-if="seriesPost.draft" style="color: #ef6c00">[草稿]</span>{{ seriesPost.briefTitle }}
     </router-link>
   </div>
 </template>

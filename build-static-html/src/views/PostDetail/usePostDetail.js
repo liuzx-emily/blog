@@ -11,6 +11,15 @@ export function usePostDetail() {
   let postsInTheSameSeries;
   if (post.series) {
     postsInTheSameSeries = seriesMap.get(post.series).map((seriesPost) => {
+      /* 将同系列文章的标题简化：
+        [系列名称]xxx -> xxx
+        [系列名称：]xxx -> xxx
+      */
+      if (seriesPost.title === post.series) {
+        seriesPost.briefTitle = seriesPost.title;
+      } else {
+        seriesPost.briefTitle = seriesPost.title.replace(new RegExp(`^${post.series}(：)*`), "");
+      }
       seriesPost.isCurrentPost = seriesPost.id === post.id;
       return seriesPost;
     });
