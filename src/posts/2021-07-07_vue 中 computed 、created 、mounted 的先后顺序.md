@@ -60,7 +60,7 @@ description:
 - 建立 watcher，设为 lazy
 - 设置 computedGetter（每次读取值的时候，调用 wathcer.evaluate() ，如果是 dirty 的就现算）
 
-具体见 [《vue2 源码思路理解（三）渲染函数的观察者》](post:3e93ed72-b6cd-45ca-8f0d-53b2f9c1b761) 中 **计算属性的实现**
+具体见 [《vue2 源码学习（三）渲染函数的观察者》](post:3e93ed72-b6cd-45ca-8f0d-53b2f9c1b761) 中 **计算属性的实现**
 
 回过头分析上面的例子：
 
