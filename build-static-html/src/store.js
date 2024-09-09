@@ -61,7 +61,7 @@ function getSeries(posts) {
 
   const seriesList = [];
   seriesMap.forEach((posts, name) => {
-    seriesList.push({ name, posts });
+    seriesList.unshift({ name, posts });
   });
 
   return { seriesList, seriesMap };
