@@ -4,7 +4,7 @@ title: prosemirror error - Applying a mismatched transaction
 createTime: 2023-10-13
 updateTime:
 categories: vue, prosemirror
-tags: vue2, vue3
+tags: vue2/vue3区别
 description: vue3 项目中 prosemirror 报错：Applying a mismatched transaction。是因为在 vue3 中 ref().value 得到的不是原对象，而是原对象的 proxy。传给 prosemirror 的就是这个 proxy，未通过 prosemirror 的全等校验，所以报错 mismatched transaction。在 vue2 中 ref().value 就是原对象，所以不会触发这个 bug。
 ---
 

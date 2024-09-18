@@ -4,7 +4,7 @@ title: 迁移代码时发现 Super Uploader 中文件状态不更新
 createTime: 2024-09-18
 updateTime:
 categories: vue
-tags: vue2, vue3
+tags: vue2/vue3区别
 description: 当初写 SuperUploader 时是在 vue2 环境下，此次迁移是 vue3 环境。直接修改原对象属性在 vue2 中可以触发响应，vue3 中无法触发。
 ---
 
