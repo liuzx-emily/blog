@@ -1,6 +1,7 @@
 batchModifyMdOutputs
 build-static-html/data
 build-static-html/public/post-assets
+temp
 
 # Logs
 logs
