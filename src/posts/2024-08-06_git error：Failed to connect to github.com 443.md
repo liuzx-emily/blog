@@ -3,8 +3,8 @@ id: c4676c26-beb7-4b95-8239-5d1c14b4ebbe
 title: git error: Failed to connect to github.com 443
 createTime: 2024-08-06
 updateTime: 2024-09-02
-categories:
-tags: git
+categories: git
+tags:
 description: 国内访问 github 不稳定，经常被墙，导致 git clone 报错 Failed to connect to 443。需要给 git 设置 proxy
 ---
 

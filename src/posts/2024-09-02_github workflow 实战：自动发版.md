@@ -3,7 +3,7 @@ id: cf15495f-1b6d-4ba2-aa95-56c2b2843b04
 title: github workflow 实战：自动发版
 createTime: 2024-09-02
 updateTime:
-categories:
+categories: CI/CD
 tags: github workflow, npm publish
 series: github workflow 实战
 description: 编写脚本实现自动发布新版本（git tag），创建 github workflow 在每次发布新版本时自动部署 Github Pages 并发布 npm 包。最终效果是只需要执行 npm run release 就可以自动化所有操作。

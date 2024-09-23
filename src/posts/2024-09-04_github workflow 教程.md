@@ -3,7 +3,7 @@ id: 5968cde5-1851-40c0-9a9e-80647e8ce9c2
 title: github workflow 教程
 createTime: 2024-09-04
 updateTime:
-categories:
+categories: CI/CD
 tags: github workflow
 series: github workflow 教程
 description: 介绍 github workflow 使用要点和两个具体案例：部署 Github Pages、发布 npm 包。

@@ -17,6 +17,8 @@ export const categories = [
       { name: "npm commands", description: "" },
       { name: "package managers", description: "" },
       { name: "build tools", description: "" },
+      { name: "git", description: "" },
+      { name: "CI/CD", description: "" },
       { name: "eslint", description: "" },
       { name: "typescript", description: "" },
     ],

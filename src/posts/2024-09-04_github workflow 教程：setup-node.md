@@ -3,7 +3,7 @@ id: 1ece696c-81e0-48fe-a189-29356d178e4c
 title: github workflow 教程：setup-node
 createTime: 2024-09-04
 updateTime: 2024-09-05
-categories:
+categories: CI/CD
 tags: github workflow
 series: github workflow 教程
 description: github workflow 中使用 actions/setup-node 安装 node，可以指定 node 版本（推荐 lts），可以设置 cache 缓存依赖项，发布 npm 包前必须设置 registry-url，working with lockfiles

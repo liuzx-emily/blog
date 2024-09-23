@@ -3,8 +3,8 @@ id: abf5c35c-3656-4162-89c1-742efac46c65
 title: gitignore 无法忽略已经 tracked 的文件
 createTime: 2024-08-16
 updateTime:
-categories:
-tags: git
+categories: git
+tags:
 description:
 ---
 

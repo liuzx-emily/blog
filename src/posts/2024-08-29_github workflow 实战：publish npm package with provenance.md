@@ -3,7 +3,7 @@ id: 13b80421-c3ec-4c43-89d8-6dee8fb2b71a
 title: github workflow 实战：publish npm package with provenance
 createTime: 2024-08-29
 updateTime:
-categories:
+categories: CI/CD
 tags: github workflow, npm publish
 series: github workflow 实战
 description:

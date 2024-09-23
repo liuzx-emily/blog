@@ -3,7 +3,7 @@ id: 6310ff5b-e4a3-4f5f-b685-b03f38613cc3
 title: github workflow 实战：deploy Github Pages
 createTime: 2024-08-29
 updateTime: 2024-09-04
-categories:
+categories: CI/CD
 tags: github workflow
 series: github workflow 实战
 description:

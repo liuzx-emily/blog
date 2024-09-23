@@ -3,7 +3,7 @@ id: bb085790-9987-4479-9188-6bdbff059cd4
 title: npm/git/corepack/nvm 被墙可以通过设置 mirror 或 proxy 解决
 createTime: 2024-09-02
 updateTime: 2024-09-05
-categories:
+categories: 底层工具
 tags:
 description: 编程时用到的一些工具访问外网时可能被墙，可通过设置 mirror 或者 proxy 解决（mirror 应该与原网站同步，但并不一定做到）。npm registry 被墙需要根据具体情况选择设置 mirror 或 proxy；github 被墙，给 git 设置 proxy；corepack 和 nvm 被墙，设置 mirror。
 ---
