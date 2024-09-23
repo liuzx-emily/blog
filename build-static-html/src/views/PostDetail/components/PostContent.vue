@@ -132,5 +132,10 @@ defineProps({
       color: #c94922;
     }
   }
+  iframe {
+    width: 100%;
+    height: 280px;
+    margin: 10px 0;
+  }
 }
 </style>

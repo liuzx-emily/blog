@@ -129,6 +129,10 @@ const activeDrawerPanel = ref(["series", "toc"]);
     code {
       font-size: 12px;
     }
+    iframe {
+      height: 170px;
+      margin: 5px 0;
+    }
   }
 }
 </style>
