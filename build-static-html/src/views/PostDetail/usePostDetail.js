@@ -67,7 +67,11 @@ export function usePostDetail() {
     if (route.query.headerId) {
       const scrollTarget = document.querySelector("#" + route.query.headerId);
       if (scrollTarget) {
-        scrollTarget.scrollIntoView({ behavior: "instant" });
+        // 页面加载后会触发一些未知来源的 scroll，如果不加 setTimeout 则会先执行我的 scroll，再触发那些未知 scroll，所以最终效果是滚到其他位置去了。
+        // 找不到好的解决办法，姑且给我的 scroll 加一个 500ms 的延迟
+        setTimeout(() => {
+          scrollTarget.scrollIntoView({ behavior: "instant" });
+        }, 500);
       }
     }
   });
