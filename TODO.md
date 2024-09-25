@@ -1,7 +1,3 @@
-https://developer.mozilla.org/zh-CN/docs/Web/CSS/::first-line
-
----
-
 npm 系列
 
 - scope
@@ -20,46 +16,6 @@ npm 系列
 - [npm prune](https://docs.npmjs.com/cli/v10/commands/npm-prune)
 
 [npm workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces)
-
----
-
-csdn 中的草稿搬过来
-
----
-
-super-dev 中检查文章分类是否有效。
-但是如果在运行期间 categories.js 变化了，脚本中 import 的 categories 数据还是原先那份，所以检验失效了。
-
-每次现 readFile 应该可行。动态 import 不知道行不行？
-
----
-
-研究如何让 pre[collapsed]
-
----
-
-asset 内容如果有中文，在网站上看会乱码。
-
-装了一个修改 http 请求头响应头的插件，一通测试发现给 response header 设置 content-type ：text/plain; charset=utf-8 就可以了。
-（之前没有 content-type）
-
-不知道为什么 需要继续研究
-
----
-
-跳转到文章时自动滚动至指定标题的功能失效。
-
-```js
-window.addEventListener("scroll", function () {
-  debugger;
-  console.log("scroll");
-});
-```
-
-发现页面加载后触发了两次 scroll：
-
-- 第一次 scroll 是我触发的“自动滚动至指定标题”
-- 第二次 scroll 不知道是怎么处罚的，call stack 中没有显示。
 
 ---
 
@@ -148,15 +104,6 @@ export default defineComponent({
 
 ---
 
-- a
-  ```js
-  const a = 1;
-  ```
-
-showdown.js 没法转换
-
----
-
 Proxy 详细文档：
 
 - [mdn web docs - Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
@@ -188,3 +135,15 @@ css：
   - 好处理 z-index；
 
 注意 vue2 和 vue3 的差异。
+
+---
+
+nodejs 模块缓存
+
+nodejs 有两个模块系统：CommonJS modules and ECMAScript modules
+
+commonjs module cache https://nodejs.org/api/modules.html#caching
+
+es module cache https://github.com/nodejs/help/issues/1399
+
+完成后，在文章《个人博客网站开发记录：功能更新记录》相关小节添加本文链接
