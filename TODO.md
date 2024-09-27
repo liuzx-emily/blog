@@ -1,24 +1,3 @@
-npm 系列
-
-- scope
-  https://docs.npmjs.com/about-scopes
-  https://docs.npmjs.com/package-scope-access-level-and-visibility
-- [npm pack](https://docs.npmjs.com/cli/v10/commands/npm-pack)
-
-一些好玩的 npm 命令，可以放在一篇文章里
-
-- [npm ci](https://docs.npmjs.com/cli/v10/commands/npm-ci/)
-- [npm doctor](https://docs.npmjs.com/cli/v10/commands/npm-doctor)
-- [npm explain](https://docs.npmjs.com/cli/v10/commands/npm-explain)
-- [npm ls](https://docs.npmjs.com/cli/v10/commands/npm-ls)
-- [npm outdated](https://docs.npmjs.com/cli/v10/commands/npm-outdated),npm update
-- [npm pkg](https://docs.npmjs.com/cli/v10/commands/npm-pkg)
-- [npm prune](https://docs.npmjs.com/cli/v10/commands/npm-prune)
-
-[npm workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces)
-
----
-
 vue 选项式 -> 组合式
 
 以前选项式，拆分功能不好拆，只能用 mixin。
