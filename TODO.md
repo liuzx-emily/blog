@@ -114,15 +114,3 @@ css：
   - 好处理 z-index；
 
 注意 vue2 和 vue3 的差异。
-
----
-
-nodejs 模块缓存
-
-nodejs 有两个模块系统：CommonJS modules and ECMAScript modules
-
-commonjs module cache https://nodejs.org/api/modules.html#caching
-
-es module cache https://github.com/nodejs/help/issues/1399
-
-完成后，在文章《个人博客网站开发记录：功能更新记录》相关小节添加本文链接
