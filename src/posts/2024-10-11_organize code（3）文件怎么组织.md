@@ -92,7 +92,7 @@ description:
 - MainPanel.vue
 </pre>
 
-#### render function
+#### render function {render_function}
 
 有时，我们并不是真的想创建新组件，而是**不得已而为之**。比如说：
 
@@ -173,11 +173,15 @@ render function 非常灵活，完美应对上面提到的情况！但也确实�
   },
 ```
 
+vue 渲染机制和 render function（jsx）的详细介绍看[这篇文章](post:475485d8-3f09-4cd0-a3cc-b94b1a7ed67e)。
+
 #### 一个文件包含多个 component
 
 有的时候确实需要子组件，但子组件功能比较简单，不想创建新文件（想要减少文件数量、和目录层级的深度）。这种情况下，可以在一个文件中包含多个 component。
 
 我以前习惯了 SFC，受限于单文件组件的 “单” 这个字眼，“每个文件只放一个组件”已经成了思维惯性了。但其实组件本质上就是一个特殊的对象（object），如果是普通 js 文件中，我一个文件想放几个组件就放几个组件，这是很正常的事。—— 同理，其实在单文件组件里，你也可以想放几个组件就放几个组件。
+
+SFC 中 `export default` 的是主组件，视图部分可以用 template 也可以用 render function。子组件数量不限，视图用 render function。
 
 ```html
 <script lang="jsx">
