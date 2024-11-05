@@ -6,7 +6,7 @@ updateTime:
 categories: npm commands
 tags:
 series: npm 学习
-description: npm prefix, npm ci, npm pack, npm doctor, npm explain, npm ls, npm pkg, npm outdated, npm update, npm prune, npm workspace
+description: npm prefix, npm ci, npm pack, npm doctor, npm explain, npm ls, npm pkg, npm outdated, npm update, npm prune, npm workspace, npm shrinkwrap
 ---
 
 ## npm prefix
@@ -141,3 +141,18 @@ update 和 install 的区别：update 是安装最新版本的包，install 是�
 [npm workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) 用来实现 monorepo。以后如果需要可以研究一下。
 
 如果使用的是 pnpm，它有自己的 workspace 实现，见 [pnpm workspaces](https://pnpm.io/workspaces)
+
+## npm shrinkwrap
+
+[npm-shrinkwrap.json](https://docs.npmjs.com/cli/v10/configuring-npm/npm-shrinkwrap-json)：npm lock 文件。文件内容、作用都和 package-lock.json 相同，唯一的区别是可以被 publish（关于 publish package 时会 include、exclude 什么内容见[文章](post:712988a6-8046-4a13-acfb-23b33ceca90c)）
+
+- 项目内没有 package-lock.json 和 npm-shrinkwrap.json 时，执行 `npm shrinkwrap` 会创建 npm-shrinkwrap.json。
+- 项目内只有 package-lock.json 时，执行 `npm shrinkwrap` 会将 package-lock.json 重命名为 npm-shrinkwrap.json
+- 项目只有 npm-shrinkwrap.json 时，再安装/删除依赖，都只会更新 npm-shrinkwrap.json 文件。
+- 正常情况下项目中不会同时存在 package-lock.json 和 npm-shrinkwrap.json 文件。如果同时存在，npm-shrinkwrap.json 优先级更高。
+
+注：[yarn](https://classic.yarnpkg.com/lang/en/docs/migrating-from-npm/) 和 [pnpm](https://pnpm.io/next/limitations) 都不支持 npm-shrinkwrap.json。
+
+不建议 library 开发者使用、发布此文件，因为 that would prevent end users from having control over transitive dependency updates。只有在极少数情况下才考虑使用此文件：（下面是 npm 文档中的原文，我原样复制过来）
+
+> The recommended use-case for npm-shrinkwrap.json is applications deployed through the publishing process on the registry: for example, daemons and command-line tools intended as global installs or devDependencies. It's strongly discouraged for library authors to publish this file, since that would prevent end users from having control over transitive dependency updates.
