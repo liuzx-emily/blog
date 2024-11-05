@@ -156,6 +156,11 @@ generator 中 .gitignore 问题的解决方案：generator/template 中的 .giti
 
 （注：名单可能不全。我是在 npm 官方文档里找到的这个名单。官网里有两篇内容里都出现了这个名单，但内容不一致，所以完整性存疑。）
 
+参考文档：
+
+- [files](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#files)
+- [Keeping files out of your Package](https://docs.npmjs.com/cli/v10/using-npm/developers#keeping-files-out-of-your-package)
+
 ### 测试
 
 #### 测试 1：未设置 files 字段
