@@ -1,6 +1,13 @@
 ---
+项目使用npm，以后考虑升级为pnpm。
+注意 github action 中也要改
+---
 
-Proxy 详细文档：
+https://houdini.how/resources/
+
+---
+
+## Proxy 详细文档
 
 - [mdn web docs - Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 - [exploringjs - Proxy](https://exploringjs.com/es6/ch_proxies.html)
@@ -18,11 +25,9 @@ nodejs 中可以用 [util.types.isProxy](https://nodejs.org/api/util.html#utilty
 
 https://exploringjs.com/
 
-js pdf 文档，下载的，网盘预览的
-
 ---
 
-开发经验总结：
+## 开发经验总结
 
 css：
 
@@ -31,3 +36,17 @@ css：
   - 好处理 z-index；
 
 注意 vue2 和 vue3 的差异。
+
+---
+
+## eslilnt
+
+eslint 支持 jsx
+
+发现一个好用的 [eslint 插件](https://www.npmjs.com/package/eslint-plugin-import)，可以直接提示 unable to resolve path。
+
+研究 eslint 配置的时候，发现了一个好用的工具 [inspect eslint config](https://eslint.org/blog/2024/04/eslint-config-inspector/)
+
+---
+
+https://antfu.me/posts/why-not-prettier-zh
