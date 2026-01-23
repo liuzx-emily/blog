@@ -5,6 +5,7 @@ createTime: 2024-04-23
 updateTime: 2026-01-21
 categories: 工作记录, 前端组件
 tags: vue-grid-layout
+series: 自研网格布局系统
 description: 使用 vue-grid-layout 组件时发现，修改参数 margin 会导致 item 高度剧烈变化。这是因为此组件为了保持“网格”对齐，使 item 的高度和 margin 相关。解决方法见文章。
 ---
 

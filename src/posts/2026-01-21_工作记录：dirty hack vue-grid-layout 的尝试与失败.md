@@ -5,6 +5,7 @@ createTime: 2026-01-21
 updateTime:
 categories: 工作记录, 前端组件
 tags: vue-grid-layout
+series: 自研网格布局系统
 description: 项目新需求“自定义页面内边距与组件间隙”，但 vue-grid-layout 的 prop.margin 存在“高度跳变”和“内外不分”的问题。尝试 dirty hack，但最终因为“负 marginBottom”和“背景图定位”无法解决而宣告失败。
 ---
 

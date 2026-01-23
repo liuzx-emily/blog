@@ -5,6 +5,7 @@ createTime: 2026-01-22
 updateTime:
 categories: 工作记录, 前端组件
 tags: vue-grid-layout
+series: 自研网格布局系统
 description: 因 vue-grid-layout 功能受限，我决定参考它自研 Grid 组件。发现其源码逻辑混乱；在处理drag和resize的过程中，经历了无法调试、反复回档的折磨，记录下这段耗时近两月的技术挣扎。
 ---
 
